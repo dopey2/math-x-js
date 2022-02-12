@@ -1,4 +1,5 @@
 import MathNode, { MathNodeType } from "./MathNode";
+import Constant from "./Constant";
 
 export interface ParenthesisData {
   operation: MathNode
@@ -8,39 +9,38 @@ export default class Parenthesis extends MathNode {
     type = MathNodeType.add;
   
     atomic = false;
-    parenthesis: ParenthesisData;
 
-    constructor(operation: MathNode) {
+    content: MathNode;
+
+    constructor(content: MathNode) {
         super();
-      
-        this.parenthesis = {
-            operation: operation,
-        };
+        this.content = content
     }
 
     next: () => MathNode = () => {
-        if(this.parenthesis.operation.constant) {
-            return this.parenthesis.operation;
+        if(this.content instanceof Constant) {
+            return this.content;
         } else {
-            const solvedParenthesis = this.parenthesis.operation.next();
-            if(solvedParenthesis.constant) {
+            const solvedParenthesis = this.content.next();
+            if(solvedParenthesis instanceof Constant) {
                 return solvedParenthesis;
             }
             return new Parenthesis(solvedParenthesis);
         }
     };
 
-    toNode() {
+    toNode = () =>  {
         return {
-            add: [],
+            type: this.type,
+            content: this.content.toNode(),
         };
     }
 
     toString = () => {
-        return `(${this.parenthesis.operation.toString()})`;
+        return `(${this.content.toString()})`;
     };
 
     toTex = () => {
-        return `(${this.parenthesis.operation.toTex()})`;
+        return `(${this.content.toTex()})`;
     };
 }

@@ -44,6 +44,7 @@
     "space-before-blocks": "warn",
     "space-before-function-paren": ["warn", "never"],
     "space-infix-ops": ["warn", { "int32Hint": false }],
-    "space-in-parens": ["warn", "never"]
+    "space-in-parens": ["warn", "never"],
+    "no-unused-private-class-members": ["warn"]
   }
 }

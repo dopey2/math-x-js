@@ -1,4 +1,4 @@
-import MathNode, { MathNodeType } from "./MathNode";
+import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
 import Constant from "./Constant";
 import Fraction from "./Fraction";
 import Add from "./Add";
@@ -18,47 +18,44 @@ export default class Subtract extends MathNode {
     }
 
     next: () => MathNode = () => {
-        if (this.left.constant && this.right.constant) {
-            if (this.right.constant.value < 0) {
-                return new Add(this.left, new Constant(Math.abs(this.right.constant.value)));
+        if (this.left instanceof Constant && this.right instanceof Constant) {
+            if (this.right.value < 0) {
+                return new Add(this.left, new Constant(Math.abs(this.right.value)));
             }
-            return new Constant(this.left.constant.value - Math.abs(this.right.constant.value)) as MathNode;
-        } else if (this.left.fraction && this.right.fraction) {
-            return (this.left as Fraction).subtract(this.right as Fraction) as MathNode;
-        } else if (this.left.fraction && this.right.constant) {
-            return new Subtract(this.left, (this.right as Constant).toFraction() as MathNode) as MathNode;
-        } else if (this.left.constant && this.right.fraction) {
-            return new Subtract((this.left as Constant).toFraction() as MathNode, this.right) as MathNode;
-        } else if (!this.left.atomic || !this.right.atomic) {
+            return new Constant(this.left.value - Math.abs(this.right.value)) as MathNode;
+            // @ts-ignore
+        } else if(this.left.subtract) {
+            // @ts-ignore
+            return this.left.subtract(this.right)
+            // @ts-ignore
+        } else if(this.right.subtract) {
+            // @ts-ignore
+            return this.right.subtract(this.left);
+        }
+
+        if (!this.left.atomic || !this.right.atomic) {
             return new Subtract(this.left.next(), this.right.next());
         }
 
         return this;
     };
 
-
-    toNode() {
+    toNode = () => {
         return {
-            add: [],
+            type: this.type,
+            left: this.left.toNode(),
+            right: this.right.toNode()
         };
     }
-
-    toString = () => {
-        const left = this.left.toTex({ constant: { negativeOnly: true } });
-        const right = this.right.toTex({ constant: { hideSign: true } });
+    
+    toString = (data?: ToStringParam) => {
+        const left = this.left.toString({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
+        const right = this.right.toString({ constant: { showNegativeInParenthesis: true } });
         return `${left} - ${right}`;
     };
 
-    toTex = (data?: {
-        constant?: {
-            showSign?: boolean,
-            negativeOnly?: boolean,
-            positiveOnly?: boolean,
-            hideSign?: boolean,
-            showNegativeInParenthesis?: boolean,
-        }
-    }) => {
-        const left = this.left.toTex({ constant: { negativeOnly: true, showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
+    toTex = (data?: ToStringParam) => {
+        const left = this.left.toTex({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
         const right = this.right.toTex({ constant: { showNegativeInParenthesis: true } });
         return `${left} - ${right}`;
     };

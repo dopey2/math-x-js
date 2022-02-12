@@ -1,4 +1,4 @@
-import MathNode, { MathNodeType } from "./MathNode";
+import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
 import Constant from "./Constant";
 import Fraction from "./Fraction";
 
@@ -18,16 +18,16 @@ export default class Multiply extends MathNode {
     }
 
     next: () => MathNode = () => {
-        if (this.left.constant && this.right.constant) {
-            return new Constant(this.left.constant.value * this.right.constant.value);
-        } else if (this.left.fraction && this.right.fraction) {
+        if (this.left instanceof Constant && this.right instanceof Constant) {
+            return new Constant(this.left.value * this.right.value);
+        } else if (this.left instanceof Fraction && this.right instanceof Fraction) {
             return (this.left as Fraction).multiply(this.right as Fraction);
-        } else if (this.left.fraction && this.right.constant) {
+        } else if (this.left instanceof Fraction && this.right instanceof Constant) {
             if (!this.left.atomic) {
                 return new Multiply(this.left.next(), this.right);
             }
             return new Multiply(this.left, new Fraction(this.right, new Constant(1)));
-        } else if (this.left.constant && this.right.fraction) {
+        } else if (this.left instanceof Constant && this.right instanceof Fraction) {
             if (!this.right.atomic) {
                 return new Multiply(this.left, this.right.next());
             }
@@ -39,26 +39,21 @@ export default class Multiply extends MathNode {
         return this;
     };
 
-
     toNode = () => {
         return {
-            multiply: [],
+            type: this.type,
+            left: this.left.toNode(),
+            right: this.right.toNode()
         };
     };
 
-    toString = () => {
-        return `${this.left.toString()} * ${this.right.toString({ constant: { showNegativeInParenthesis: true } })}`;
+    toString = (data?: ToStringParam) => {
+        const left = this.left.toString({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
+        const right = this.right.toString({ constant: { showNegativeInParenthesis: true } });
+        return `${left} * ${right}`;
     };
 
-    toTex = (data?: {
-        constant?: {
-            showSign?: boolean,
-            negativeOnly?: boolean,
-            positiveOnly?: boolean,
-            hideSign?: boolean,
-            showNegativeInParenthesis?: boolean,
-        }
-    }) => {
+    toTex = (data?: ToStringParam) => {
         const left = this.left.toTex({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
         const right = this.right.toTex({ constant: { showNegativeInParenthesis: true } });
         return `${left} * ${right}`;

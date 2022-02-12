@@ -1,5 +1,6 @@
 import Constant from "../src/math-node/Constant";
 import Multiply from "../src/math-node/Multiply";
+import {MathNodeType} from "../src/math-node/MathNode";
 
 describe("Adding constant", () => {
     it("1 * 1", () => {
@@ -7,9 +8,10 @@ describe("Adding constant", () => {
         const solved = expression.next();
         expect(solved).toBeDefined();
         expect(solved?.atomic).toBe(true);
-        expect(solved?.constant).toBeDefined();
-        expect(solved?.constant?.value).toBe(1);
-        expect(solved?.toString()).toBe("1");
+
+        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.value).toBe(1);
+        expect(solved.toString()).toBe("1");
     });
 
     it("3 * 2", () => {
@@ -18,8 +20,9 @@ describe("Adding constant", () => {
 
         expect(solved).toBeDefined();
         expect(solved?.atomic).toBe(true);
-        expect(solved?.constant).toBeDefined();
-        expect(solved?.constant?.value).toBe(6);
-        expect(solved?.toString()).toBe("6");
+
+        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.value).toBe(6);
+        expect(solved.toString()).toBe("6");
     });
 });

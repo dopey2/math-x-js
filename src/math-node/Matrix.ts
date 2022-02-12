@@ -49,8 +49,8 @@ export default class Matrix extends MathNode {
         for(const row of this.matrix.values) {
             const newRow = [];
             for(const col of row) {
-                if(col.constant) {
-                    newRow.push(col.constant.value);
+                if(col instanceof Constant) {
+                    newRow.push(col.value);
                 }
             }
             matrixValues.push(newRow);
@@ -270,7 +270,7 @@ export default class Matrix extends MathNode {
                 for(const column of row) {
                     const solved = column.next();
                     newRow.push(solved);
-                    atomic = atomic && solved.type === "constant" && !!solved.constant;
+                    atomic = atomic && solved.type === "constant" && solved instanceof Constant;
                 }
 
                 newMatrixValues.push(newRow);
@@ -283,6 +283,13 @@ export default class Matrix extends MathNode {
 
         return this;
     };
+
+    toNode = () => {
+        return {
+            type: this.type,
+            content: this.matrix.values.map((row) => row.map((c) => c.toNode()))
+        }
+    }
 
     toString = (data?: any) => {
         return "";

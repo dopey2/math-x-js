@@ -1,7 +1,12 @@
-import { ConstantData } from "./Constant";
-import { FractionData } from "./Fraction";
 import { MatrixData } from "./Matrix";
 import { ParenthesisData } from "./Parenthesis";
+
+export interface ToStringParam {
+    constant ? : {
+        showNegativeInParenthesis? : boolean,
+    }
+}
+
 
 export enum MathNodeType {
     constant = "constant",
@@ -10,12 +15,11 @@ export enum MathNodeType {
     subtract = "subtract",
     multiply = "multiply",
     exponent = "exponent",
-
     matrix = "matrix"
 }
 
 export default abstract class MathNode {
-    abstract type: MathNodeType;
+    public abstract type: MathNodeType;
 
     /**
      * Tell if an expression can be simplified or not.
@@ -27,26 +31,19 @@ export default abstract class MathNode {
      *   The expression can be simplified. For example "4 + 3" is not atomic and can be simplified in "7"
      *   Calling the next() function will simplify the expression, or return the next step.
      */
-    abstract atomic: boolean;
+    public abstract atomic: boolean;
 
-    constant?: ConstantData;
-    fraction?: FractionData;
+    public value: number | null = null;
+
     matrix?: MatrixData;
     parenthesis?: ParenthesisData;
 
-    abstract next: () => MathNode;
-    abstract toString: (data?: any) => string;
-    abstract toTex: (data?: {
-        constant?: {
-            showSign?: boolean,
-            negativeOnly?: boolean,
-            positiveOnly?: boolean,
-            hideSign?: boolean,
-            showNegativeInParenthesis?: boolean,
-        }
-    }) => string;
+    public abstract next: () => MathNode;
+    public abstract toNode: () => Object;
+    public abstract toString: (data?: ToStringParam) => string;
+    public abstract toTex: (data?: ToStringParam) => string;
 
-    solveAll = () => {
+    public solveAll = () => {
         const steps: MathNode[] = [this];
         while (!steps[steps.length - 1].atomic) {
             const expression = steps[steps.length - 1].next();
@@ -56,17 +53,17 @@ export default abstract class MathNode {
         return steps;
     };
 
-    solveAllToTex = () => {
+    public solveAllToTex = () => {
         return this.solveAll().map((x) => x.toTex());
     };
 
-    solve = <D extends MathNode>() => {
+    public solve = <D extends MathNode>() => {
         const steps = this.solveAll();
         return steps[steps.length - 1] as D;
     };
 
-    solveValue = () => {
-        return this.solve()?.constant?.value || 0;
-    };
+    // public solveValue = () => {
+    //     return this.solve()?.value || 0;
+    // };
 }
 

@@ -1,4 +1,5 @@
 import Matrix from "../src/math-node/Matrix";
+import {MathNodeType} from "../src/math-node/MathNode";
 
 const matrixA = new Matrix([
     [1, 2],
@@ -121,10 +122,8 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.constant).toBeDefined();
-        if(dSolved.constant) {
-            expect(dSolved.constant.value).toBe(-3);
-        }
+        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.value).toBe(-3);
     });
 
     it("Case 3x3", () => {
@@ -136,10 +135,8 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.constant).toBeDefined();
-        if(dSolved.constant) {
-            expect(dSolved.constant.value).toBe(9);
-        }
+        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.value).toBe(9);
     });
 
     it("Case 4x4", () => {
@@ -152,10 +149,8 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.constant).toBeDefined();
-        if(dSolved.constant) {
-            expect(dSolved.constant.value).toBe(-45);
-        }
+        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.value).toBe(-45);
     });
     
     it("Case 5x5", () => {
@@ -169,10 +164,8 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.constant).toBeDefined();
-        if(dSolved.constant) {
-            expect(dSolved.constant.value).toBe(-10137);
-        }
+        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.value).toBe(-10137);
     });
 
     it("Case 6x6", () => {
@@ -187,10 +180,8 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.constant).toBeDefined();
-        if(dSolved.constant) {
-            expect(dSolved.constant.value).toBe(-14038);
-        }
+        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.value).toBe(-14038);
     });
 });
 

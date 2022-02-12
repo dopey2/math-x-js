@@ -8,9 +8,9 @@ describe("Adding constant", () => {
         const solved = expression.next();
         expect(solved).toBeDefined();
         expect(solved?.atomic).toBe(true);
-        expect(solved?.constant).toBeDefined();
-        expect(solved?.constant?.value).toBe(2);
-        expect(solved?.toString()).toBe("2");
+        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.value).toBe(2);
+        expect(solved.toString()).toBe("2");
     });
 
     it("3 + 2", () => {
@@ -19,9 +19,9 @@ describe("Adding constant", () => {
 
         expect(solved).toBeDefined();
         expect(solved?.atomic).toBe(true);
-        expect(solved?.constant).toBeDefined();
-        expect(solved?.constant?.value).toBe(5);
-        expect(solved?.toString()).toBe("5");
+        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.value).toBe(5);
+        expect(solved.toString()).toBe("5");
     });
 
     it("3 - 2", () => {
@@ -30,9 +30,9 @@ describe("Adding constant", () => {
 
         expect(expression.type).toBe(MathNodeType.subtract);
         expect(solved).toBeDefined();
-        expect(solved.atomic).toBe(true);
-        expect(solved.constant).toBeDefined();
-        expect(solved.constant?.value).toBe(1);
+        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.value).toBe(1);
+        expect(solved.toString()).toBe("1");
     });
 });
 
