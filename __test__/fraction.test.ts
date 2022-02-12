@@ -2,6 +2,7 @@ import Constant from "../src/math-node/Constant";
 import Fraction from "../src/math-node/Fraction";
 import Add from "../src/math-node/Add";
 import MathNode, {MathNodeType} from "../src/math-node/MathNode";
+import {parse} from "../src/parser";
 
 describe("Fraction with constant", () => {
     it("6 / 3", () => {
@@ -43,31 +44,113 @@ describe("Fraction with operations", () => {
 
 
 describe("Add fraction and constant", () => {
-    it("{4 / 2} + 6", () => {
+    it("4 / 2 + 6", () => {
 
-        const A = new Constant(4);
-        const B = new Constant(2);
-        const C = new Constant(6);
+        const expression = "4 / 2 + 6";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
 
-        const frac = new Fraction(A, B);
-        const expression = new Add(frac, C)
+        expect(node.toString()).toBe('{4} / {2} + 6');
+        expect(node1.toString()).toBe('2 + 6');
+        expect(node2.toString()).toBe('8');
+    });
+});
 
-        const step1 = expression.next();
-        expect(step1).toBeDefined();
-        expect(step1?.atomic).toBe(false);
-        expect(step1?.type).toBe(MathNodeType.add);
+describe("Add fraction and constant", () => {
+    it("4 / 3 + 6", () => {
 
-        // expect(step1?.fraction?.d.constant).toBeDefined();
-        // expect(newFraction?.fraction?.n.constant).toBeDefined();
-        // expect(newFraction?.fraction?.n.constant?.value).toBe(8);
-        // expect(newFraction?.fraction?.d.constant?.value).toBe(2);
-        //
-        // const solved = newFraction.next();
-        //
-        // expect(solved).toBeDefined();
-        // expect(solved?.atomic).toBe(true);
-        // expect(solved?.constant).toBeDefined();
-        // expect(solved?.constant?.value).toBe(4);
-        // expect(solved?.toString()).toBe("4");
+        const expression = "4 / 3 + 6";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+        const node5 = node4.next();
+
+        expect(node.toString()).toBe('{4} / {3} + 6');
+        expect(node1.toString()).toBe('{4} / {3} + {6} / {1}');
+        expect(node2.toString()).toBe('{4} / {3} + {6 * 3} / {1 * 3}');
+        expect(node3.toString()).toBe('{4} / {3} + {18} / {3}');
+        expect(node4.toString()).toBe('{4 + 18} / {3}');
+        expect(node5.toString()).toBe('{22} / {3}');
+        expect(node5.atomic).toBe(true);
+    });
+});
+
+describe("Add fraction and constant", () => {
+    it("4 / 3 + 5 / 3", () => {
+
+        const expression = "4 / 3 + 5 / 3";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
+        const node3 = node2.next();
+
+        expect(node.toString()).toBe('{4} / {3} + {5} / {3}');
+        expect(node1.toString()).toBe('{4 + 5} / {3}');
+        expect(node2.toString()).toBe('{9} / {3}');
+        expect(node3.toString()).toBe('3');
+        expect(node3.atomic).toBe(true);
+    });
+});
+
+
+describe("Add fraction and constant", () => {
+    it("8 / 5 + 10 / 6", () => {
+
+        const expression = "8 / 5 + 10 / 6";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node.toString()).toBe('{8} / {5} + {10} / {6}');
+        expect(node1.toString()).toBe('{8 * 6} / {5 * 6} + {10 * 5} / {6 * 5}');
+        expect(node2.toString()).toBe('{48} / {30} + {50} / {30}');
+        expect(node3.toString()).toBe('{48 + 50} / {30}');
+        expect(node4.toString()).toBe('{98} / {30}');
+        expect(node4.atomic).toBe(true);
+    });
+});
+
+describe("Add fraction and constant", () => {
+    it("8 / 4 + 10 / 6", () => {
+
+        const expression = "8 / 4 + 10 / 6";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node.toString()).toBe('{8} / {4} + {10} / {6}');
+        expect(node1.toString()).toBe('{8 * 3} / {4 * 3} + {10 * 2} / {6 * 2}');
+        expect(node2.toString()).toBe('{24} / {12} + {20} / {12}');
+        expect(node3.toString()).toBe('{24 + 20} / {12}');
+        expect(node4.toString()).toBe('{44} / {12}');
+        expect(node4.atomic).toBe(true);
+    });
+});
+
+describe("Add fraction and constant", () => {
+    it("10 / {3 + 4} + {8} / 5", () => {
+
+        const expression = "10 / {3 + 4} + {8} / 5";
+        const node = parse(expression);
+        const node1 = node.next();
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+        const node5 = node4.next();
+
+        expect(node.toString()).toBe('{10} / {3 + 4} + {8} / {5}');
+        expect(node1.toString()).toBe('{10} / {7} + {8} / {5}');
+        expect(node2.toString()).toBe('{10 * 5} / {7 * 5} + {8 * 7} / {5 * 7}');
+        expect(node3.toString()).toBe('{50} / {35} + {56} / {35}');
+        expect(node4.toString()).toBe('{50 + 56} / {35}');
+        expect(node5.toString()).toBe('{106} / {35}');
+        expect(node5.atomic).toBe(true);
     });
 });
