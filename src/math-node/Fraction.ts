@@ -105,12 +105,12 @@ export default class Fraction extends MathNode implements ToFraction {
     add(fraction: Fraction): MathNode;
     add(argument: Constant | Fraction) {
         if(argument instanceof Constant) {
-            // if(this.n instanceof Constant && this.d instanceof Constant) {
-            //     const next = this.solveForConstant(this.n, this.d);
-            //     if(next instanceof Constant) {
-            //         return new Add(next, argument)
-            //     }
-            // }
+            if(this.n instanceof Constant && this.d instanceof Constant) {
+                const next = this.solveForConstant(this.n, this.d);
+                if(next instanceof Constant) {
+                    return new Add(next, argument)
+                }
+            }
 
             return new Add(this, argument.toFraction());
         } else {
