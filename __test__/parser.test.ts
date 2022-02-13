@@ -1,6 +1,14 @@
 import { parse } from "../src/parser";
+import { MathNodeType } from "../src/math-node/MathNode";
 
 describe("Math parser",() => {
+
+    it("1", () => {
+        const expression = parse("0");
+        expect(expression.type).toBe(MathNodeType.Constant);
+        expect(expression.value).toBe(0);
+        expect(expression.isAtomic).toBe(true);
+    })
 
     it("0 + 0", () => {
         const expression = parse("0 + 0");
