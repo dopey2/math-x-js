@@ -17,7 +17,7 @@ export default class Constant extends MathNode implements ToFraction {
         return this;
     };
 
-    public toNode() {
+    public toJson() {
         return {
             type: this.type,
             value: this.value,

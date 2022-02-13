@@ -55,11 +55,11 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Fraction(this.n.next(), this.d.next());
     };
 
-    toNode() {
+    toJson() {
         return {
             type: this.type,
-            numerator: this.n.toNode(),
-            denominator: this.d.toNode(),
+            numerator: this.n.toJson(),
+            denominator: this.d.toJson(),
         };
     };
 

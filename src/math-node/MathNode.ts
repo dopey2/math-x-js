@@ -51,7 +51,7 @@ export default abstract class MathNode {
      * Return a JSON representation of the node
      * @return {JSON}
      */
-    public abstract toNode(): Object;
+    public abstract toJson(): Object;
 
     /**
      * Return the string of the node

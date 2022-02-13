@@ -25,10 +25,10 @@ export default class Parenthesis extends MathNode {
         }
     };
 
-    toNode() {
+    toJson() {
         return {
             type: this.type,
-            content: this.content.toNode(),
+            content: this.content.toJson(),
         };
     };
 

@@ -42,11 +42,11 @@ export default class Add extends MathNode {
         return this;
     };
 
-    toNode() {
+    toJson() {
         return {
             type: this.type,
-            left: this.left.toNode(),
-            right: this.right.toNode(),
+            left: this.left.toJson(),
+            right: this.right.toJson(),
         };
     };
 

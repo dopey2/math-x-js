@@ -27,11 +27,11 @@ export default class Exponent extends MathNode {
         return this;
     };
 
-    toNode() {
+    toJson() {
         return {
             type: this.type,
-            base: this.base.toNode(),
-            exponent: this.exponent.toNode(),
+            base: this.base.toJson(),
+            exponent: this.exponent.toJson(),
         };
     };
 
