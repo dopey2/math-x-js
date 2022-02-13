@@ -9,7 +9,6 @@ export enum MathNodeType {
     Subtract = "Subtract",
     Multiply = "Multiply",
     Exponent = "Exponent",
-    Matrix = "Matrix"
 }
 
 export default abstract class MathNode {
@@ -40,7 +39,11 @@ export default abstract class MathNode {
 
 
     /**
-     * The next function will return the next step
+     * The next function will return the node of the next step.
+     *
+     * - Each operation should implement its own logic to get the next step
+     * - The next operation should simplify the deepest node from the binary tree
+     * - Eg: 'new Add(new Constant(2) , new Constant(3)).next()' will become 'new Constant(5)'
      */
     public abstract next(): MathNode;
 
@@ -94,5 +97,9 @@ export default abstract class MathNode {
         const steps = this.solveAll();
         return steps[steps.length - 1] as D;
     };
+
+    public evaluate(): number {
+        return this.solve().value || NaN;
+    }
 }
 
