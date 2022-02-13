@@ -4,47 +4,67 @@
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-
   "plugins": [
     "@typescript-eslint",
     "@typescript-eslint/tslint"
   ],
   "rules": {
-    "array-callback-return": "warn",
-    "brace-style": "warn",
+    "array-callback-return": "error",
+    "brace-style": "error",
     "comma-dangle": [
-      "warn",
+      "error",
       {
         "arrays": "never",
         "functions": "never",
         "objects": "always-multiline"
       }
     ],
-    "curly": "warn",
-    "default-param-last": ["warn"],
-    "dot-location": ["warn", "property"],
-    "function-paren-newline": ["warn", "multiline"],
-    "key-spacing": ["warn", {"beforeColon": false, "afterColon": true}],
-    "max-len": ["warn", {
+    "curly": "error",
+    "default-param-last": ["error"],
+    "dot-location": ["error", "property"],
+    "function-paren-newline": ["error", "multiline"],
+    "key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
+    "max-len": ["error", {
       "code": 120,
       "ignoreStrings": true,
       "ignoreTemplateLiterals": true,
       "tabWidth": 4
     }],
-    "indent": ["warn", 4],
-    "no-multi-spaces": "warn",
-    "no-multiple-empty-lines": "warn",
-    "no-redeclare": "warn",
-    "@typescript-eslint/no-unused-vars": ["warn"],
-    "object-curly-spacing": ["warn", "always"],
-    "operator-linebreak": ["warn", "before"],
-    "quote-props": ["warn", "consistent"],
-    "semi": ["warn", "always"],
-    "semi-spacing": ["warn", {"before": false, "after": true}],
-    "space-before-blocks": "warn",
-    "space-before-function-paren": ["warn", "never"],
-    "space-infix-ops": ["warn", { "int32Hint": false }],
-    "space-in-parens": ["warn", "never"],
-    "no-unused-private-class-members": ["warn"]
+    "indent": ["error", 4],
+    "no-multi-spaces": "error",
+    "no-multiple-empty-lines": "error",
+    "no-redeclare": "error",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "operator-linebreak": ["error", "before"],
+    "quote-props": ["error", "consistent"],
+    "semi": ["error", "always"],
+    "semi-spacing": ["error", {"before": false, "after": true}],
+    "space-before-blocks": "error",
+    "space-before-function-paren": ["error", "never"],
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "space-in-parens": ["error", "never"],
+    "no-unused-private-class-members": ["error"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["strictCamelCase"]
+      },
+      {
+        "selector": "function",
+        "format": ["strictCamelCase", "StrictPascalCase"]
+      },
+      {
+        "selector": ["typeLike", "enumMember"],
+        "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": ["variable", "parameter", "property", "accessor"],
+        "types": ["boolean"],
+        "format": ["PascalCase"],
+        "prefix": ["is", "has", "are", "can", "should", "did", "will"]
+      }
+    ]
   }
 }
