@@ -5,11 +5,11 @@ import Subtract from "./Subtract";
 
 export default class Add extends MathNode {
     type = MathNodeType.Add;
+    isAtomic = false;
 
     left: MathNode;
     right: MathNode;
 
-    isAtomic = false;
 
     constructor(left: MathNode, right: MathNode) {
         super();
@@ -23,6 +23,7 @@ export default class Add extends MathNode {
 
     next() {
         if (this.left instanceof Constant && this.right instanceof Constant) {
+
             return new Constant(this.left.value + this.right.value);
             // @ts-ignore
         } else if(this.left.add) {
