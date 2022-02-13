@@ -3,9 +3,9 @@ import Multiply from "./math-node/Multiply";
 import Constant from "./math-node/Constant";
 import MathNode from "./math-node/MathNode";
 import Subtract from "./math-node/Subtract";
-import Parenthesis from "./math-node/Parenthesis";
 import Fraction from "./math-node/Fraction";
 import Exponent from "./math-node/Exponent";
+import Parenthesis from "./math-node/Parenthesis";
 
 
 const isNumber = (n: string) => !isNaN(Number(n));
@@ -58,11 +58,17 @@ const parseParenthesisAndBracket = (exp: string) => {
 };
 
 /**
- * Return the index of the last operator with the lowest priority
- * The function read each character from left to right
+ * Find the last operator with the lowest priority and return its index.
+ *
+ * - The function read each character from left to right;
+ * - The function ignore parenthesis and bracket since they're parsed elsewhere;
+ * - The function ignore negative numbers;
+ *
  * Ex. ["2", "+", "6", "-", "3", "*" "2"]
- * The last lowest priority operator is "-" so
- * @param symbols string[]
+ * The last lowest priority operator is "-" so the function will return 3
+ *
+ * @param {string[]} symbols a list of symbols
+ * @return {number} the index of the operator with the lowest priority
  */
 const findLastLowestPriorityOperator = (symbols: string[]) => {
     let lowestPriority = 3;
@@ -112,6 +118,18 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
     return lastLowestPriorityIndex;
 };
 
+/**
+ * Parse a given mathematical expression and return a MathNode.
+ *
+ * Eg: parse("2 + 3 * 4") will produce the following object:
+ *
+ * new Add(new Constant(2), new Multiply(new Constant(3), new Constant(4))
+ *
+ * @see MathNode
+ *
+ * @param {string} expression A mathematical expression
+ * @return {MathNode} a math node that represent the expression from the input
+ */
 export const parse: (expression: string) => MathNode = (expression: string) => {
     if(isNumber(expression)) {
         return new Constant(parseFloat(expression));
@@ -127,10 +145,10 @@ export const parse: (expression: string) => MathNode = (expression: string) => {
     const left = parseParenthesisAndBracket(leftString);
     const right = parseParenthesisAndBracket(rightString);
 
-    return createMathObj(operator, left, right);
+    return buildMathNode(operator, left, right);
 };
 
-const createMathObj = (operator: string, left: MathNode, right: MathNode) => {
+const buildMathNode = (operator: string, left: MathNode, right: MathNode) => {
     if(operator === "+") {
         return new Add(left, right);
     } else if(operator === "-") {
