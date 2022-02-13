@@ -4,12 +4,12 @@ import Fraction from "./Fraction";
 
 
 export default class Multiply extends MathNode {
-    type = MathNodeType.multiply;
+    type = MathNodeType.Multiply;
 
     left: MathNode;
     right: MathNode;
 
-    atomic = false;
+    isAtomic = false;
 
     constructor(left: MathNode, right: MathNode) {
         super();
@@ -23,16 +23,16 @@ export default class Multiply extends MathNode {
         } else if (this.left instanceof Fraction && this.right instanceof Fraction) {
             return (this.left as Fraction).multiply(this.right as Fraction);
         } else if (this.left instanceof Fraction && this.right instanceof Constant) {
-            if (!this.left.atomic) {
+            if (!this.left.isAtomic) {
                 return new Multiply(this.left.next(), this.right);
             }
             return new Multiply(this.left, new Fraction(this.right, new Constant(1)));
         } else if (this.left instanceof Constant && this.right instanceof Fraction) {
-            if (!this.right.atomic) {
+            if (!this.right.isAtomic) {
                 return new Multiply(this.left, this.right.next());
             }
             return new Multiply(new Fraction(this.left, new Constant(1)), this.right);
-        } else if (!this.left.atomic || !this.right.atomic) {
+        } else if (!this.left.isAtomic || !this.right.isAtomic) {
             return new Multiply(this.left.next(), this.right.next());
         }
 
@@ -48,14 +48,14 @@ export default class Multiply extends MathNode {
     };
 
     toString = (data?: ToStringParam) => {
-        const left = this.left.toString({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
-        const right = this.right.toString({ constant: { showNegativeInParenthesis: true } });
+        const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
+        const right = this.right.toString({ isAfterOperator: true });
         return `${left} * ${right}`;
     };
 
     toTex = (data?: ToStringParam) => {
-        const left = this.left.toTex({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
-        const right = this.right.toTex({ constant: { showNegativeInParenthesis: true } });
+        const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
+        const right = this.right.toString({ isAfterOperator: true });
         return `${left} * ${right}`;
     };
 }

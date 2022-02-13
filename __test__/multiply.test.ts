@@ -7,9 +7,9 @@ describe("Adding constant", () => {
         const expression = new Multiply(new Constant(1), new Constant(1));
         const solved = expression.next();
         expect(solved).toBeDefined();
-        expect(solved?.atomic).toBe(true);
+        expect(solved?.isAtomic).toBe(true);
 
-        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(1);
         expect(solved.toString()).toBe("1");
     });
@@ -19,9 +19,9 @@ describe("Adding constant", () => {
         const solved = expression.next();
 
         expect(solved).toBeDefined();
-        expect(solved?.atomic).toBe(true);
+        expect(solved?.isAtomic).toBe(true);
 
-        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(6);
         expect(solved.toString()).toBe("6");
     });

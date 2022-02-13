@@ -24,12 +24,12 @@ export interface MatrixData {
 
 
 export default class Matrix extends MathNode {
-    type = MathNodeType.matrix;
+    type = MathNodeType.Matrix;
 
     /**
    * A matrix is atomic when every element composing the matrix are constants
    */
-    atomic = true;
+    isAtomic = true;
 
     matrix: MatrixData = {
         values: [],
@@ -41,7 +41,7 @@ export default class Matrix extends MathNode {
    * Return the values of the matrix as a 2 dimensional array of numbers
    */
     get values(): number[][] {
-        if(!this.atomic) {
+        if(!this.isAtomic) {
             throw "The matrix should be atomic";
         }
 
@@ -100,7 +100,7 @@ export default class Matrix extends MathNode {
         }
 
         const newMatrix = new Matrix(newMatrixValues);
-        newMatrix.atomic = false;
+        newMatrix.isAtomic = false;
         return newMatrix;
     };
 
@@ -122,7 +122,7 @@ export default class Matrix extends MathNode {
         }
 
         const newMatrix = new Matrix(newMatrixValues);
-        newMatrix.atomic = false;
+        newMatrix.isAtomic = false;
         return newMatrix;
     };
 
@@ -160,7 +160,7 @@ export default class Matrix extends MathNode {
             newMatrixValues.push(newMatrixRow);
         }
         const newMatrix = new Matrix(newMatrixValues);
-        newMatrix.atomic = false;
+        newMatrix.isAtomic = false;
         return newMatrix;
     };
 
@@ -187,7 +187,7 @@ export default class Matrix extends MathNode {
         }
 
         const newMatrix = new Matrix(newMatrixValues);
-        newMatrix.atomic = false;
+        newMatrix.isAtomic = false;
         return newMatrix;
     }
 
@@ -260,7 +260,7 @@ export default class Matrix extends MathNode {
 
     // @ts-ignore
     next = () => {
-        if(!this.atomic) {
+        if(!this.isAtomic) {
             let atomic = true;
             const newMatrixValues: MathNode[][] = [];
           
@@ -270,14 +270,14 @@ export default class Matrix extends MathNode {
                 for(const column of row) {
                     const solved = column.next();
                     newRow.push(solved);
-                    atomic = atomic && solved.type === "constant" && solved instanceof Constant;
+                    atomic = atomic && solved.type === "Constant" && solved instanceof Constant;
                 }
 
                 newMatrixValues.push(newRow);
             }
 
             const newMatrix = new Matrix(newMatrixValues);
-            newMatrix.atomic = atomic;
+            newMatrix.isAtomic = atomic;
             return newMatrix;
         }
 

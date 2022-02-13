@@ -1,9 +1,9 @@
-import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
+import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Fraction, { ToFraction } from "./Fraction";
 
 export default class Constant extends MathNode implements ToFraction {
-    type = MathNodeType.constant;
-    atomic = true;
+    type = MathNodeType.Constant;
+    isAtomic = true;
 
     public override value: number;
     private readonly sign: string;
@@ -22,17 +22,13 @@ export default class Constant extends MathNode implements ToFraction {
     public toNode = () => {
         return {
             type: this.type,
-            value: this.value
-        }
-    }
+            value: this.value,
+        };
+    };
 
     public toString = (data?: ToStringParam) => {
-        if (data && data.constant) {
-            const { showNegativeInParenthesis } = data.constant;
-
-            if (showNegativeInParenthesis && this.value < 0) {
-                return `(${this.value})`;
-            }
+        if (data?.isAfterOperator && this.value < 0) {
+            return `(${this.value})`;
         }
 
         return `${this.value}`;

@@ -1,15 +1,14 @@
-import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
+import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
-import Fraction from "./Fraction";
 import Add from "./Add";
 
 export default class Subtract extends MathNode {
-    type = MathNodeType.subtract;
+    type = MathNodeType.Subtract;
 
     left: MathNode;
     right: MathNode;
 
-    atomic = false;
+    isAtomic = false;
 
     constructor(left: MathNode, right: MathNode) {
         super();
@@ -26,14 +25,14 @@ export default class Subtract extends MathNode {
             // @ts-ignore
         } else if(this.left.subtract) {
             // @ts-ignore
-            return this.left.subtract(this.right)
+            return this.left.subtract(this.right);
             // @ts-ignore
         } else if(this.right.subtract) {
             // @ts-ignore
             return this.right.subtract(this.left);
         }
 
-        if (!this.left.atomic || !this.right.atomic) {
+        if (!this.left.isAtomic || !this.right.isAtomic) {
             return new Subtract(this.left.next(), this.right.next());
         }
 
@@ -44,19 +43,19 @@ export default class Subtract extends MathNode {
         return {
             type: this.type,
             left: this.left.toNode(),
-            right: this.right.toNode()
+            right: this.right.toNode(),
         };
-    }
+    };
     
     toString = (data?: ToStringParam) => {
-        const left = this.left.toString({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
-        const right = this.right.toString({ constant: { showNegativeInParenthesis: true } });
+        const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
+        const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;
     };
 
     toTex = (data?: ToStringParam) => {
-        const left = this.left.toTex({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
-        const right = this.right.toTex({ constant: { showNegativeInParenthesis: true } });
+        const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
+        const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;
     };
 }

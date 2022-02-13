@@ -1,14 +1,14 @@
-import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
+import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 
 
 export default class Exponent extends MathNode {
-    type = MathNodeType.add;
+    type = MathNodeType.Exponent;
 
     base: MathNode;
     exponent: MathNode;
 
-    atomic = false;
+    isAtomic = false;
 
     constructor(base: MathNode, exponent: MathNode) {
         super();
@@ -20,7 +20,7 @@ export default class Exponent extends MathNode {
     next: () => MathNode = () => {
         if (this.base instanceof Constant && this.exponent instanceof Constant) {
             return new Constant(this.base.value ** this.exponent.value);
-        } else if (!this.base.atomic || !this.exponent.atomic) {
+        } else if (!this.base.isAtomic || !this.exponent.isAtomic) {
             return new Exponent(this.base.next(), this.exponent.next());
         }
 
@@ -33,16 +33,16 @@ export default class Exponent extends MathNode {
             base: this.base.toNode(),
             exponent: this.exponent.toNode(),
         };
-    }
+    };
 
     toString = (data?: ToStringParam) => {
-      const base = this.base.toString({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
-      const exponent = this.exponent.toString();
-      return `${base}^{${exponent}}`;
+        const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
+        const exponent = this.exponent.toString();
+        return `${base}^{${exponent}}`;
     };
 
     toTex = (data?: ToStringParam) => {
-        const base = this.base.toTex({ constant: { showNegativeInParenthesis: data?.constant?.showNegativeInParenthesis } });
+        const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
         const exponent = this.exponent.toTex();
         return `${base}^{${exponent}}`;
     };

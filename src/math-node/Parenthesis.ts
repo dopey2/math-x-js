@@ -6,9 +6,9 @@ export interface ParenthesisData {
 }
 
 export default class Parenthesis extends MathNode {
-    type = MathNodeType.add;
+    type = MathNodeType.Add;
   
-    atomic = false;
+    isAtomic = false;
 
     content: MathNode;
 

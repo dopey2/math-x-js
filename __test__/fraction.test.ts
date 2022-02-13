@@ -10,8 +10,8 @@ describe("Fraction with constant", () => {
 
         const solved = expression.next();
         expect(solved).toBeDefined();
-        expect(solved?.atomic).toBe(true);
-        expect(solved.type).toBe(MathNodeType.constant);
+        expect(solved?.isAtomic).toBe(true);
+        expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(2);
         expect(solved.toString()).toBe("2");
     });
@@ -26,7 +26,7 @@ describe("Fraction with operations", () => {
 
         const newFraction = expression.next() as Fraction;
         expect(newFraction).toBeDefined();
-        expect(newFraction?.atomic).toBe(false);
+        expect(newFraction?.isAtomic).toBe(false);
         expect(newFraction?.getNumerator()).toBeDefined();
         expect(newFraction?.getDenominator()).toBeDefined();
         expect(newFraction?.getNumerator().value).toBe(8);
@@ -35,8 +35,8 @@ describe("Fraction with operations", () => {
         const solved = newFraction.next();
 
         expect(solved).toBeDefined();
-        expect(solved?.atomic).toBe(true);
-        expect(solved?.type).toBe(MathNodeType.constant);
+        expect(solved?.isAtomic).toBe(true);
+        expect(solved?.type).toBe(MathNodeType.Constant);
         expect(solved?.value).toBe(4);
         expect(solved?.toString()).toBe("4");
     });
@@ -74,7 +74,7 @@ describe("Add fraction and constant", () => {
         expect(node3.toString()).toBe('{4} / {3} + {18} / {3}');
         expect(node4.toString()).toBe('{4 + 18} / {3}');
         expect(node5.toString()).toBe('{22} / {3}');
-        expect(node5.atomic).toBe(true);
+        expect(node5.isAtomic).toBe(true);
     });
 });
 
@@ -91,7 +91,7 @@ describe("Add fraction and constant", () => {
         expect(node1.toString()).toBe('{4 + 5} / {3}');
         expect(node2.toString()).toBe('{9} / {3}');
         expect(node3.toString()).toBe('3');
-        expect(node3.atomic).toBe(true);
+        expect(node3.isAtomic).toBe(true);
     });
 });
 
@@ -111,7 +111,7 @@ describe("Add fraction and constant", () => {
         expect(node2.toString()).toBe('{48} / {30} + {50} / {30}');
         expect(node3.toString()).toBe('{48 + 50} / {30}');
         expect(node4.toString()).toBe('{98} / {30}');
-        expect(node4.atomic).toBe(true);
+        expect(node4.isAtomic).toBe(true);
     });
 });
 
@@ -130,7 +130,7 @@ describe("Add fraction and constant", () => {
         expect(node2.toString()).toBe('{24} / {12} + {20} / {12}');
         expect(node3.toString()).toBe('{24 + 20} / {12}');
         expect(node4.toString()).toBe('{44} / {12}');
-        expect(node4.atomic).toBe(true);
+        expect(node4.isAtomic).toBe(true);
     });
 });
 
@@ -151,6 +151,6 @@ describe("Add fraction and constant", () => {
         expect(node3.toString()).toBe('{50} / {35} + {56} / {35}');
         expect(node4.toString()).toBe('{50 + 56} / {35}');
         expect(node5.toString()).toBe('{106} / {35}');
-        expect(node5.atomic).toBe(true);
+        expect(node5.isAtomic).toBe(true);
     });
 });

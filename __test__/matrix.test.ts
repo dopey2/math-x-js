@@ -122,7 +122,7 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.type).toBe(MathNodeType.Constant);
         expect(dSolved.value).toBe(-3);
     });
 
@@ -135,7 +135,7 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.type).toBe(MathNodeType.Constant);
         expect(dSolved.value).toBe(9);
     });
 
@@ -149,7 +149,7 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.type).toBe(MathNodeType.Constant);
         expect(dSolved.value).toBe(-45);
     });
     
@@ -164,7 +164,7 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.type).toBe(MathNodeType.Constant);
         expect(dSolved.value).toBe(-10137);
     });
 
@@ -180,7 +180,7 @@ describe("Compute determinant", () => {
 
         const dSolved = d.solve();
 
-        expect(dSolved.type).toBe(MathNodeType.constant);
+        expect(dSolved.type).toBe(MathNodeType.Constant);
         expect(dSolved.value).toBe(-14038);
     });
 });

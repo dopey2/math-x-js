@@ -1,4 +1,4 @@
-import MathNode, {MathNodeType, ToStringParam} from "./MathNode";
+import MathNode, {MathNodeType} from "./MathNode";
 import Constant from "./Constant";
 import Add from "./Add";
 import Multiply from "./Multiply";
@@ -11,8 +11,12 @@ export interface ToFraction {
 }
 
 export default class Fraction extends MathNode implements ToFraction {
-    type = MathNodeType.fraction;
-    atomic = false;
+    type = MathNodeType.Fraction;
+
+    /**
+     * A fraction is considered as atomic if its results is a Floating number eg: 5 / 3
+     */
+    isAtomic = false;
 
     private n: MathNode; // numerator up
     private d: MathNode; // denominator -> down
@@ -27,7 +31,7 @@ export default class Fraction extends MathNode implements ToFraction {
             const numerator = this.n.value;
             const denominator = this.d.value;
             const mod = numerator % denominator;
-            this.atomic = mod !== 0;
+            this.isAtomic = mod !== 0;
         }
     }
 
@@ -39,8 +43,6 @@ export default class Fraction extends MathNode implements ToFraction {
         if (quotient === Math.floor(quotient)) {
             return new Constant(quotient);
         } else {
-            // @ts-ignore
-            // TODO atomic = true
             return new Fraction(n as MathNode, d as MathNode);
         }
     }
