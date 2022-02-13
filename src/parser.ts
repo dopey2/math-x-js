@@ -14,14 +14,55 @@ const isInParenthesis = (expression: string) => {
     const exp = expression.trim();
     const first = exp[0];
     const last = exp[exp.length - 1];
-    return first === "(" && last === ")";
+
+    const HAS_PARENTHESIS = first === "(" && last === ")";
+
+    let numberOfParenthesis = 0;
+    let depth = 0;
+    
+    for(let i = 0; i < exp.length && HAS_PARENTHESIS; i++) {
+        let char = exp[i];
+
+        if(char === "(") {
+            if(depth === 0) {
+                numberOfParenthesis++;
+            }
+
+            depth++;
+        }
+        if(char === ")") {
+            depth--;
+        }
+    }
+
+    return numberOfParenthesis === 1;
 };
 
 const isInBracket = (expression: string) => {
     const exp = expression.trim();
     const first = exp[0];
     const last = exp[exp.length - 1];
-    return first === "{" && last === "}";
+    const HAS_BRACKET = first === "{" && last === "}";
+
+    let numberOfBracket = 0;
+    let depth = 0;
+
+    for(let i = 0; i < exp.length && HAS_BRACKET; i++) {
+        let char = exp[i];
+
+        if(char === "{") {
+            if(depth === 0) {
+                numberOfBracket++;
+            }
+
+            depth++;
+        }
+        if(char === "}") {
+            depth--;
+        }
+    }
+
+    return numberOfBracket === 1;
 };
 
 const getParenthesisContent = (expression: string) => {
@@ -133,6 +174,10 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
 export const parse: (expression: string) => MathNode = (expression: string) => {
     if(isNumber(expression)) {
         return new Constant(parseFloat(expression));
+    }
+    
+    if(isInParenthesis(expression) || isInBracket(expression)) {
+        return parseParenthesisAndBracket(expression);
     }
 
     const symbols = expression.split("").filter((c)=>c !== " ");
