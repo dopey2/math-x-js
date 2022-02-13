@@ -11,6 +11,13 @@ export default class Constant extends MathNode implements ToFraction {
     constructor(value: number) {
         super();
         this.value = value;
+
+        /**
+         * When value === -0 set value to 0
+         */
+        if(value === 0) {
+            this.value = 0;
+        }
     }
 
     public next() {
