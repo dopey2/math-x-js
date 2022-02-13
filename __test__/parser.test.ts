@@ -223,7 +223,23 @@ describe("Math parser",() => {
         expect(res).toBeDefined();
         expect(res.value).toBe(0);
     });
-    
+
+
+    it("(1 + 1)", () => {
+        const expression = parse("(1 + 1)");
+        const res = expression.solve();
+        expect(expression.toTex()).toBe("(1 + 1)");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(2);
+    });
+
+    it("(1 + 1) * (2 + 2) + (3 + 3)", () => {
+        const expression = parse("(1 + 1) * (2 + 2) + (3 + 3)");
+        const res = expression.solve();
+        expect(expression.toTex()).toBe("(1 + 1) * (2 + 2) + (3 + 3)");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(14);
+    });
 });
 
 
