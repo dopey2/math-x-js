@@ -2,6 +2,7 @@ import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 import Add from "./Add";
 
+
 export default class Subtract extends MathNode {
     type = MathNodeType.Subtract;
 
@@ -16,7 +17,7 @@ export default class Subtract extends MathNode {
         this.right = right;
     }
 
-    next: () => MathNode = () => {
+    next() {
         if (this.left instanceof Constant && this.right instanceof Constant) {
             if (this.right.value < 0) {
                 return new Add(this.left, new Constant(Math.abs(this.right.value)));
@@ -39,7 +40,7 @@ export default class Subtract extends MathNode {
         return this;
     };
 
-    toNode = () => {
+    toNode() {
         return {
             type: this.type,
             left: this.left.toNode(),
@@ -47,13 +48,13 @@ export default class Subtract extends MathNode {
         };
     };
     
-    toString = (data?: ToStringParam) => {
+    toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;
     };
 
-    toTex = (data?: ToStringParam) => {
+    toTex(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;

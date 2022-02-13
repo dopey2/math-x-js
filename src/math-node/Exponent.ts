@@ -17,7 +17,7 @@ export default class Exponent extends MathNode {
         this.exponent = exponent;
     }
 
-    next: () => MathNode = () => {
+    next() {
         if (this.base instanceof Constant && this.exponent instanceof Constant) {
             return new Constant(this.base.value ** this.exponent.value);
         } else if (!this.base.isAtomic || !this.exponent.isAtomic) {
@@ -27,7 +27,7 @@ export default class Exponent extends MathNode {
         return this;
     };
 
-    toNode = () => {
+    toNode() {
         return {
             type: this.type,
             base: this.base.toNode(),
@@ -35,15 +35,15 @@ export default class Exponent extends MathNode {
         };
     };
 
-    toString = (data?: ToStringParam) => {
+    toString(data?: ToStringParam) {
         const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
-        const exponent = this.exponent.toString();
-        return `${base}^{${exponent}}`;
+        const expo = this.exponent.toString();
+        return `${base}^{${expo}}`;
     };
 
-    toTex = (data?: ToStringParam) => {
+    toTex(data?: ToStringParam) {
         const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
-        const exponent = this.exponent.toTex();
-        return `${base}^{${exponent}}`;
+        const expo = this.exponent.toTex();
+        return `${base}^{${expo}}`;
     };
 }

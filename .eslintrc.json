@@ -6,7 +6,14 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "@typescript-eslint/tslint"
+    "@typescript-eslint/tslint",
+    "sort-class-members",
+    "import"
+  ],
+  "extends": [
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+    "plugin:import/errors"
   ],
   "rules": {
     "array-callback-return": "error",
@@ -64,7 +71,95 @@
         "types": ["boolean"],
         "format": ["PascalCase"],
         "prefix": ["is", "has", "are", "can", "should", "did", "will"]
+      },
+      {
+        "selector": "variable",
+        "types": ["boolean", "number"],
+        "modifiers": ["const"],
+        "format": ["UPPER_CASE"]
       }
-    ]
+    ],
+    "sort-class-members/sort-class-members": [
+      "error",
+      {
+        "groups": {
+          "static-arrow-function-properties": [
+            {
+              "static": true,
+              "propertyType": "ArrowFunctionExpression"
+            }
+          ],
+          "static-async-methods": [
+            {
+              "static": true,
+              "type": "method",
+              "async": true
+            }
+          ],
+          "static-accessor-pairs": [{ "static": true, "accessorPair": true }],
+          "static-getters": [{ "static": true, "kind": "get" }],
+          "static-setters": [{ "static": true, "kind": "set" }],
+          "static-conventional-private-properties": [
+            {
+              "static": true,
+              "type": "property",
+              "name": "/_.+/"
+            }
+          ],
+          "static-conventional-private-methods": [
+            {
+              "static": true,
+              "type": "method",
+              "name": "/_.+/"
+            }
+          ],
+          "static-async-conventional-private-methods": [
+            {
+              "static": true,
+              "type": "method",
+              "name": "/_.+/",
+              "async": true
+            }
+          ],
+          "async-conventional-private-methods": [
+            {
+              "type": "method",
+              "name": "/_.+/",
+              "async": true
+            }
+          ]
+        },
+        "order": [
+          "[static-properties]",
+          "[static-arrow-function-properties]",
+          "[static-accessor-pairs]",
+          "[static-getters]",
+          "[static-setters]",
+          "[static-methods]",
+          "[static-async-methods]",
+          "[properties]",
+          "[arrow-function-properties]",
+          "constructor",
+          "[accessor-pairs]",
+          "[getters]",
+          "[setters]",
+          "[methods]",
+          "[async-methods]",
+          "[static-conventional-private-properties]",
+          "[static-conventional-private-methods]",
+          "[static-async-conventional-private-methods]",
+          "[conventional-private-properties]",
+          "[conventional-private-methods]",
+          "[async-conventional-private-methods]"
+        ],
+        "accessorPairPositioning": "getThenSet"
+      }
+    ],
+    "import/extensions": ["error", "never"],
+    "import/first": "error",
+    "import/no-duplicates": "error",
+    "import/newline-after-import": ["error", { "count": 2 }],
+    "import/no-self-import": "error",
+    "import/order": ["error", {"groups": ["index", "sibling", "parent", "internal", "external", "builtin", "object", "type"]}]
   }
 }

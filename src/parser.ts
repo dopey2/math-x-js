@@ -7,6 +7,7 @@ import Parenthesis from "./math-node/Parenthesis";
 import Fraction from "./math-node/Fraction";
 import Exponent from "./math-node/Exponent";
 
+
 const isNumber = (n: string) => !isNaN(Number(n));
 
 const isInParenthesis = (expression: string) => {
@@ -100,9 +101,9 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
         }
 
         if(isOperator(char)) {
-            const operatorPriority = getOperatorPriority(char);
-            if(operatorPriority <= lowestPriority) {
-                lowestPriority = operatorPriority;
+            const OPERATOR_PRIORITY = getOperatorPriority(char);
+            if(OPERATOR_PRIORITY <= lowestPriority) {
+                lowestPriority = OPERATOR_PRIORITY;
                 lastLowestPriorityIndex = i;
             }
         }
@@ -117,11 +118,11 @@ export const parse: (expression: string) => MathNode = (expression: string) => {
     }
 
     const symbols = expression.split("").filter((c)=>c !== " ");
-    const lastLowestPriorityIndex = findLastLowestPriorityOperator(symbols);
+    const OPERATOR_INDEX = findLastLowestPriorityOperator(symbols);
 
-    const operator = symbols[lastLowestPriorityIndex];
-    const leftString = symbols.slice(0, lastLowestPriorityIndex).join("");
-    const rightString = symbols.slice(lastLowestPriorityIndex + 1, symbols.length).join("");
+    const operator = symbols[OPERATOR_INDEX];
+    const leftString = symbols.slice(0, OPERATOR_INDEX).join("");
+    const rightString = symbols.slice(OPERATOR_INDEX + 1, symbols.length).join("");
 
     const left = parseParenthesisAndBracket(leftString);
     const right = parseParenthesisAndBracket(rightString);

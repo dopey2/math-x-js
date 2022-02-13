@@ -21,7 +21,7 @@ export default class Add extends MathNode {
         }
     }
 
-    next: () => MathNode = () => {
+    next() {
         if (this.left instanceof Constant && this.right instanceof Constant) {
             return new Constant(this.left.value + this.right.value);
             // @ts-ignore
@@ -41,7 +41,7 @@ export default class Add extends MathNode {
         return this;
     };
 
-    toNode = () => {
+    toNode() {
         return {
             type: this.type,
             left: this.left.toNode(),
@@ -49,13 +49,13 @@ export default class Add extends MathNode {
         };
     };
 
-    toString = (data?: ToStringParam) => {
+    toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} + ${right}`;
     };
 
-    toTex = (data?: ToStringParam) => {
+    toTex(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} + ${right}`;

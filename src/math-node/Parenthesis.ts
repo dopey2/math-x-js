@@ -1,23 +1,19 @@
 import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 
-export interface ParenthesisData {
-  operation: MathNode
-}
 
 export default class Parenthesis extends MathNode {
     type = MathNodeType.Add;
-  
     isAtomic = false;
 
-    content: MathNode;
+    private readonly content: MathNode;
 
     constructor(content: MathNode) {
         super();
-        this.content = content
+        this.content = content;
     }
 
-    next: () => MathNode = () => {
+    next() {
         if(this.content instanceof Constant) {
             return this.content;
         } else {
@@ -29,18 +25,18 @@ export default class Parenthesis extends MathNode {
         }
     };
 
-    toNode = () =>  {
+    toNode() {
         return {
             type: this.type,
             content: this.content.toNode(),
         };
-    }
+    };
 
-    toString = () => {
+    toString() {
         return `(${this.content.toString()})`;
     };
 
-    toTex = () => {
+    toTex() {
         return `(${this.content.toTex()})`;
     };
 }

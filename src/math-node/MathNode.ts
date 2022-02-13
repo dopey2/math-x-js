@@ -14,6 +14,12 @@ export enum MathNodeType {
 
 export default abstract class MathNode {
     /**
+     * Represent the value of a constant as a number
+     * If the node is not a constant, then value is always null
+     */
+    public value: number | null = null;
+
+    /**
      * The type of the node
      * Check MathNodeType for all available nodes
      */
@@ -34,40 +40,34 @@ export default abstract class MathNode {
 
 
     /**
-     * Represent the value of a constant as a number
-     * If the node is not a constant, then value is always null
-     */
-    public value: number | null = null;
-
-    /**
      * The next function will return the next step
      */
-    public abstract next: () => MathNode;
+    public abstract next(): MathNode;
 
     /**
      * Return a JSON representation of the node
      * @return {JSON}
      */
-    public abstract toNode: () => Object;
+    public abstract toNode(): Object;
 
     /**
      * Return the string of the node
      * The returned value will produce the same node if passed to the parser
      * @return {string}
      */
-    public abstract toString: (data?: ToStringParam) => string;
+    public abstract toString(data?: ToStringParam): string;
     /**
      * Return a valid latex string of the current node
      * Tested with Mathjax & Katex
      * @return {string} valid latex as string
      */
-    public abstract toTex: (data?: ToStringParam) => string;
+    public abstract toTex(data?: ToStringParam): string;
     /**
      * This function aims to solve the node step by step
      * It calls the next() function until the node is atomic
      * @return {MathNode[]} - Each step
      */
-    public solveAll: () => MathNode[] = () => {
+    public solveAll(): MathNode[] {
         const steps: MathNode[] = [this];
         while (!steps[steps.length - 1].isAtomic) {
             const expression = steps[steps.length - 1].next();
@@ -82,7 +82,7 @@ export default abstract class MathNode {
      * It calls the next() function until the node is atomic
      * @return {string[]} - Each step as valid latex string
      */
-    public solveAllToTex = () => {
+    public solveAllToTex(): string[] {
         return this.solveAll().map((x) => x.toTex());
     };
 
@@ -90,7 +90,7 @@ export default abstract class MathNode {
      * Solve the node until it is atomic
      * @return {MathNode} - The last node
      */
-    public solve = <D extends MathNode>() => {
+    public solve<D extends MathNode>() {
         const steps = this.solveAll();
         return steps[steps.length - 1] as D;
     };

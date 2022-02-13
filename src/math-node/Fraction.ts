@@ -1,4 +1,4 @@
-import MathNode, {MathNodeType} from "./MathNode";
+import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 import Add from "./Add";
 import Multiply from "./Multiply";
@@ -18,8 +18,8 @@ export default class Fraction extends MathNode implements ToFraction {
      */
     isAtomic = false;
 
-    private n: MathNode; // numerator up
-    private d: MathNode; // denominator -> down
+    private readonly n: MathNode; // numerator up
+    private readonly d: MathNode; // denominator -> down
 
     constructor(n: MathNode, d: MathNode) {
         super();
@@ -28,72 +28,69 @@ export default class Fraction extends MathNode implements ToFraction {
         this.d = d;
 
         if (this.n instanceof Constant && this.d instanceof Constant) {
-            const numerator = this.n.value;
-            const denominator = this.d.value;
-            const mod = numerator % denominator;
-            this.isAtomic = mod !== 0;
+            const NUMERATOR = this.n.value;
+            const DENOMINATOR = this.d.value;
+            const MODULO = NUMERATOR % DENOMINATOR;
+            this.isAtomic = MODULO !== 0;
         }
     }
 
     private solveForConstant(n: Constant, d: Constant) {
-        const numerator = n.value;
-        const denominator = d.value;
-        const quotient = numerator / denominator;
+        const NUMERATOR = n.value;
+        const DENOMINATOR = d.value;
+        const QUOTIENT = NUMERATOR / DENOMINATOR;
 
-        if (quotient === Math.floor(quotient)) {
-            return new Constant(quotient);
+        if (QUOTIENT === Math.floor(QUOTIENT)) {
+            return new Constant(QUOTIENT);
         } else {
             return new Fraction(n as MathNode, d as MathNode);
         }
     }
 
-    // @ts-ignore
-    next = () => {
+    next(): MathNode {
         if (this.n instanceof Constant && this.d instanceof Constant) {
             return this.solveForConstant(this.n as Constant, this.d as Constant);
         }
 
-        return new Fraction(this.n.next(), this.d.next()) as MathNode;
+        return new Fraction(this.n.next(), this.d.next());
     };
 
-    toNode = () => {
+    toNode() {
         return {
             type: this.type,
             numerator: this.n.toNode(),
             denominator: this.d.toNode(),
-        }
-    }
+        };
+    };
 
-    // @ts-ignore
-    private solveDenominatorForConstants = (fractionA: Fraction, fractionB: Fraction) => {
+    private solveDenominatorForConstants(fractionA: Fraction, fractionB: Fraction) {
         if (fractionA.d instanceof Constant && fractionB.d instanceof Constant) {
-            const dA = fractionA.d.value;
-            const dB = fractionB.d.value;
+            const DENOMINATOR_A = fractionA.d.value;
+            const DENOMINATOR_B = fractionB.d.value;
 
-            const lcm = Utils.lcm(dA, dB);
-            const kA = lcm / dA;
-            const kB = lcm / dB;
+            const LCM = Utils.lcm(DENOMINATOR_A, DENOMINATOR_B);
+            const COMMON_A = LCM / DENOMINATOR_A;
+            const COMMON_B = LCM / DENOMINATOR_B;
 
-            // @ts-ignore
-            const expression_nA = kA === 1
+            const numeratorA = COMMON_A === 1
                 ? fractionA.n
-                : new Multiply(fractionA.n, new Constant(kA) as MathNode) as MathNode;
+                : new Multiply(fractionA.n, new Constant(COMMON_A) as MathNode) as MathNode;
 
-            const expression_nB = kB === 1
+            const numeratorB = COMMON_B === 1
                 ? fractionB.n
-                : new Multiply(fractionB.n, new Constant(kB) as MathNode) as MathNode;
+                : new Multiply(fractionB.n, new Constant(COMMON_B) as MathNode) as MathNode;
 
-            const expression_dA = kA === 1
-                ? new Constant(dA)
-                : new Multiply(new Constant(dA) as MathNode, new Constant(kA) as MathNode) as MathNode;
+            const denominatorA = COMMON_A === 1
+                ? new Constant(DENOMINATOR_A)
+                : new Multiply(new Constant(DENOMINATOR_A) as MathNode, new Constant(COMMON_A) as MathNode) as MathNode;
 
-            const expression_dB = kB === 1
-                ? new Constant(dB)
-                : new Multiply(new Constant(dB) as MathNode, new Constant(kB) as MathNode) as MathNode;
+            const denominatorB = COMMON_B === 1
+                ? new Constant(DENOMINATOR_B)
+                : new Multiply(new Constant(DENOMINATOR_B) as MathNode, new Constant(COMMON_B) as MathNode) as MathNode;
 
             return [
-                new Fraction(expression_nA, expression_dA),
-                new Fraction(expression_nB, expression_dB)
+                new Fraction(numeratorA, denominatorA),
+                new Fraction(numeratorB, denominatorB)
             ];
         }
 
@@ -110,7 +107,7 @@ export default class Fraction extends MathNode implements ToFraction {
             if(this.n instanceof Constant && this.d instanceof Constant) {
                 const next = this.solveForConstant(this.n, this.d);
                 if(next instanceof Constant) {
-                    return new Add(next, argument)
+                    return new Add(next, argument);
                 }
             }
 
@@ -130,37 +127,61 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Add(this.next(), argument.next());
     }
 
-    subtract = (fraction: Fraction) => {
-        if (this.d instanceof Constant && fraction.d instanceof Constant) {
-            if (this.d.value === fraction.d.value) {
-                const subtractNumerator = new Subtract(this.n, fraction.n);
-                return new Fraction(subtractNumerator, this.d);
-            } else {
-                const [fractionA, fractionB] = this.solveDenominatorForConstants(this, fraction);
-                return new Subtract(fractionA, fractionB);
+    subtract(constant: Constant): MathNode;
+    subtract(fraction: Fraction): MathNode;
+    subtract(argument: Constant | Fraction) {
+        if(argument instanceof Constant) {
+            if(this.n instanceof Constant && this.d instanceof Constant) {
+                const next = this.solveForConstant(this.n, this.d);
+                if(next instanceof Constant) {
+                    return new Subtract(next, argument);
+                }
             }
+            return new Subtract(this, argument.toFraction());
+        } else {
+
+            if (this.d instanceof Constant && argument.d instanceof Constant) {
+                if (this.d.value === argument.d.value) {
+                    const subtractNumerator = new Subtract(this.n, argument.n);
+                    return new Fraction(subtractNumerator, this.d);
+                } else {
+                    const [fractionA, fractionB] = this.solveDenominatorForConstants(this, argument);
+                    return new Subtract(fractionA, fractionB);
+                }
+            }
+
         }
 
-        return new Subtract(this.next(), fraction.next());
+        return new Subtract(this.next(), argument.next());
     };
 
 
-    multiply = (fraction: Fraction) => {
-        if (this.d && fraction && fraction.d) {
+    multiply(constant: Constant): MathNode;
+    multiply(fraction: Fraction): MathNode;
+    multiply(argument: Constant | Fraction): MathNode {
+        
+        if(argument instanceof Constant) {
+            if(this.n instanceof Constant && this.d instanceof Constant) {
+                const next = this.solveForConstant(this.n, this.d);
+                if(next instanceof Constant) {
+                    return new Multiply(next, argument);
+                }
+            }
+           
             return new Fraction(
-                new Multiply(this.n, fraction.n) as MathNode,
-                new Multiply(this.d, fraction.d) as MathNode
+                new Multiply(this.n, argument),
+                new Multiply(this.d, argument)
             );
         }
-
-        return new Multiply(this.next(), fraction.next());
-    };
-
-    private multiplyByConstant = (c: Constant) => {
-        return new Fraction(
-            new Multiply(this.n, c as MathNode) as MathNode,
-            new Multiply(this.d, c as MathNode) as MathNode
-        );
+         
+        if (this.d && argument && argument.d) {
+            return new Fraction(
+                    new Multiply(this.n, argument.n) as MathNode,
+                    new Multiply(this.d, argument.d) as MathNode
+            );
+        }
+        
+        return new Multiply(this.next(), argument.next());
     };
 
     public getNumerator(): MathNode {
@@ -171,15 +192,15 @@ export default class Fraction extends MathNode implements ToFraction {
         return this.d;
     }
 
-    toFraction = () => {
+    toFraction() {
         return this;
     };
 
-    toString = () => {
+    toString() {
         return `{${this.n.toString()}} / {${this.d.toString()}}`;
     };
 
-    toTex = () => {
+    toTex() {
         return `\\fraction{${this.n.toTex()}}{${this.d.toTex()}}`;
     };
 }
