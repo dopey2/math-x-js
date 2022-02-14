@@ -1,5 +1,5 @@
 {
-  "name": "math-x",
+  "name": "math-x-ts",
   "version": "1.0.0",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "main": "lib/",
