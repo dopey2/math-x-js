@@ -184,6 +184,19 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Multiply(this.next(), argument.next());
     };
 
+    divide(constant: Constant): MathNode;
+    divide(fraction: Fraction): MathNode;
+    divide(argument: Constant | Fraction): MathNode {
+        if(argument instanceof Constant) {
+            argument = argument.toFraction();
+        }
+        
+        return new Multiply(
+            this,
+            new Fraction(argument.d, argument.n)
+        );
+    }
+
     public getNumerator(): MathNode {
         return this.n;
     }

@@ -1,7 +1,7 @@
 import { parse } from "./parser";
 
 
-const expression = "{{10} / {6}} * 2";
+const expression = "4 : 2";
 let mathNode = parse(expression);
 
 for(let i = 0; i < 10; i++) {

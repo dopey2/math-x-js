@@ -6,6 +6,7 @@ import Subtract from "./math-node/Subtract";
 import Fraction from "./math-node/Fraction";
 import Exponent from "./math-node/Exponent";
 import Parenthesis from "./math-node/Parenthesis";
+import Divide from "./math-node/Divide";
 
 
 const isNumber = (n: string) => !isNaN(Number(n));
@@ -70,13 +71,13 @@ const getParenthesisContent = (expression: string) => {
 };
 
 const isOperator = (c: string) => {
-    return ["+", "-", "*", "/", "^"].indexOf(c) !== -1;
+    return ["+", "-", "*", ":", "/", "^"].indexOf(c) !== -1;
 };
 
 const getOperatorPriority = (operator: string) => {
     if(operator === "+" || operator === "-") {
         return 1;
-    } if(operator === "*") {
+    } if(operator === "*" || operator === ":") {
         return 2;
     } if(operator === "^" || operator === "/") {
         return 3;
@@ -200,7 +201,9 @@ const buildMathNode = (operator: string, left: MathNode, right: MathNode) => {
         return new Subtract(left, right);
     } else if(operator === "*") {
         return new Multiply(left, right);
-    } else if(operator === "/") {
+    } else if (operator === ":") {
+        return new Divide(left, right);
+    }else if(operator === "/") {
         return new Fraction(left, right);
     } else if(operator === "^") {
         return new Exponent(left, right);

@@ -4,10 +4,11 @@ export interface ToStringParam {
 
 export enum MathNodeType {
     Constant = "Constant",
-    Fraction = "Fraction",
     Add = "Add",
     Subtract = "Subtract",
     Multiply = "Multiply",
+    Divide = "Divide",
+    Fraction = "Fraction",
     Exponent = "Exponent",
 }
 

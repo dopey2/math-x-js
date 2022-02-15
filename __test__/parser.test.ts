@@ -398,5 +398,4 @@ describe("Math parser fraction expressions", () => {
         expect(res).toBeDefined();
         expect(res.value).toBe(3);
     });
-
 })
