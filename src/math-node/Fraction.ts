@@ -214,6 +214,6 @@ export default class Fraction extends MathNode implements ToFraction {
     };
 
     toTex() {
-        return `\\fraction{${this.n.toTex()}}{${this.d.toTex()}}`;
+        return `\\frac{${this.n.toTex()}}{${this.d.toTex()}}`;
     };
 }
