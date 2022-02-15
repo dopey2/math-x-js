@@ -8,6 +8,20 @@ describe("Divide", () => {
         expect(mathNode.type).toBe(MathNodeType.Divide);
         expect(mathNode.isAtomic).toBe(false);
 
+        expect(mathNode.toString()).toBe("4 : 2");
+        expect(mathNode.toTex()).toBe("4 : 2");
+        expect(mathNode.toJson()).toEqual({
+            type: MathNodeType.Divide,
+            left: {
+                type: MathNodeType.Constant,
+                value: 4
+            },
+            right: {
+                type: MathNodeType.Constant,
+                value: 2
+            }
+        })
+
         const solved = mathNode.next();
         expect(solved).toBeDefined();
         expect(solved?.isAtomic).toBe(true);
@@ -32,5 +46,4 @@ describe("Divide", () => {
         expect(mathNode5.toString()).toBe("2")
         expect(mathNode5.value).toBe(2);
     });
-
 })

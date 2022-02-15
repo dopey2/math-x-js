@@ -55,14 +55,6 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Fraction(this.n.next(), this.d.next());
     };
 
-    toJson() {
-        return {
-            type: this.type,
-            numerator: this.n.toJson(),
-            denominator: this.d.toJson(),
-        };
-    };
-
     private solveDenominatorForConstants(fractionA: Fraction, fractionB: Fraction) {
         if (fractionA.d instanceof Constant && fractionB.d instanceof Constant) {
             const DENOMINATOR_A = fractionA.d.value;
@@ -207,6 +199,14 @@ export default class Fraction extends MathNode implements ToFraction {
 
     toFraction() {
         return this;
+    };
+
+    toJson() {
+        return {
+            type: this.type,
+            numerator: this.n.toJson(),
+            denominator: this.d.toJson(),
+        };
     };
 
     toString() {

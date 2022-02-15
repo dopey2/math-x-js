@@ -6,9 +6,26 @@ import {parse} from "../src/parser";
 
 describe("Fraction with constant", () => {
     it("6 / 3", () => {
-        const expression = new Fraction(new Constant(6) as MathNode, new Constant(3) as MathNode);
+        const mathNode = new Fraction(new Constant(6) as MathNode, new Constant(3) as MathNode);
 
-        const solved = expression.next();
+        expect(mathNode.type).toBe(MathNodeType.Fraction);
+        expect(mathNode.isAtomic).toBe(false);
+
+        expect(mathNode.toString()).toBe("{6} / {3}");
+        expect(mathNode.toTex()).toBe("\\frac{6}{3}");
+        expect(mathNode.toJson()).toEqual({
+            type: MathNodeType.Fraction,
+            numerator: {
+                type: MathNodeType.Constant,
+                value: 6
+            },
+            denominator: {
+                type: MathNodeType.Constant,
+                value: 3
+            }
+        })
+
+        const solved = mathNode.next();
         expect(solved).toBeDefined();
         expect(solved?.isAtomic).toBe(true);
         expect(solved.type).toBe(MathNodeType.Constant);
