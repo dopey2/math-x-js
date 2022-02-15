@@ -13,7 +13,7 @@ describe("Math parser",() => {
     it("0 + 0", () => {
         const expression = parse("0 + 0");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("0 + 0");
+        expect(expression.toString()).toBe("0 + 0");
         expect(res).toBeDefined();
         expect(res.value).toBe(0);
     });
@@ -21,7 +21,7 @@ describe("Math parser",() => {
     it("2 + 3", () => {
         const expression = parse("2 + 3");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 + 3");
+        expect(expression.toString()).toBe("2 + 3");
         expect(res).toBeDefined();
         expect(res.value).toBe(5);
     });
@@ -29,7 +29,7 @@ describe("Math parser",() => {
     it("-2 + 6", () => {
         const expression = parse("-2 + 6");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-2 + 6");
+        expect(expression.toString()).toBe("-2 + 6");
         expect(res).toBeDefined();
         expect(res.value).toBe(4);
     });
@@ -37,7 +37,7 @@ describe("Math parser",() => {
     it("2 * 3", () => {
         const expression = parse("2 * 3");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 * 3");
+        expect(expression.toString()).toBe("2 * 3");
         expect(res).toBeDefined();
         expect(res.value).toBe(6);
     });
@@ -45,7 +45,7 @@ describe("Math parser",() => {
     it("-2 * 3", () => {
         const expression = parse("-2 * 3");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-2 * 3");
+        expect(expression.toString()).toBe("-2 * 3");
         expect(res).toBeDefined();
         expect(res.value).toBe(-6);
     });
@@ -53,7 +53,7 @@ describe("Math parser",() => {
     it("2 + 3 * 4", () => {
         const expression = parse("2 + 3 * 4");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 + 3 * 4");
+        expect(expression.toString()).toBe("2 + 3 * 4");
         expect(res).toBeDefined();
         expect(res.value).toBe(14);
     });
@@ -61,7 +61,7 @@ describe("Math parser",() => {
     it("2 * 3 + 4", () => {
         const expression = parse("2 * 3 + 4");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 * 3 + 4");
+        expect(expression.toString()).toBe("2 * 3 + 4");
         expect(res).toBeDefined();
         expect(res.value).toBe(10);
     });
@@ -69,7 +69,7 @@ describe("Math parser",() => {
     it("2 * 3 + 4 * 5", () => {
         const expression = parse("2 * 3 + 4 * 5");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 * 3 + 4 * 5");
+        expect(expression.toString()).toBe("2 * 3 + 4 * 5");
         expect(res).toBeDefined();
         expect(res.value).toBe(26);
     });
@@ -77,7 +77,7 @@ describe("Math parser",() => {
     it("5 - 4 + 3 * 6 + 10", () => {
         const expression = parse("5 - 4 + 3 * 6 + 10");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("5 - 4 + 3 * 6 + 10");
+        expect(expression.toString()).toBe("5 - 4 + 3 * 6 + 10");
         expect(res).toBeDefined();
         expect(res.value).toBe(29);
     });
@@ -85,7 +85,7 @@ describe("Math parser",() => {
     it("-2 + 5", () => {
         const expression = parse("-2 + 5");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-2 + 5");
+        expect(expression.toString()).toBe("-2 + 5");
         expect(res).toBeDefined();
         expect(res.value).toBe(3);
     });
@@ -93,7 +93,7 @@ describe("Math parser",() => {
     it("-2 + 3 * 4", () => {
         const expression = parse("-2 + 3 * 4");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-2 + 3 * 4");
+        expect(expression.toString()).toBe("-2 + 3 * 4");
         expect(res).toBeDefined();
         expect(res.value).toBe(10);
     });
@@ -101,7 +101,7 @@ describe("Math parser",() => {
     it("-2 * 3 + 4", () => {
         const expression = parse("-2 * 3 + 4");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-2 * 3 + 4");
+        expect(expression.toString()).toBe("-2 * 3 + 4");
         expect(res).toBeDefined();
         expect(res.value).toBe(-2);
     });
@@ -109,7 +109,7 @@ describe("Math parser",() => {
     it("2 * (3 + 4)", () => {
         const expression = parse("2 * (3 + 4)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 * (3 + 4)");
+        expect(expression.toString()).toBe("2 * (3 + 4)");
         expect(res).toBeDefined();
         expect(res.value).toBe(14);
     });
@@ -117,7 +117,7 @@ describe("Math parser",() => {
     it("2 * (3 - 4)", () => {
         const expression = parse("2 * (3 - 4)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 * (3 - 4)");
+        expect(expression.toString()).toBe("2 * (3 - 4)");
         expect(res).toBeDefined();
         expect(res.value).toBe(-2);
     });
@@ -125,7 +125,7 @@ describe("Math parser",() => {
     it("2 + (3 - 4)", () => {
         const expression = parse("2 + (3 - 4)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2 + (3 - 4)");
+        expect(expression.toString()).toBe("2 + (3 - 4)");
         expect(res).toBeDefined();
         expect(res.value).toBe(1);
     });
@@ -133,7 +133,7 @@ describe("Math parser",() => {
     it("10 - (2 * 3)", () => {
         const expression = parse("10 - (2 * 3)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("10 - (2 * 3)");
+        expect(expression.toString()).toBe("10 - (2 * 3)");
         expect(res).toBeDefined();
         expect(res.value).toBe(4);
     });
@@ -142,7 +142,7 @@ describe("Math parser",() => {
     it("-10 - (2 * 3)", () => {
         const expression = parse("-10 - (2 * 3)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-10 - (2 * 3)");
+        expect(expression.toString()).toBe("-10 - (2 * 3)");
         expect(res).toBeDefined();
         expect(res.value).toBe(-16);
     });
@@ -150,7 +150,7 @@ describe("Math parser",() => {
     it("-10 - (2 * 3) + 5", () => {
         const expression = parse("-10 - (2 * 3) + 5");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("-10 - (2 * 3) + 5");
+        expect(expression.toString()).toBe("-10 - (2 * 3) + 5");
         expect(res).toBeDefined();
         expect(res.value).toBe(-11);
     });
@@ -159,7 +159,7 @@ describe("Math parser",() => {
     it("(2 + 3) * (4 + 5)", () => {
         const expression = parse("(2 + 3) * (4 + 5)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(2 + 3) * (4 + 5)");
+        expect(expression.toString()).toBe("(2 + 3) * (4 + 5)");
         expect(res).toBeDefined();
         expect(res.value).toBe(45);
     });
@@ -168,7 +168,7 @@ describe("Math parser",() => {
     it("(2 * 3) + (4 * 5)", () => {
         const expression = parse("(2 * 3) + (4 * 5)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(2 * 3) + (4 * 5)");
+        expect(expression.toString()).toBe("(2 * 3) + (4 * 5)");
         expect(res).toBeDefined();
         expect(res.value).toBe(26);
     });
@@ -176,7 +176,7 @@ describe("Math parser",() => {
     it("(2 * 3) - (4 * 5)", () => {
         const expression = parse("(2 * 3) - (4 * 5)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(2 * 3) - (4 * 5)");
+        expect(expression.toString()).toBe("(2 * 3) - (4 * 5)");
         expect(res).toBeDefined();
         expect(res.value).toBe(-14);
     });
@@ -184,7 +184,7 @@ describe("Math parser",() => {
     it("(3 + (2 * 3)) * 2", () => {
         const expression = parse("(3 + (2 * 3)) * 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(3 + (2 * 3)) * 2");
+        expect(expression.toString()).toBe("(3 + (2 * 3)) * 2");
         expect(res).toBeDefined();
         expect(res.value).toBe(18);
     });
@@ -193,7 +193,7 @@ describe("Math parser",() => {
     it("(3 + (2 * 3)) * 2 + 2", () => {
         const expression = parse("(3 + (2 * 3)) * 2 + 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(3 + (2 * 3)) * 2 + 2");
+        expect(expression.toString()).toBe("(3 + (2 * 3)) * 2 + 2");
         expect(res).toBeDefined();
         expect(res.value).toBe(20);
     });
@@ -202,7 +202,7 @@ describe("Math parser",() => {
     it("(3 + (2 * 3)) * 2 - (4 + 5)", () => {
         const expression = parse("(3 + (2 * 3)) * 2 - (4 + 5)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(3 + (2 * 3)) * 2 - (4 + 5)");
+        expect(expression.toString()).toBe("(3 + (2 * 3)) * 2 - (4 + 5)");
         expect(res).toBeDefined();
         expect(res.value).toBe(9);
     });
@@ -210,7 +210,7 @@ describe("Math parser",() => {
     it("(3 + (2 * 3)) * 2 - (4 + 5) * 2", () => {
         const expression = parse("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
+        expect(expression.toString()).toBe("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
         expect(res).toBeDefined();
         expect(res.value).toBe(0);
     });
@@ -219,7 +219,7 @@ describe("Math parser",() => {
     it("(3 + (2 * 3)) * 2 - (4 + 5) * 2", () => {
         const expression = parse("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
+        expect(expression.toString()).toBe("(3 + (2 * 3)) * 2 - (4 + 5) * 2");
         expect(res).toBeDefined();
         expect(res.value).toBe(0);
     });
@@ -228,7 +228,7 @@ describe("Math parser",() => {
     it("(1 + 1)", () => {
         const expression = parse("(1 + 1)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(1 + 1)");
+        expect(expression.toString()).toBe("(1 + 1)");
         expect(res).toBeDefined();
         expect(res.value).toBe(2);
     });
@@ -236,7 +236,7 @@ describe("Math parser",() => {
     it("(1 + 1) * (2 + 2) + (3 + 3)", () => {
         const expression = parse("(1 + 1) * (2 + 2) + (3 + 3)");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(1 + 1) * (2 + 2) + (3 + 3)");
+        expect(expression.toString()).toBe("(1 + 1) * (2 + 2) + (3 + 3)");
         expect(res).toBeDefined();
         expect(res.value).toBe(14);
     });
@@ -247,7 +247,7 @@ describe("Math parser, exponents", () => {
     it("2 ^ 3", () => {
         const expression = parse("2 ^ 3");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2^{3}");
+        expect(expression.toString()).toBe("2^{3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(8);
     });
@@ -255,7 +255,7 @@ describe("Math parser, exponents", () => {
     it("2 ^{3}", () => {
         const expression = parse("2^{3}");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2^{3}");
+        expect(expression.toString()).toBe("2^{3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(8);
     });
@@ -263,7 +263,7 @@ describe("Math parser, exponents", () => {
     it("2 ^{2 + 2}", () => {
         const expression = parse("2^{2 + 2}");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("2^{2 + 2}");
+        expect(expression.toString()).toBe("2^{2 + 2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(16);
     });
@@ -271,7 +271,7 @@ describe("Math parser, exponents", () => {
     it("4 * 3 ^ 2", () => {
         const expression = parse("4 * 3 ^ 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("4 * 3^{2}");
+        expect(expression.toString()).toBe("4 * 3^{2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(36);
     });
@@ -279,7 +279,7 @@ describe("Math parser, exponents", () => {
     it("(4 * 3)^ 2", () => {
         const expression = parse("(4 * 3) ^ 2");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(4 * 3)^{2}");
+        expect(expression.toString()).toBe("(4 * 3)^{2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(144);
     });
@@ -287,7 +287,7 @@ describe("Math parser, exponents", () => {
     it("(1 + 3)^ 2 * 3 ", () => {
         const expression = parse("(1 + 3) ^ 2 * 3");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(1 + 3)^{2} * 3");
+        expect(expression.toString()).toBe("(1 + 3)^{2} * 3");
         expect(res).toBeDefined();
         expect(res.value).toBe(48);
     });
@@ -295,7 +295,7 @@ describe("Math parser, exponents", () => {
     it("(1 + 3)^{2 * 3} ", () => {
         const expression = parse("(1 + 3) ^{2 * 3}");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("(1 + 3)^{2 * 3}");
+        expect(expression.toString()).toBe("(1 + 3)^{2 * 3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(4096);
     });
@@ -303,7 +303,7 @@ describe("Math parser, exponents", () => {
     it("5^0", () => {
         const expression = parse("5^0");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("5^{0}");
+        expect(expression.toString()).toBe("5^{0}");
         expect(res).toBeDefined();
         expect(res.value).toBe(1);
     });
@@ -315,7 +315,7 @@ describe("Math parser, edge case", () => {
         const n = -2;
         const expression = parse(`3 + ${n}`);
         const res = expression.solve();
-        expect(expression.toTex()).toBe("3 - 2");
+        expect(expression.toString()).toBe("3 - 2");
         expect(res).toBeDefined();
         expect(res.value).toBe(1);
     });
@@ -324,7 +324,7 @@ describe("Math parser, edge case", () => {
         const n = -2;
         const expression = parse(`3 * ${n}`);
         const res = expression.solve();
-        expect(expression.toTex()).toBe("3 * (-2)");
+        expect(expression.toString()).toBe("3 * (-2)");
         expect(res).toBeDefined();
         expect(res.value).toBe(-6);
     });
@@ -333,7 +333,7 @@ describe("Math parser, edge case", () => {
         const n = -2;
         const expression = parse(`3 - ${n}`);
         const res = expression.solve();
-        expect(expression.toTex()).toBe("3 - (-2)");
+        expect(expression.toString()).toBe("3 - (-2)");
         expect(res).toBeDefined();
         expect(res.value).toBe(5);
     });
@@ -341,8 +341,62 @@ describe("Math parser, edge case", () => {
     it("-0 + 0", () => {
         const expression = parse("-0 + 0");
         const res = expression.solve();
-        expect(expression.toTex()).toBe("0 + 0");
+        expect(expression.toString()).toBe("0 + 0");
         expect(res).toBeDefined();
         expect(res.value).toBe(0);
     });
 });
+
+describe("Math parser fraction expressions", () => {
+    it("2 * 8 / 4", () => {
+        const expression = parse("2 * 8 / 4");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("2 * {8} / {4}");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(4);
+    });
+
+    it("2 + 5 + 8 / 4", () => {
+        const expression = parse("2 + 5 + 8 / 4");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("2 + 5 + {8} / {4}");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(9);
+    });
+
+
+    it("{2 * 8} / {4}", () => {
+        const expression = parse("{2 * 8} / 4");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("{2 * 8} / {4}");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(4);
+    });
+
+
+    it("8 / 4 * 2", () => {
+        const expression = parse("8 / 4 * 2");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("{8} / {4} * 2");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(4);
+    });
+
+    it("8 / 4 + 3", () => {
+        const expression = parse("8 / 4 + 3");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("{8} / {4} + 3");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(5);
+    });
+
+
+    it("21 / {4 + 3}", () => {
+        const expression = parse("21 / {4 + 3}");
+        const res = expression.solve();
+        expect(expression.toString()).toBe("{21} / {4 + 3}");
+        expect(res).toBeDefined();
+        expect(res.value).toBe(3);
+    });
+
+})

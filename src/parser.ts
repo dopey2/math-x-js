@@ -76,9 +76,9 @@ const isOperator = (c: string) => {
 const getOperatorPriority = (operator: string) => {
     if(operator === "+" || operator === "-") {
         return 1;
-    } if(operator === "*" || operator === "/") {
+    } if(operator === "*") {
         return 2;
-    } if(operator === "^") {
+    } if(operator === "^" || operator === "/") {
         return 3;
     }
     return 0;
