@@ -5,4 +5,12 @@ const solve = (expression: string) => {
     return parse(expression).solve();
 };
 
-export { parse, solve };
+const evaluate = (expression: string) => {
+    return parse(expression).evaluate();
+};
+
+export {
+    parse,
+    solve,
+    evaluate
+};

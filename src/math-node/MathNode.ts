@@ -100,7 +100,7 @@ export default abstract class MathNode {
     };
 
     public evaluate(): number {
-        return this.solve().value || NaN;
+        return this.solve().value ?? NaN;
     }
 }
 

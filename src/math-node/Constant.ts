@@ -6,7 +6,7 @@ export default class Constant extends MathNode implements ToFraction {
     type = MathNodeType.Constant;
     isAtomic = true;
 
-    public override value!: number;
+    public override value: number;
 
     constructor(value: number) {
         super();
