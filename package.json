@@ -11,9 +11,11 @@
   "scripts": {
     "clean:lib": "yarn workspaces run clean:lib",
     "build:all": "yarn workspaces run build:all",
-    "test": "yarn workspaces run test",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
+    "test": "yarn workspaces run test",
+    "check:types": "yarn workspaces run check:types",
+    "check:all": "yarn workspaces run check:all",
     "apply:version": "ts-node ./scripts/version.ts --applyVersion"
   },
   "repository": {

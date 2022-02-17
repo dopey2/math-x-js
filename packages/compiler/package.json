@@ -15,9 +15,11 @@
     "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
     "build:cjs": "tsc --module commonjs --target es5 --outDir lib/cjs",
     "build:umd": " TODO rollup lib/cjs/index.js --format umd --sourceMap --output lib/umd/index.js",
-    "test": "jest --verbose",
+    "check:types": "tsc --noEmit",
     "lint": "eslint ./src/**/*",
-    "lint:fix": "eslint ./src/**/* --fix"
+    "lint:fix": "eslint ./src/**/* --fix",
+    "test": "jest --verbose",
+    "check:all": "yarn check:types && yarn lint && yarn test"
   },
   "dependencies": {
     "@math-x-ts/core": "0.0.1"
