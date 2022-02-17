@@ -3,7 +3,7 @@ import Constant from "./Constant";
 
 
 export default class Parenthesis extends MathNode {
-    type = MathNodeType.Add;
+    type = MathNodeType.Parenthesis;
     isAtomic = false;
 
     private readonly content: MathNode;

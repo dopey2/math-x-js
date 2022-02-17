@@ -3,13 +3,14 @@ export interface ToStringParam {
 }
 
 export enum MathNodeType {
-    Constant = "Constant",
     Add = "Add",
-    Subtract = "Subtract",
-    Multiply = "Multiply",
+    Constant = "Constant",
     Divide = "Divide",
     Fraction = "Fraction",
     Exponent = "Exponent",
+    Multiply = "Multiply",
+    Parenthesis = "Parenthesis",
+    Subtract = "Subtract",
 }
 
 export default abstract class MathNode {
