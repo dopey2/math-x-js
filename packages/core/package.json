@@ -1,0 +1,24 @@
+{
+  "name": "@math-x-ts/core",
+  "version": "0.0.2",
+  "main": "./lib/index.js",
+  "module": "./lib/index.module.js",
+  "unpkg": "./lib/index.umd.js",
+  "types": "lib/index",
+  "files": [
+    "lib/**/*"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "clean:lib": "rimraf lib",
+    "build": "yarn clean:lib && tsc -p ./tsconfig.json",
+    "build2": "yarn clean:lib && microbundle",
+    "test": "jest --verbose",
+    "lint": "eslint ./src/**/*",
+    "lint:fix": "eslint ./src/**/* --fix",
+    "apply:version": "yarn version --new-version"
+  },
+  "dependencies": {
+    "@math-x-ts/math-node": "1.0.0"
+  }
+}

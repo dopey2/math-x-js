@@ -4,9 +4,9 @@
  */
 
 export default {
-  clearMocks: true,
-  coverageDirectory: "coverage",
-  testEnvironment: "node",
-  preset: 'ts-jest',
-  roots: ["__test__"]
+    clearMocks: true,
+    coverageDirectory: "coverage",
+    testEnvironment: "node",
+    preset: 'ts-jest',
+    roots: ["__test__"],
 };

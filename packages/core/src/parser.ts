@@ -1,4 +1,5 @@
-import Add from "./math-node/Add";
+import Add from '@math-x-ts/math-node';
+import Add from "math-node/Add";
 import Multiply from "./math-node/Multiply";
 import Constant from "./math-node/Constant";
 import MathNode from "./math-node/MathNode";

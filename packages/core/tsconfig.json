@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "declarationDir": "./lib",
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": false,
+    "isolatedModules": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "rootDir": "./src"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [{ "path": "./packages/math-node"}]
+}
