@@ -1,9 +1,5 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./lib",
-    "declarationDir": "./lib"
-  },
   "include": ["./src/**/*"],
   "exclude": ["__test__"]
 }

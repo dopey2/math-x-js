@@ -1,23 +1,26 @@
 {
   "name": "@math-x-ts/compiler",
   "version": "0.0.1",
-  "main": "./lib/index.js",
-  "module": "./lib/index.module.js",
-  "unpkg": "./lib/index.umd.js",
-  "types": "lib/index",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "unpkg": "./lib/umd/index.js",
+  "types": "lib/types/index.d.ts",
   "files": [
     "lib/**/*"
   ],
-  "license": "MIT",
   "scripts": {
     "clean:lib": "rimraf lib",
-    "build": "yarn clean:lib && tsc -p ./tsconfig.json",
-    "build2": "yarn clean:lib && microbundle",
+    "build:all": "yarn clean:lib && yarn build:types && yarn build:esm && yarn build:cjs",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
+    "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir lib/cjs",
+    "build:umd": " TODO rollup lib/cjs/index.js --format umd --sourceMap --output lib/umd/index.js",
     "test": "jest --verbose",
     "lint": "eslint ./src/**/*",
     "lint:fix": "eslint ./src/**/* --fix"
   },
   "dependencies": {
     "@math-x-ts/core": "0.0.1"
-  }
+  },
+  "license": "MIT"
 }
