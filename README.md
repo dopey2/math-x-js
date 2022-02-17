@@ -36,7 +36,7 @@ console.log(mathNode.value); // 10
 console.log(mathNode); // new Constant(10)
 console.log(mathNode instanceof Constant) // true
 ```
-I will below in the docs what **Constant** is and the rest of "@math-x-ts/core"
+I will explain below what **Constant** is and the rest of "@math-x-ts/core"
 
 ### Compile an expression
 
