@@ -22,3 +22,4 @@ yarn.lock
 
 lib/
 draft/
+packages/**/lib

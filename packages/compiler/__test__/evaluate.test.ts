@@ -1,4 +1,4 @@
-import { evaluate } from "../src";
+import { evaluate } from '@math-x-ts/compiler/src';
 
 describe("Testing the evaluate function", () => {
     it("1 + 1", () => {

@@ -1,5 +1,6 @@
-import { parse} from '../src/parser'
-import { MathNodeType } from "../src/math-node/MathNode";
+import { MathNodeType } from "@math-x-ts/core/src";
+import { parse } from '@math-x-ts/compiler/src';
+
 
 describe("Divide", () => {
     it("4 : 2", () => {
@@ -14,13 +15,13 @@ describe("Divide", () => {
             type: MathNodeType.Divide,
             left: {
                 type: MathNodeType.Constant,
-                value: 4
+                value: 4,
             },
             right: {
                 type: MathNodeType.Constant,
-                value: 2
-            }
-        })
+                value: 2,
+            },
+        });
 
         const solved = mathNode.next();
         expect(solved).toBeDefined();
@@ -28,7 +29,7 @@ describe("Divide", () => {
         expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(2);
         expect(solved.toString()).toBe("2");
-    })
+    });
 
 
     it("3 / 6 : 2 / 8", () => {
@@ -40,10 +41,10 @@ describe("Divide", () => {
 
 
         expect(mathNode.toString()).toBe("{3} / {6} : {2} / {8}");
-        expect(mathNode2.toString()).toBe("{3} / {6} * {8} / {2}")
-        expect(mathNode3.toString()).toBe("{3 * 8} / {6 * 2}")
-        expect(mathNode4.toString()).toBe("{24} / {12}")
-        expect(mathNode5.toString()).toBe("2")
+        expect(mathNode2.toString()).toBe("{3} / {6} * {8} / {2}");
+        expect(mathNode3.toString()).toBe("{3 * 8} / {6 * 2}");
+        expect(mathNode4.toString()).toBe("{24} / {12}");
+        expect(mathNode5.toString()).toBe("2");
         expect(mathNode5.value).toBe(2);
     });
-})
+});

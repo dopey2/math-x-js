@@ -1,13 +1,14 @@
-import Add from '@math-x-ts/math-node';
-import Add from "math-node/Add";
-import Multiply from "./math-node/Multiply";
-import Constant from "./math-node/Constant";
-import MathNode from "./math-node/MathNode";
-import Subtract from "./math-node/Subtract";
-import Fraction from "./math-node/Fraction";
-import Exponent from "./math-node/Exponent";
-import Parenthesis from "./math-node/Parenthesis";
-import Divide from "./math-node/Divide";
+import {
+    Add,
+    Constant,
+    Divide,
+    Exponent,
+    Fraction,
+    MathNode,
+    Multiply,
+    Parenthesis,
+    Subtract
+} from "@math-x-ts/core";
 
 
 const isNumber = (n: string) => !isNaN(Number(n));

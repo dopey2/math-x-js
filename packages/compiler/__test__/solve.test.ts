@@ -1,4 +1,4 @@
-import { solve } from "../src";
+import { solve } from '@math-x-ts/compiler/src';
 
 describe("Testing the solve function", () => {
     it("1 + 1", () => {

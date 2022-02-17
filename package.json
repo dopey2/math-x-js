@@ -2,11 +2,11 @@
   "how to": {},
   "private": true,
   "name": "math-x-ts",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
-    "packages/math-node",
-    "packages/core"
+    "packages/core",
+    "packages/compiler"
   ],
   "scripts": {
     "clean:lib": "yarn workspaces run clean:lib",
@@ -15,7 +15,7 @@
     "test": "yarn workspaces run test",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
-    "apply:version": "yarn workspaces run apply:version"
+    "apply:version": "ts-node ./scripts/version.ts --applyVersion"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
+    "chalk": "^5.0.0",
     "commitizen": "^4.2.4",
     "eslint": "^8.8.0",
     "eslint-plugin-import": "^2.25.4",
@@ -47,6 +48,7 @@
     "ts-jest": "^27.1.3",
     "ts-node": "^10.5.0",
     "tslint": "^6.1.3",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "yargs": "^17.3.1"
   }
 }

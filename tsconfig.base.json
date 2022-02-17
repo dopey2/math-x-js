@@ -17,9 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "rootDir": "src",
-    "outDir": "lib",
-    "declarationDir": "lib",
   },
   "ts-node": {
     "compilerOptions": {

@@ -1,6 +1,5 @@
-import Constant from "../src/math-node/Constant";
-import Multiply from "../src/math-node/Multiply";
-import {MathNodeType} from "../src/math-node/MathNode";
+import { Constant, Multiply, MathNodeType } from "@math-x-ts/core/src";
+
 
 describe("Adding constant", () => {
     it("1 * 1", () => {
@@ -15,13 +14,13 @@ describe("Adding constant", () => {
             type: MathNodeType.Multiply,
             left: {
                 type: MathNodeType.Constant,
-                value: 1
+                value: 1,
             },
             right: {
                 type: MathNodeType.Constant,
-                value: 1
-            }
-        })
+                value: 1,
+            },
+        });
 
         const solved = mathNode.next();
         expect(solved).toBeDefined();

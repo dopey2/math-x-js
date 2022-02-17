@@ -1,8 +1,6 @@
-import Constant from "../src/math-node/Constant";
-import Fraction from "../src/math-node/Fraction";
-import Add from "../src/math-node/Add";
-import MathNode, {MathNodeType} from "../src/math-node/MathNode";
-import {parse} from "../src/parser";
+import { parse } from "@math-x-ts/compiler/src/";
+import { Add, Constant, MathNode, Fraction, MathNodeType } from "@math-x-ts/core/src";
+
 
 describe("Fraction with constant", () => {
     it("6 / 3", () => {
@@ -17,13 +15,13 @@ describe("Fraction with constant", () => {
             type: MathNodeType.Fraction,
             numerator: {
                 type: MathNodeType.Constant,
-                value: 6
+                value: 6,
             },
             denominator: {
                 type: MathNodeType.Constant,
-                value: 3
-            }
-        })
+                value: 3,
+            },
+        });
 
         const solved = mathNode.next();
         expect(solved).toBeDefined();

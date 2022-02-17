@@ -1,5 +1,6 @@
-import { parse } from "../src/parser";
-import { MathNodeType } from "../src/math-node/MathNode";
+import { MathNodeType } from "@math-x-ts/core/src";
+import { parse } from '@math-x-ts/compiler/src';
+
 
 describe("Math parser",() => {
 

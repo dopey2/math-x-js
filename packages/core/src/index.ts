@@ -1,16 +1,23 @@
-import { parse } from "./parser";
+import Add from "./Add";
+import Constant from "./Constant";
+import Divide from "./Divide";
+import Exponent from "./Exponent";
+import Fraction from "./Fraction";
+import MathNode, { MathNodeType } from "./MathNode";
+import Multiply from "./Multiply";
+import Parenthesis from "./Parenthesis";
+import Subtract from "./Subtract";
 
-
-const solve = (expression: string) => {
-    return parse(expression).solve();
-};
-
-const evaluate = (expression: string) => {
-    return parse(expression).evaluate();
-};
 
 export {
-    parse,
-    solve,
-    evaluate
+    Add,
+    Constant,
+    Divide,
+    Exponent,
+    Fraction,
+    MathNode,
+    MathNodeType,
+    Multiply,
+    Parenthesis,
+    Subtract
 };

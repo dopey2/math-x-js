@@ -1,6 +1,6 @@
 {
   "name": "@math-x-ts/core",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "main": "./lib/index.js",
   "module": "./lib/index.module.js",
   "unpkg": "./lib/index.umd.js",
@@ -15,10 +15,9 @@
     "build2": "yarn clean:lib && microbundle",
     "test": "jest --verbose",
     "lint": "eslint ./src/**/*",
-    "lint:fix": "eslint ./src/**/* --fix",
-    "apply:version": "yarn version --new-version"
+    "lint:fix": "eslint ./src/**/* --fix"
   },
   "dependencies": {
-    "@math-x-ts/math-node": "1.0.0"
+    "@math-x-ts/compiler": "0.0.1"
   }
 }

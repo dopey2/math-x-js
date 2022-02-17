@@ -1,6 +1,5 @@
-import Add from "../src/math-node/Add";
-import Constant from "../src/math-node/Constant";
-import { MathNodeType } from "../src/math-node/MathNode";
+import { Add, Constant, MathNodeType } from "@math-x-ts/core/src";
+
 
 describe("Adding constant", () => {
     it("1 + 1", () => {
@@ -15,13 +14,13 @@ describe("Adding constant", () => {
             type: MathNodeType.Add,
             left: {
                 type: MathNodeType.Constant,
-                value: 1
+                value: 1,
             },
             right: {
                 type: MathNodeType.Constant,
-                value: 1
-            }
-        })
+                value: 1,
+            },
+        });
 
 
         const solved = mathNode.next();

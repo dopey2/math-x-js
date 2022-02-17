@@ -161,5 +161,6 @@
     "import/newline-after-import": ["error", { "count": 2 }],
     "import/no-self-import": "error",
     "import/order": ["error", {"groups": ["index", "sibling", "parent", "internal", "external", "builtin", "object", "type"]}]
-  }
+  },
+  "ignorePatterns": ["jest.config.*"]
 }
