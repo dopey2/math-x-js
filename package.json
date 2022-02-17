@@ -1,14 +1,21 @@
 {
+  "how to": {},
+  "private": true,
   "name": "math-x-ts",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "Math parser, AST builder for math expression & step by step solution",
-  "main": "lib/",
+  "workspaces": [
+    "packages/math-node",
+    "packages/core"
+  ],
   "scripts": {
-    "clean:build": "rimraf lib",
-    "build": "yarn clean:build && tsc -p ./tsconfig.json",
-    "test": "jest --verbose",
-    "lint": "eslint ./src/**/*",
-    "lint:fix": "eslint ./src/**/* --fix"
+    "clean:lib": "yarn workspaces run clean:lib",
+    "build": "yarn workspaces run build",
+    "build2": "yarn workspaces run build2",
+    "test": "yarn workspaces run test",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "apply:version": "yarn workspaces run apply:version"
   },
   "repository": {
     "type": "git",
