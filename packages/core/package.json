@@ -1,6 +1,6 @@
 {
   "name": "@math-x-ts/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./lib/index.js",
   "module": "./lib/index.module.js",
   "unpkg": "./lib/index.umd.js",
