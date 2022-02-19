@@ -1,4 +1,4 @@
-import { parse } from '@math-x-ts/compiler/src';
+import { parse } from '@math-x-ts/parser/src';
 
 
 const expressions = [

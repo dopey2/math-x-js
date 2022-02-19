@@ -10,14 +10,14 @@ describe("UMD", () => {
 
         const title = await page.title()
         const isMathXCoreDefined = await page.evaluate("!!MathXCore");
-        const isMathXCompilerDefined = await page.evaluate("!!MathXCompiler");
-        const res = await page.evaluate("MathXCompiler.evaluate('1 + 2 * 3')");
+        const isMathXParserDefined = await page.evaluate("!!MathXParser");
+        const res = await page.evaluate("MathXParser.evaluate('1 + 2 * 3')");
 
         await browser.close()
 
-        expect(title).toBe("@math-x-ts/compiler")
+        expect(title).toBe("@math-x-ts/parser")
         expect(isMathXCoreDefined).toBe(true);
-        expect(isMathXCompilerDefined).toBe(true)
+        expect(isMathXParserDefined).toBe(true)
         expect(res).toBe(7)
     }, 10000);
 })

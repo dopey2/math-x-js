@@ -24,7 +24,7 @@ module.exports = {
         filename: production ? 'index.min.js' : 'index.js',
         path: path.resolve(__dirname, 'lib/umd'),
         globalObject: 'this',
-        library: 'MathXCompiler',
+        library: 'MathXParser',
         libraryTarget: 'umd'
     },
     externals: {

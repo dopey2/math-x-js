@@ -1,4 +1,4 @@
-import { parse } from "@math-x-ts/compiler/src/";
+import { parse } from "@math-x-ts/parser/src/";
 import { Add, Constant, MathNode, Fraction, MathNodeType } from "@math-x-ts/core/src";
 
 

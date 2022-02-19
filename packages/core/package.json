@@ -24,8 +24,8 @@
     "check:all": "yarn check:types && yarn lint && yarn test",
     "npm:publish": "npm publish --access public"
   },
-  "devDependencies": {
-    "@math-x-ts/compiler": "0.0.3"
+  "dependencies": {
+    "@math-x-ts/parser": "0.0.4"
   },
   "license": "MIT"
 }
