@@ -1,11 +1,11 @@
-import baseConfig from '../../jest.config.base';
 const packageJson = require("./package.json");
 
+/**
+ * Used for testing the bundled javascript only
+ */
+
 export default {
-    ...baseConfig,
     name: packageJson.name,
     displayName: packageJson.name,
-    testPathIgnorePatterns: [
-        "__test_bundle__"
-    ]
+    rootDir: "__test_bundle__"
 };
