@@ -14,7 +14,7 @@
     "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
     "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
     "build:cjs": "tsc --module commonjs --target es5 --outDir lib/cjs",
-    "build:umd": " TODO rollup lib/cjs/index.js --format umd --sourceMap --output lib/umd/index.js",
+    "build:umd": "webpack --config webpack.config.js",
     "check:types": "tsc --noEmit",
     "lint": "eslint ./src/**/*",
     "lint:fix": "eslint ./src/**/* --fix",
