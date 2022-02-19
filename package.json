@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "math-x-ts",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
     "packages/core",
@@ -14,8 +14,10 @@
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
+    "test:bundle": "yarn workspaces run test:bundle",
     "check:types": "yarn workspaces run check:types",
     "check:all": "yarn workspaces run check:all",
+    "npm:publish": "npm run npm:publish --workspaces",
     "apply:version": "ts-node ./scripts/version.ts --applyVersion"
   },
   "repository": {
@@ -60,6 +62,16 @@
     "change version in all packages": {
       "1": "In the root folder call the following command:",
       "2": "yarn apply:version -- 1.0.0"
+    },
+    "publish all packages": {
+      "1": "In the root folder call the following command:",
+      "2": "npm run npm:publish"
+    },
+    "publish workflow": {
+      "1": "Test everything via                   => yarn check:all",
+      "2": "Build packages                        => yarn build:all",
+      "3": "Check that all bundles work correclty => yarn test:bundle",
+      "4": "Call the publish cmd in the root dir  => npm run npm:publish"
     }
   }
 }

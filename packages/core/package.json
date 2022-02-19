@@ -1,6 +1,7 @@
 {
+  "private": false,
   "name": "@math-x-ts/core",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "unpkg": "./lib/umd/index.js",
@@ -20,10 +21,11 @@
     "lint:fix": "eslint ./src/**/* --fix",
     "test": "jest --verbose",
     "test:bundle": "jest --config ./jest.bundle.config.ts --detectOpenHandles --verbose",
-    "check:all": "yarn check:types && yarn lint && yarn test"
+    "check:all": "yarn check:types && yarn lint && yarn test",
+    "npm:publish": "npm publish --access public"
   },
   "dependencies": {
-    "@math-x-ts/compiler": "0.0.1"
+    "@math-x-ts/compiler": "0.0.3"
   },
   "license": "MIT"
 }
