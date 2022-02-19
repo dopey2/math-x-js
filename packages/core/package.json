@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@math-x-ts/core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "unpkg": "./lib/umd/index.js",
@@ -24,7 +24,7 @@
     "check:all": "yarn check:types && yarn lint && yarn test",
     "npm:publish": "npm publish --access public"
   },
-  "dependencies": {
+  "devDependencies": {
     "@math-x-ts/compiler": "0.0.3"
   },
   "license": "MIT"
