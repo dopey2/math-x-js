@@ -93,6 +93,26 @@ export default abstract class MathNode {
      * This function aims to solve the node step by step.
      * It calls the next() function until the node is atomic.
      *
+     * @returns {Object[]} - Each step as a json.
+     */
+    public solveAllToJson(): Object[] {
+        return this.solveAll().map((x) => x.toJson());
+    };
+
+    /**
+     * This function aims to solve the node step by step.
+     * It calls the next() function until the node is atomic.
+     *
+     * @returns {string[]} - Each step as a string.
+     */
+    public solveAllToString(): string[] {
+        return this.solveAll().map((x) => x.toString());
+    };
+
+    /**
+     * This function aims to solve the node step by step.
+     * It calls the next() function until the node is atomic.
+     *
      * @returns {string[]} - Each step as valid latex string.
      */
     public solveAllToTex(): string[] {
