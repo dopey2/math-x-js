@@ -1,0 +1,44 @@
+{
+  "plugins": [
+    "jsdoc"
+  ],
+  "rules": {
+    "jsdoc/require-jsdoc": ["error", {
+      "require": {
+        "ClassExpression": true,
+        "ClassDeclaration": true,
+        "FunctionDeclaration": true,
+        "FunctionExpression": true,
+        "MethodDefinition": true
+      }
+    }],
+    "jsdoc/require-param": "error",
+    "jsdoc/check-indentation": "error",
+    "jsdoc/check-line-alignment": "error",
+    "jsdoc/check-alignment": "error",
+    "jsdoc/check-param-names": "error",
+    "jsdoc/check-property-names": "error",
+    "jsdoc/check-syntax": "error",
+    "jsdoc/check-types": "error",
+    "jsdoc/newline-after-description": "error",
+    "jsdoc/no-bad-blocks": "error",
+    "jsdoc/no-undefined-types": "error",
+    "jsdoc/require-asterisk-prefix": "error",
+    "jsdoc/require-description": ["error", {
+      "checkConstructors": false
+    }],
+    "jsdoc/require-description-complete-sentence": "error",
+    "jsdoc/require-param-description": "error",
+    "jsdoc/require-param-name": "error",
+    "jsdoc/require-param-type": "error",
+    "jsdoc/require-property": "error",
+    "jsdoc/require-property-description": "error",
+    "jsdoc/require-property-name": "error",
+    "jsdoc/require-property-type": "error",
+    "jsdoc/require-returns": "error",
+    "jsdoc/require-returns-check": "error",
+    "jsdoc/require-returns-description": "error",
+    "jsdoc/require-returns-type": "error",
+    "jsdoc/valid-types": "error"
+  }
+}

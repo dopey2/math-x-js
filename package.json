@@ -5,7 +5,7 @@
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
     "packages/core",
-    "packages/compiler"
+    "packages/parser"
   ],
   "scripts": {
     "postinstall": "husky install",
@@ -44,6 +44,7 @@
     "commitizen": "^4.2.4",
     "eslint": "^8.8.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsdoc": "^37.9.4",
     "eslint-plugin-sort-class-members": "^1.14.1",
     "husky": "^7.0.0",
     "jest": "^27.5.1",
