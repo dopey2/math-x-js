@@ -10,17 +10,24 @@ export interface ToFraction {
     toFraction: () => Fraction;
 }
 
+/**
+ * Represent fractions as math node.
+ */
 export default class Fraction extends MathNode implements ToFraction {
     type = MathNodeType.Fraction;
 
     /**
-     * A fraction is considered as atomic if its results is a Floating number eg: 5 / 3
+     * A fraction is considered as atomic if its results is a Floating number eg: 5 / 3.
      */
     isAtomic = false;
 
     private readonly n: MathNode; // numerator up
     private readonly d: MathNode; // denominator -> down
 
+    /**
+     * @param {MathNode} n The numerator, (the number at the top).
+     * @param {MathNode} d The denominator, (the number on the bottom).
+     */
     constructor(n: MathNode, d: MathNode) {
         super();
 
@@ -35,6 +42,13 @@ export default class Fraction extends MathNode implements ToFraction {
         }
     }
 
+    /**
+     * Aim to solve a fraction with constants numerator and denominator.
+     *
+     * @param {MathNode} n The numerator. 
+     * @param {MathNode} d The denominator.
+     * @returns {MathNode} The value as a math not.
+     */
     private solveForConstant(n: Constant, d: Constant) {
         const NUMERATOR = n.value;
         const DENOMINATOR = d.value;
@@ -47,6 +61,9 @@ export default class Fraction extends MathNode implements ToFraction {
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     next(): MathNode {
         if (this.n instanceof Constant && this.d instanceof Constant) {
             return this.solveForConstant(this.n as Constant, this.d as Constant);
@@ -55,6 +72,14 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Fraction(this.n.next(), this.d.next());
     };
 
+    /**
+     * The functions find a common denominator for 2 fractions.
+     * Useful when you want to add 2 fractions with different denominators.
+     *
+     * @param {Fraction} fractionA A fraction.
+     * @param {Fraction} fractionB A fraction.
+     * @returns {Fraction[]} An array of both fractions with new denominators.
+     */
     private solveDenominatorForConstants(fractionA: Fraction, fractionB: Fraction) {
         if (fractionA.d instanceof Constant && fractionB.d instanceof Constant) {
             const DENOMINATOR_A = fractionA.d.value;
@@ -94,6 +119,12 @@ export default class Fraction extends MathNode implements ToFraction {
 
     add(constant: Constant): MathNode;
     add(fraction: Fraction): MathNode;
+    /**
+     * This function override the addition operator for fractions.
+     *
+     * @param {Constant | Fraction} argument A math node you want to add to the fraction.
+     * @returns {MathNode} A new math node.
+     */
     add(argument: Constant | Fraction) {
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
@@ -121,6 +152,12 @@ export default class Fraction extends MathNode implements ToFraction {
 
     subtract(constant: Constant): MathNode;
     subtract(fraction: Fraction): MathNode;
+    /**
+     * This function override the subtraction operator for fractions.
+     *
+     * @param {Constant | Fraction} argument A math node you want to subtract to the current fraction.
+     * @returns {MathNode} A new math node.
+     */
     subtract(argument: Constant | Fraction) {
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
@@ -150,6 +187,12 @@ export default class Fraction extends MathNode implements ToFraction {
 
     multiply(constant: Constant): MathNode;
     multiply(fraction: Fraction): MathNode;
+    /**
+     * This function override the multiplication for fractions.
+     *
+     * @param {Constant | Fraction} argument A math node you want to multiply by.
+     * @returns {MathNode} A new math node.
+     */
     multiply(argument: Constant | Fraction): MathNode {
         
         if(argument instanceof Constant) {
@@ -178,6 +221,12 @@ export default class Fraction extends MathNode implements ToFraction {
 
     divide(constant: Constant): MathNode;
     divide(fraction: Fraction): MathNode;
+    /**
+     * This function override the division for fractions.
+     *
+     * @param {Constant | Fraction} argument A math node you want to divide by.
+     * @returns {MathNode} A new math node.
+     */
     divide(argument: Constant | Fraction): MathNode {
         if(argument instanceof Constant) {
             argument = argument.toFraction();
@@ -189,18 +238,34 @@ export default class Fraction extends MathNode implements ToFraction {
         );
     }
 
+    /**
+     * Return the fraction numerator.
+     *
+     * @returns {MathNode} The numerator.
+     */
     public getNumerator(): MathNode {
         return this.n;
     }
 
+    /**
+     * Return the fraction denominator.
+     *
+     * @returns {MathNode} The denominator.
+     */
     public getDenominator(): MathNode {
         return this.d;
     }
 
+    /**
+     * @inheritDoc
+     */
     toFraction() {
         return this;
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -209,10 +274,16 @@ export default class Fraction extends MathNode implements ToFraction {
         };
     };
 
+    /**
+     * @inheritDoc
+     */
     toString() {
         return `{${this.n.toString()}} / {${this.d.toString()}}`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex() {
         return `\\frac{${this.n.toTex()}}{${this.d.toTex()}}`;
     };

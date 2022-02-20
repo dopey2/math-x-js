@@ -2,7 +2,9 @@ import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 import Subtract from "./Subtract";
 
-
+/**
+ * Represent the Addition operation as a math node.
+ */
 export default class Add extends MathNode {
     type = MathNodeType.Add;
     isAtomic = false;
@@ -11,6 +13,10 @@ export default class Add extends MathNode {
     right: MathNode;
 
 
+    /**
+     * @param {MathNode} left - The left node.
+     * @param {MathNode} right - The right node.
+     */
     constructor(left: MathNode, right: MathNode) {
         super();
         this.left = left;
@@ -21,6 +27,9 @@ export default class Add extends MathNode {
         }
     }
 
+    /**
+     * @inheritDoc
+     */
     next() {
         if (this.left instanceof Constant && this.right instanceof Constant) {
 
@@ -42,6 +51,9 @@ export default class Add extends MathNode {
         return this;
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -50,12 +62,18 @@ export default class Add extends MathNode {
         };
     };
 
+    /**
+     * @inheritDoc
+     */
     toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} + ${right}`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });

@@ -2,6 +2,9 @@ import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 
 
+/**
+ * Represent the exponentiation operation as a math node.
+ */
 export default class Exponent extends MathNode {
     type = MathNodeType.Exponent;
 
@@ -10,6 +13,10 @@ export default class Exponent extends MathNode {
 
     isAtomic = false;
 
+    /**
+     * @param {MathNode} base The base.
+     * @param {MathNode} exponent The exponent.
+     */
     constructor(base: MathNode, exponent: MathNode) {
         super();
 
@@ -17,6 +24,9 @@ export default class Exponent extends MathNode {
         this.exponent = exponent;
     }
 
+    /**
+     * @inheritDoc
+     */
     next() {
         if (this.base instanceof Constant && this.exponent instanceof Constant) {
             return new Constant(this.base.value ** this.exponent.value);
@@ -27,6 +37,9 @@ export default class Exponent extends MathNode {
         return this;
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -35,12 +48,18 @@ export default class Exponent extends MathNode {
         };
     };
 
+    /**
+     * @inheritDoc
+     */
     toString(data?: ToStringParam) {
         const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
         const expo = this.exponent.toString();
         return `${base}^{${expo}}`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex(data?: ToStringParam) {
         const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
         const expo = this.exponent.toTex();

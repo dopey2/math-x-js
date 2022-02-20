@@ -2,6 +2,9 @@ import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 
 
+/**
+ * Represent the multiplication operation as a math node.
+ */
 export default class Multiply extends MathNode {
     type = MathNodeType.Multiply;
 
@@ -10,12 +13,19 @@ export default class Multiply extends MathNode {
 
     isAtomic = false;
 
+    /**
+     * @param {MathNode} left The left node.
+     * @param {MathNode} right The right node.
+     */
     constructor(left: MathNode, right: MathNode) {
         super();
         this.left = left;
         this.right = right;
     }
 
+    /**
+     * @inheritDoc
+     */
     next(): MathNode {
         if (this.left instanceof Constant && this.right instanceof Constant) {
             return new Constant(this.left.value * this.right.value);
@@ -34,6 +44,9 @@ export default class Multiply extends MathNode {
         return this;
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -42,12 +55,18 @@ export default class Multiply extends MathNode {
         };
     };
 
+    /**
+     * @inheritDoc
+     */
     toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} * ${right}`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });

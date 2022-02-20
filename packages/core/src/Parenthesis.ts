@@ -1,18 +1,26 @@
 import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 
-
+/**
+ * Represent the parenthesis as a math node.
+ */
 export default class Parenthesis extends MathNode {
     type = MathNodeType.Parenthesis;
     isAtomic = false;
 
     private readonly content: MathNode;
 
+    /**
+     * @param {MathNode} content The content of the parenthesis.
+     */
     constructor(content: MathNode) {
         super();
         this.content = content;
     }
 
+    /**
+     * @inheritDoc
+     */
     next() {
         if(this.content instanceof Constant) {
             return this.content;
@@ -25,6 +33,9 @@ export default class Parenthesis extends MathNode {
         }
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -32,10 +43,16 @@ export default class Parenthesis extends MathNode {
         };
     };
 
+    /**
+     * @inheritDoc
+     */
     toString() {
         return `(${this.content.toString()})`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex() {
         return `(${this.content.toTex()})`;
     };

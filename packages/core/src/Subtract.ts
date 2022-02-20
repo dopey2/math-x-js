@@ -2,7 +2,9 @@ import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
 import Add from "./Add";
 
-
+/**
+ * Represent the subtraction operation as a math node.
+ */
 export default class Subtract extends MathNode {
     type = MathNodeType.Subtract;
 
@@ -11,12 +13,19 @@ export default class Subtract extends MathNode {
 
     isAtomic = false;
 
+    /**
+     * @param {MathNode} left The left node.
+     * @param {MathNode} right The right node.
+     */
     constructor(left: MathNode, right: MathNode) {
         super();
         this.left = left;
         this.right = right;
     }
 
+    /**
+     * @inheritDoc
+     */
     next() {
         if (this.left instanceof Constant && this.right instanceof Constant) {
             if (this.right.value < 0) {
@@ -40,6 +49,9 @@ export default class Subtract extends MathNode {
         return this;
     };
 
+    /**
+     * @inheritDoc
+     */
     toJson() {
         return {
             type: this.type,
@@ -47,13 +59,19 @@ export default class Subtract extends MathNode {
             right: this.right.toJson(),
         };
     };
-    
+
+    /**
+     * @inheritDoc
+     */
     toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;
     };
 
+    /**
+     * @inheritDoc
+     */
     toTex(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
