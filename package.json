@@ -5,7 +5,8 @@
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
     "packages/core",
-    "packages/parser"
+    "packages/parser",
+    "packages/docs"
   ],
   "scripts": {
     "postinstall": "husky install",
