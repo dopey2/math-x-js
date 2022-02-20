@@ -19,7 +19,7 @@ yarn add math-x-ts
 ### Evaluate an expression
 
 ```ts
-import { evaluate } from '@math-x-ts/compiler';
+import { evaluate } from '@math-x-ts/parser';
 
 const value = evaluate('4 + (3 * 2)');
 console.log(value); // 10
@@ -28,7 +28,7 @@ console.log(value); // 10
 ### Solve an expression
 
 ```ts
-import { solve } from '@math-x-ts/compiler';
+import { solve } from '@math-x-ts/parser';
 import { Constant } from '@math-x-ts/core'
 
 const mathNode = solve('4 + (3 * 2)');
@@ -41,7 +41,7 @@ I will explain below what **Constant** is and the rest of "@math-x-ts/core"
 ### Compile an expression
 
 ```ts
-import { parse } from '@math-x-ts/compiler'
+import { parse } from '@math-x-ts/parser'
 import { Add, Constant, MathNode, MathNodeType, Multiply, Parenthesis } from '@math-x-ts/core';
 import { isEqual } from 'lodash';
 
