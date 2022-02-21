@@ -33,7 +33,7 @@ import { parse } from '@math-x-ts/parser';
 const mathNode = parse('4 * (1 + 2)');
 const steps = mathNode.solveAll();
 
-console.log(steps[0].toString()); // 4 * (1 + 2)
-console.log(steps[1].toString()); // 4 * 3
-console.log(steps[2].toString()); // 12
+console.log(steps[0].toString()); // '4 * (1 + 2)'
+console.log(steps[1].toString()); // '4 * 3'
+console.log(steps[2].toString()); // '12'
 ``` 

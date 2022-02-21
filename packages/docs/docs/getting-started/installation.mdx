@@ -1,0 +1,88 @@
+---
+sidebar_position: 1
+---
+
+# Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="node" label="NODE" default>
+
+This project is a monorepo containing:
+- **@math-x-ts/core**
+- **@math-x-ts/parser**
+
+:::tip
+
+By installing **@math-x-ts/parser** you will also get **@math-x-ts/core**
+
+:::
+
+<br/>
+<br/>
+
+
+### Npm
+
+```shell
+npm install --save @math-x-ts/parser
+```
+
+### Yarn
+
+```shell
+yarn add @math-x-ts/parser
+```
+</TabItem>
+<TabItem value="orange" label="BROWSER">
+
+For browser usage add the following tag script in your .html file
+
+
+```html
+<script src="https://unpkg.com/@math-x-ts/core"></script>
+<script src="https://unpkg.com/@math-x-ts/parser"></script>
+```
+
+:::info
+
+In order to use **@math-x-ts/parser** you must first load **@math-x-ts/core**.
+
+:::
+
+<br/>
+<br/>
+
+## Usage in browsers
+
+When loading this packages directly in your .html file with the script tag,
+the content of those libraries are available via global objects:
+
+- **MathXCore** for @math-x-ts/core
+- **MathXParser** for @math-x-ts/parser
+
+```ts
+const { parse, solve, evaluate } = MathXParser;
+
+const {
+    Add,
+    Constant,
+    Divide,
+    Exponent,
+    Fraction,
+    MathNode,
+    MathNodeType,
+    Multiply,
+    Parenthesis,
+    Subtract
+} = MathXCore;
+
+```
+
+
+</TabItem>
+</Tabs>
+
+

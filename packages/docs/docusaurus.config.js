@@ -24,6 +24,7 @@ const config = {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://github.com/dopey2/math-x-ts',
+                    remarkPlugins: [require('mdx-mermaid')],
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
