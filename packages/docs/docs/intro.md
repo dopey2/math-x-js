@@ -13,7 +13,7 @@ solution for any mathematical expression.
 - 🔢 Evaluate a mathematical expression
 - 📄 Get step by step solution
 - ✏ Produce Latex output
-- 🌳 Build AST (restructure the data as a syntax tree)
+- 🌳 Build AST (restructure the input as a tree)
   
 ## Basic Examples
 

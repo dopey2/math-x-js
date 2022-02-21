@@ -10,9 +10,8 @@ and get step by step solution.
 - **@math-x-ts/core**
 - **@math-x-ts/parser**
 
-The goal of this section is to cover the features of those packages.
-But before digging in lets see how a computer program solve mathematical expressions.
- 
+The goal of this section is to cover the features of those packages. 
+
 ## Syntax tree
 
 To easily manipulate mathematical expression, the expressions must be organized in a certain way.
