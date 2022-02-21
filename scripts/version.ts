@@ -2,6 +2,7 @@ const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const fs = require('fs');
 
+
 const argv = yargs(hideBin(process.argv)).option({
     applyVersion: { type: 'string' },
 }).argv;
@@ -9,9 +10,12 @@ const argv = yargs(hideBin(process.argv)).option({
 const { applyVersion } = argv;
 
 const readJsonFile = (file: string) => {
-    let bufferData = fs.readFileSync(file);
-    let stData = bufferData.toString();
-    let data = JSON.parse(stData);
+    let data = null;
+    try {
+        let bufferData = fs.readFileSync(file);
+        let stData = bufferData.toString();
+        data = JSON.parse(stData);
+    }catch (err) {}
     return data;
 };
 
