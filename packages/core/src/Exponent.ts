@@ -65,4 +65,18 @@ export default class Exponent extends MathNode {
         const expo = this.exponent.toTex();
         return `${base}^{${expo}}`;
     };
+
+
+    /**
+     * @inheritDoc
+     */
+    isEqual(mathNode: MathNode): boolean {
+        return (
+            this.type === mathNode.type
+            // @ts-ignore
+            && this.base.isEqual(mathNode.base)
+            // @ts-ignore
+            && this.exponent.isEqual(mathNode.exponent)
+        );
+    }
 }

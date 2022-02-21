@@ -1,7 +1,7 @@
 import { Constant, Multiply, MathNodeType } from "@math-x-ts/core/src";
 
 
-describe("Adding constant", () => {
+describe("Multiplying constant", () => {
     it("1 * 1", () => {
         const mathNode = new Multiply(new Constant(1), new Constant(1));
 

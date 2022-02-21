@@ -287,4 +287,12 @@ export default class Fraction extends MathNode implements ToFraction {
     toTex() {
         return `\\frac{${this.n.toTex()}}{${this.d.toTex()}}`;
     };
+
+    /**
+     * @inheritDoc
+     */
+    isEqual(mathNode: MathNode): boolean {
+        // @ts-ignore
+        return this.type === mathNode.type && this.n.isEqual(mathNode.n) && this.d.isEqual(mathNode.d);
+    }
 }

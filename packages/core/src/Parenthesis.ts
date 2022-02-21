@@ -56,4 +56,12 @@ export default class Parenthesis extends MathNode {
     toTex() {
         return `(${this.content.toTex()})`;
     };
+
+    /**
+     * @inheritDoc
+     */
+    isEqual(mathNode: MathNode): boolean {
+        // @ts-ignore
+        return this.type === mathNode.type && this.content.isEqual(mathNode.content);
+    }
 }

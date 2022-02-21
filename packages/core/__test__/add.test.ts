@@ -1,4 +1,5 @@
 import { Add, Constant, MathNodeType } from "@math-x-ts/core/src";
+import { parse } from "@math-x-ts/parser/src";
 
 
 describe("Adding constant", () => {
@@ -51,6 +52,18 @@ describe("Adding constant", () => {
         expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(1);
         expect(solved.toString()).toBe("1");
+    });
+
+    it("1 + 2 isEqual 1 + 2 should be true", () => {
+        const mathNode1 = new Add(new Constant(1), new Constant(2));
+        const mathNode2 = parse("1 + 2");
+        expect(mathNode1.isEqual(mathNode2)).toBe(true)
+    });
+
+    it("1 + 2 isEqual 5 + 4 should be false", () => {
+        const mathNode1 = new Add(new Constant(1), new Constant(2));
+        const mathNode2 = parse("5 + 4");
+        expect(mathNode1.isEqual(mathNode2)).toBe(false)
     });
 });
 

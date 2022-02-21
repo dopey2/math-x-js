@@ -77,4 +77,12 @@ export default class Subtract extends MathNode {
         const right = this.right.toString({ isAfterOperator: true });
         return `${left} - ${right}`;
     };
+
+    /**
+     * @inheritDoc
+     */
+    isEqual(mathNode: MathNode): boolean {
+        // @ts-ignore
+        return this.type === mathNode.type && this.right.isEqual(mathNode.right) && this.left.isEqual(mathNode.left);
+    }
 }

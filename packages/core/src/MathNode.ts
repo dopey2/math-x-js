@@ -73,6 +73,14 @@ export default abstract class MathNode {
      * @returns {string} Valid latex as string.
      */
     public abstract toTex(data?: ToStringParam): string;
+
+    /**
+     * Do a deep equal.
+     *
+     * @param {MathNode} mathNode A math node.
+     * @returns {boolean} Tell if is the nodes are equals.
+     */
+    public abstract isEqual(mathNode: MathNode): boolean;
     /**
      * This function aims to solve the node step by step.
      * It calls the next() function until the node is atomic.

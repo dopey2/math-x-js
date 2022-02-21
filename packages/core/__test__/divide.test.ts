@@ -1,4 +1,4 @@
-import { MathNodeType } from "@math-x-ts/core/src";
+import { Constant, Divide, MathNodeType } from "@math-x-ts/core/src";
 import { parse } from '@math-x-ts/parser/src';
 
 
@@ -47,4 +47,19 @@ describe("Divide", () => {
         expect(mathNode5.toString()).toBe("2");
         expect(mathNode5.value).toBe(2);
     });
+
+
+    it("4 : 2 isEqual 4 : 2 should be true", () => {
+        const mathNode1 = new Divide(new Constant(4), new Constant(2));
+        const mathNode2 = parse("4 : 2");
+        expect(mathNode1.isEqual(mathNode2)).toBe(true)
+    });
+
+
+    it("4 : 2 isEqual 4 : 3 should be false", () => {
+        const mathNode1 = new Divide(new Constant(4), new Constant(2));
+        const mathNode2 = parse("4 : 3");
+        expect(mathNode1.isEqual(mathNode2)).toBe(false)
+    });
+
 });
