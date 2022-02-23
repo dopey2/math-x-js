@@ -7,6 +7,8 @@ export default {
     clearMocks: true,
     coverageDirectory: "coverage",
     testEnvironment: "node",
-    preset: 'ts-jest',
+    transform: {
+        "^.+\\.(t|j)sx?$": ["@swc/jest"],
+    },
     roots: ["__test__"],
 };
