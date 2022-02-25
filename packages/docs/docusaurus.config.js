@@ -73,15 +73,7 @@ const config = {
                     items: [
                         {
                             label: 'Stack Overflow',
-                            href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                        },
-                        {
-                            label: 'Discord',
-                            href: 'https://discordapp.com/invite/docusaurus',
-                        },
-                        {
-                            label: 'Twitter',
-                            href: 'https://twitter.com/docusaurus',
+                            href: 'https://stackoverflow.com/questions/tagged/math-x-ts',
                         }
                     ],
                 },
@@ -89,12 +81,12 @@ const config = {
                     title: 'More',
                     items: [
                         {
-                            label: 'Blog',
-                            to: '/blog',
+                            label: 'GitHub',
+                            href: 'https://github.com/dopey2/math-x-ts',
                         },
                         {
-                            label: 'GitHub',
-                            href: 'https://github.com/facebook/docusaurus',
+                            label: 'Credit',
+                            href: '/credit',
                         }
                     ],
                 }
