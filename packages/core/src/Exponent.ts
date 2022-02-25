@@ -61,7 +61,7 @@ export default class Exponent extends MathNode {
      * @inheritDoc
      */
     toTex(data?: ToStringParam) {
-        const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
+        const base = this.base.toTex({ isAfterOperator: data?.isAfterOperator });
         const expo = this.exponent.toTex();
         return `${base}^{${expo}}`;
     };

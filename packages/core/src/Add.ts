@@ -75,8 +75,8 @@ export default class Add extends MathNode {
      * @inheritDoc
      */
     toTex(data?: ToStringParam) {
-        const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
-        const right = this.right.toString({ isAfterOperator: true });
+        const left = this.left.toTex({ isAfterOperator: data?.isAfterOperator });
+        const right = this.right.toTex({ isAfterOperator: true });
         return `${left} + ${right}`;
     };
 
