@@ -1,75 +1,141 @@
+/* eslint-disable */
+
 import React from 'react';
-import Katex from '../Katex/Katex';
+import clsx from "clsx";
+import CodeBlock from '@theme/CodeBlock';
 import { MathNode } from '@math-x-ts/core';
-import { parse } from '@math-x-ts/parser';
+import Katex from '../Katex/Katex';
 import './expression-solver.css';
 
+
 interface Props {
-  expression: MathNode;
+ expression: MathNode;
 }
 
 interface State {
-  lastStep: MathNode;
-  steps: MathNode[];
+ lastStep: MathNode;
+ steps: MathNode[];
+ selectedOutput: number;
 }
 
+const TabItem = (props: {value: number, selected: number, label: string, onChange: (value: any) => void}) => {
+   return (
+       <div
+           onClick={() => props.onChange(props.value)}
+           className={clsx({
+               "expression-solver__tab-item": true,
+               "expression-solver__tab-item--selected": props.value === props.selected,
+           })}
+       >{props.label}</div>
+   );
+};
+
 export default class ExpressionSolver extends React.PureComponent<Props, State> {
+   constructor(props: Props) {
+       super(props);
 
-  constructor(props: Props) {
-    super(props);
+       this.state = {
+           lastStep: props.expression,
+           steps: [props.expression],
+           selectedOutput: 0,
+       };
 
-    this.state = {
-      lastStep: props.expression,
-      steps: [props.expression],
-    };
-  }
+       this.onTabChange = this.onTabChange.bind(this);
+       this.solveAll = this.solveAll.bind(this);
+       this.solveNext = this.solveNext.bind(this);
+   }
 
-  componentDidUpdate(prevProps: Props) {
-    if(prevProps.expression !== this.props.expression) {
-      this.setState({
-        lastStep: this.props.expression,
-        steps: [this.props.expression],
-      });
-    }
-  }
-
-  solveNext = () => {
-    const lastStep = this.state.lastStep.next();
-
-    if (this.state.lastStep.isAtomic) {
-      return;
+    componentDidUpdate(prevProps: Props) {
+        if(prevProps.expression !== this.props.expression) {
+            this.setState({
+                lastStep: this.props.expression,
+                steps: [this.props.expression],
+            });
+        }
     }
 
-    this.setState((prevState: State) => {
-      return {
-        steps: [...prevState.steps, lastStep],
-        lastStep,
-      };
-    });
-  };
+   solveNext() {
+       const lastStep = this.state.lastStep.next();
 
-  solveAll = () => {
-    const steps = this.props.expression.solveAll();
-    this.setState({ steps, lastStep: steps[steps.length -1] });
-  };
+       if (this.state.lastStep.isAtomic) {
+           return;
+       }
 
-  render() {
-    return (
-        <div className="expression-solver">
-          
-          <div className="expression-solver__steps-container">
-            {this.state.steps.map((node: MathNode, i: number) => {
-              return <Katex tex={node.toTex()} key={i}/>;
-            })}  
-          </div>
-          
+       this.setState((prevState: State) => {
+           return {
+               steps: [...prevState.steps, lastStep],
+               lastStep,
+           };
+       });
+   };
 
-          <div className="expression-solver__button-container">
-            <button className="expression-solver__button-next" onClick={this.solveNext}>.next()</button>
-            <button className="expression-solver__button-solve-all" onClick={this.solveAll}>.solveAll()</button>
-          </div>
+   solveAll() {
+       const steps = this.props.expression.solveAll();
+       this.setState({ steps, lastStep: steps[steps.length - 1] });
+   };
 
-        </div>
-    );
-  }
+   onTabChange(tab: number) {
+       this.setState({ selectedOutput: tab });
+   };
+
+   getOutputForNode(mathNode: MathNode, i: number) {
+       if(this.state.selectedOutput === 0) {
+           return <Katex tex={mathNode.toTex()} key={i}/>;
+       } else if(this.state.selectedOutput === 1) {
+           return <div key={i}>{mathNode.toString()}</div>
+       } else if(this.state.selectedOutput === 2) {
+           return <div key={i}>{mathNode.toTex()}</div>
+       } else if(this.state.selectedOutput === 3) {
+           return (
+               <CodeBlock
+                   className="language-jsx">{JSON.stringify(mathNode.toJson(), null, '\t')}
+               </CodeBlock>
+           )
+       }
+   }
+
+   render() {
+       return (
+           <div className="expression-solver">
+
+               <div className="expression-solver__tabs">
+                   <TabItem
+                       value={0}
+                       selected={this.state.selectedOutput}
+                       onChange={this.onTabChange}
+                       label="Katex renderer"
+                   />
+                   <TabItem
+                       value={1}
+                       selected={this.state.selectedOutput}
+                       onChange={this.onTabChange}
+                       label="toString()"
+                   />
+                   <TabItem
+                       value={2}
+                       selected={this.state.selectedOutput}
+                       onChange={this.onTabChange}
+                       label="toTex()"
+                   />
+                   <TabItem
+                       value={3}
+                       selected={this.state.selectedOutput}
+                       onChange={this.onTabChange}
+                       label="toJson()"
+                   />
+               </div>
+
+               <div className="expression-solver__steps-container">
+                   {this.state.steps.map((node: MathNode, i: number) => this.getOutputForNode(node, i))}
+               </div>
+
+
+               <div className="expression-solver__button-container">
+                   <button className="expression-solver__button-next" onClick={this.solveNext}>.next()</button>
+                   <button className="expression-solver__button-solve-all" onClick={this.solveAll}>.solveAll()</button>
+               </div>
+
+           </div>
+       );
+   }
 }
