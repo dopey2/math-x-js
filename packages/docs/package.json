@@ -1,6 +1,6 @@
 {
   "name": "@math-x-ts/docs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "clean:lib": "echo 'Skip docs'",
     "build:all": "echo 'Skip docs",
@@ -24,10 +24,11 @@
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.15",
     "@docusaurus/preset-classic": "2.0.0-beta.15",
-    "@math-x-ts/core": "0.0.4",
-    "@math-x-ts/parser": "0.0.4",
+    "@math-x-ts/core": "0.0.5",
+    "@math-x-ts/parser": "0.0.5",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
+    "katex": "^0.15.2",
     "mdx-mermaid": "^1.2.1",
     "mermaid": "^8.14.0",
     "prism-react-renderer": "^1.2.1",
