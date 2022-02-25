@@ -1,6 +1,8 @@
 # Step by step solution
 
-Let's take a look at the expression **2 * (3 + 4)** <br/>
+Let's get a step by step solution for the expression **2 * (3 + 4)** <br/>
+
+## Using .next() function
 
 ```ts
 import { parse } from '@math-x-ts/parser';
@@ -49,4 +51,23 @@ If we call the **.next()** function once more, the node will be atomic
 const step2 = step1.next();
 console.log(step2.isAtomic); // true
 console.log(step2.toString()); // '14'
+```
+
+## Using .solveAll()
+
+Instead of calling .next() function N times until the hole node is atomic,
+you can call .solveAll() which return an array with all the steps. 
+
+```ts
+import { parse } from '@math-x-ts/parser';
+
+const steps = parse('2 + 3 * 4').solveAll();
+
+steps.forEach((mathNode) => {
+    console.log(mathNode.toString());
+});
+
+// log: 2 + 3 * 4
+// log: 2 + 12
+// log: 14
 ```
