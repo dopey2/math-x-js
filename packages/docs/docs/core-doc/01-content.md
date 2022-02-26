@@ -1,9 +1,8 @@
 # Content
 
-This packages contain the following classes.
+## Classes
 
 * [MathNode](./mathNode)
-* MathNodeType
 * [Constant](./constant)
 * [Add](./add)
 * [Subtract](./subtract)
@@ -12,3 +11,7 @@ This packages contain the following classes.
 * [Exponent](./exponent)
 * [Fraction](./fraction)
 * [Parenthesis](./parenthesis)
+
+## Enum
+
+* [MathNodeType](./mathNodeType)

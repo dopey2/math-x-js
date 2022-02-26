@@ -12,7 +12,7 @@ export default class KatexComponent extends React.PureComponent<Props> {
 
     componentDidMount(): void {
         if(this.ref) {
-            katex.render(this.props.tex, this.ref, { displayMode: true });
+            katex.render(this.props.tex, this.ref, { displayMode: true, throwOnError: false });
         }
     }
 

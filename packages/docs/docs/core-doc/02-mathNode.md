@@ -2,32 +2,13 @@
 # MathNode
 
 MathNode is the base class for every node & leafs in the binary tree.
-It provides the following definitions for node & leafs
+Each concrete class under **@math-x-ts/core** extends **MathNode**, every properties/functions
+shown below are public available inside each concrete class of **@math-x-ts/core**
 
 ## Properties
 
 ### type: [MathNodeType](./mathNodeType)
 The type of the current node.
-
-```ts
-import { parse } from '@math-x-ts/parse';
-import { MathNodeType } from '@math-x-ts/core';
-
-const mathNode1 = parse('1 + 2');
-const mathNode2 = parse('2 - 1');
-const mathNode3 = parse('3 * 4');
-const mathNode4 = parse('6 : 3');
-const mathNode5 = parse('8 / 4');
-const mathNode6 = parse('2 ^ 3');
-
-console.log(mathNode1.type === MathNodeType.Add);      // true
-console.log(mathNode2.type === MathNodeType.Subtract); // true
-console.log(mathNode3.type === MathNodeType.Multiply); // true
-console.log(mathNode4.type === MathNodeType.Divide);   // true
-console.log(mathNode5.type === MathNodeType.Fraction); // true
-console.log(mathNode6.type === MathNodeType.Exponent); // true
-
-```
 
 ### value: number
 The value of the current node as a number
@@ -39,19 +20,6 @@ An example of an atomic node is a constant, and an example of a non-atomic node 
 If you visualize it as a binary tree, atomic nodes are actually the leafs of the tree.
 
 
-``` typescript
-import { parse } from '@math-x-ts/parser';
-import { Constant } from '@math-x-ts/core';
-
-const mathNode1 = parse('1');
-const mathNode2 = new Constant(1);
-console.log(mathNode1.isAtomic) // true;
-console.log(mathNode2.isAtomic) // true;
-
-const mathNode3 = parse('2 + 3 * 4');
-console.log(mathNode1.isAtomic); // false 
-```
-
 ## Functions
 
 ### next: () => MathNode
@@ -59,3 +27,14 @@ console.log(mathNode1.isAtomic); // false
 The next function try to simplify the current node and return the next step as a MathNode.
 If the node is atomic then it just returns the same instance.
 When trying to simplify a node, it always starts with the deepest node in the tree.
+
+### toString: () => string
+
+Return the string representation of the current node.
+
+### toTex: () => string
+
+Return a valid latex string for the current node.
+You can use a library like [Katex](https://katex.org/) or [Mathjax](https://www.mathjax.org/) 
+to build DOM element from the output of this function.
+For now .toString() and .toTex are almost similar in terms of output except for fractions and exponents.
