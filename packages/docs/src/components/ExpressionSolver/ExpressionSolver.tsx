@@ -20,13 +20,13 @@ interface State {
 
 const TabItem = (props: {value: number, selected: number, label: string, onChange: (value: any) => void}) => {
    return (
-       <div
+       <li
            onClick={() => props.onChange(props.value)}
            className={clsx({
-               "expression-solver__tab-item": true,
-               "expression-solver__tab-item--selected": props.value === props.selected,
+               'pills__item': true,
+               'pills__item--active': props.value === props.selected,
            })}
-       >{props.label}</div>
+       >{props.label}</li>
    );
 };
 
@@ -88,6 +88,7 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        } else if(this.state.selectedOutput === 3) {
            return (
                <CodeBlock
+                   key={i}
                    className="language-jsx">{JSON.stringify(mathNode.toJson(), null, '\t')}
                </CodeBlock>
            )
@@ -98,7 +99,7 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        return (
            <div className="expression-solver">
 
-               <div className="expression-solver__tabs">
+               <div className="pills mt-20">
                    <TabItem
                        value={0}
                        selected={this.state.selectedOutput}
@@ -128,13 +129,6 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
                <div className="expression-solver__steps-container">
                    {this.state.steps.map((node: MathNode, i: number) => this.getOutputForNode(node, i))}
                </div>
-
-
-               <div className="expression-solver__button-container">
-                   <button className="expression-solver__button-next" onClick={this.solveNext}>.next()</button>
-                   <button className="expression-solver__button-solve-all" onClick={this.solveAll}>.solveAll()</button>
-               </div>
-
            </div>
        );
    }
