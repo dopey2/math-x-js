@@ -19,7 +19,7 @@ const expressionList = [
     '3^2',
     '3^2 + 2',
     '3^{2 + 2}',
-    '{ (20 + 16) - 2^{6 - 4}} / { (7 - 8) * (-2)}'
+    '{ (20 + 16) - 2^{6 - 4}} / { (7 - 8) * (-2)} + 3'
 ];
 
 export default class SampleLiveDemo extends React.PureComponent {
