@@ -4,6 +4,7 @@ import Add from "./Add";
 import Multiply from "./Multiply";
 import Subtract from "./Subtract";
 import Utils from "./utils";
+import Divide from "./Divide";
 
 
 export interface ToFraction {
@@ -126,6 +127,15 @@ export default class Fraction extends MathNode implements ToFraction {
      * @returns {MathNode} A new math node.
      */
     add(argument: Constant | Fraction) {
+        if(!this.n.isAtomic || !this.d.isAtomic) {
+            const left = new Fraction(this.n.next(), this.d.next()); 
+            const right = argument.isAtomic ? argument : argument.next();
+            return new Add(
+                left,
+                right
+            );
+        }
+        
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
                 const next = this.solveForConstant(this.n, this.d);
@@ -159,6 +169,16 @@ export default class Fraction extends MathNode implements ToFraction {
      * @returns {MathNode} A new math node.
      */
     subtract(argument: Constant | Fraction) {
+        if(!this.n.isAtomic || !this.d.isAtomic) {
+            const left = new Fraction(this.n.next(), this.d.next());
+            const right = argument.isAtomic ? argument : argument.next();
+            return new Subtract(
+                left,
+                right
+            );
+        }
+
+
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
                 const next = this.solveForConstant(this.n, this.d);
@@ -194,7 +214,15 @@ export default class Fraction extends MathNode implements ToFraction {
      * @returns {MathNode} A new math node.
      */
     multiply(argument: Constant | Fraction): MathNode {
-        
+        if(!this.n.isAtomic || !this.d.isAtomic) {
+            const left = new Fraction(this.n.next(), this.d.next());
+            const right = argument.isAtomic ? argument : argument.next();
+            return new Multiply(
+                left,
+                right
+            );
+        }
+
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
                 const next = this.solveForConstant(this.n, this.d);
@@ -228,6 +256,15 @@ export default class Fraction extends MathNode implements ToFraction {
      * @returns {MathNode} A new math node.
      */
     divide(argument: Constant | Fraction): MathNode {
+        if(!this.n.isAtomic || !this.d.isAtomic) {
+            const left = new Fraction(this.n.next(), this.d.next());
+            const right = argument.isAtomic ? argument : argument.next();
+            return new Divide(
+                left,
+                right
+            );
+        }
+
         if(argument instanceof Constant) {
             argument = argument.toFraction();
         }

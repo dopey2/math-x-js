@@ -2,6 +2,16 @@ import { parse } from "@math-x-ts/parser/src/";
 import { Add, Constant, Fraction, Multiply, MathNode, MathNodeType } from "@math-x-ts/core/src";
 
 
+const testExpressionStrings = (expression: string, steps: string[]) => {
+    let node = parse(expression);
+
+    for(let i = 0; i < steps.length; i++) {
+        expect(node.toString()).toBe(steps[i]);
+        node = node.next();
+    }
+}
+
+
 describe("Fraction with constant", () => {
     it("6 / 3", () => {
         const mathNode = new Fraction(new Constant(6) as MathNode, new Constant(3) as MathNode);
@@ -328,6 +338,88 @@ describe("Multiply fraction and constant", () => {
         expect(node2.isAtomic).toBe(true);
     });
 });
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 3} + 3";
+    it(expression, () => {
+
+        testExpressionStrings(expression, [
+            expression,
+            '{15} / {5} + 3',
+            '3 + 3',
+            '6'
+        ]);
+    })
+})
+
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 2} + 3";
+    it(expression, () => {
+
+        testExpressionStrings(expression, [
+            "{5 + 10} / {2 + 2} + 3",
+            "{15} / {4} + 3",
+            "{15} / {4} + {3} / {1}",
+            "{15} / {4} + {3 * 4} / {1 * 4}",
+            "{15} / {4} + {12} / {4}",
+            "{15 + 12} / {4}",
+            "{27} / {4}",
+        ])
+    })
+})
+
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 3} - 2";
+    it(expression, () => {
+        testExpressionStrings(expression, [
+            expression,
+            '{15} / {5} - 2',
+            '3 - 2',
+            '1'
+        ]);
+    })
+})
+
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 3} * 3";
+    it(expression, () => {
+        testExpressionStrings(expression, [
+            expression,
+            '{15} / {5} * 3',
+            '3 * 3',
+            '9'
+        ]);
+    })
+})
+
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 4} * 3";
+    it(expression, () => {
+        testExpressionStrings(expression, [
+            expression,
+            '{15} / {6} * 3',
+            '{15 * 3} / {6 * 3}',
+            '{45} / {18}'
+        ]);
+    })
+})
+
+describe("Fraction ", () => {
+    const expression = "{5 + 10} / {2 + 2} : 3";
+    it(expression, () => {
+        testExpressionStrings(expression, [
+            expression,
+            "{15} / {4} : 3",
+            "{15} / {4} * {1} / {3}",
+            "{15 * 1} / {4 * 3}",
+            "{15} / {12}"
+        ]);
+    })
+})
 
 
 describe("isEqual", () => {
