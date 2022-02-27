@@ -27,6 +27,7 @@ export default class LiveDemoTopBar extends React.PureComponent<Props> {
                 <div className="navbar__inner">
                     <div className="navbar__items">
                         <input
+                            id="live-demo-input"
                             className="select__input" placeholder="Expression"
                             value={this.props.value}
                             onChange={this.onInputChange}
@@ -34,7 +35,10 @@ export default class LiveDemoTopBar extends React.PureComponent<Props> {
                                 
 
                         <div className="dropdown dropdown--hoverable ml-10">
-                            <button className="button button--outline button--primary">Samples</button>
+                            <button
+                                id="live-demo-sample"
+                                className="button button--outline button--primary"
+                            >Samples</button>
                             <ul className="dropdown__menu">
                                 {this.props.items.map((expression, i) => (
                                     <li key={i}>
@@ -46,10 +50,12 @@ export default class LiveDemoTopBar extends React.PureComponent<Props> {
                     </div>
                     <div className="navbar__items navbar__items--right">
                         <button
+                            id="live-demo-next"
                             className="button button--secondary"
                             onClick={this.props.onClickNext}
                         >.next()</button>
                         <button
+                            id="live-demo-solve-all"
                             className="button button--primary ml-10"
                             onClick={this.props.onClickSolveAll}
                         >.solveAll()</button>

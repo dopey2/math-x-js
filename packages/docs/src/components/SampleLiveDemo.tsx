@@ -2,6 +2,8 @@ import LiveDemoTopBar from './LiveDemoTopBar/LiveDemoTopBar';
 import ExpressionSolver from './ExpressionSolver/ExpressionSolver';
 import React from 'react';
 import { parse } from '@math-x-ts/parser';
+import introJs from 'intro.js';
+import 'intro.js/introjs.css';
 
 
 const expressionList = [
@@ -34,6 +36,15 @@ export default class SampleLiveDemo extends React.PureComponent {
 
     EXPRESSION_SOLVER: ExpressionSolver | null = null;
 
+    
+    onClickNext = () => {
+        this.EXPRESSION_SOLVER && this.EXPRESSION_SOLVER.solveNext();
+    };
+
+    onClickSolveAll = () => {
+        this.EXPRESSION_SOLVER && this.EXPRESSION_SOLVER.solveAll();
+    };
+
     onExpressionChange = (expression) => {
         this.setState({ expression });
     };
@@ -47,14 +58,44 @@ export default class SampleLiveDemo extends React.PureComponent {
 
         return mathNode;
     };
+
+    componentDidMount() {
+
+        if(window.localStorage.getItem("demo")) {
+            return;
+        }
+
+        introJs().setOptions({
+            steps: [{
+                title: 'Welcome to math-x-ts',
+                intro: 'A quick tour of the live demo page.',
+            },
+            {
+                element: document.querySelector('#live-demo-input'),
+                intro: 'Type your math expression here.',
+            },
+            {
+                element: document.querySelector('#live-demo-sample'),
+                intro: 'Or pick an expression from the sample list.',
+            },
+            {
+                element: document.querySelector('#live-demo-next'),
+                intro: 'Call the .next() method, to simplify the expression.',
+            },
+            {
+                element: document.querySelector('#live-demo-solve-all'),
+                intro: 'Or call .solveAll() method, to get all the steps.',
+            },
+            {
+                element: document.querySelector('#live-demo-output-type'),
+                intro: 'You can change how nodes are rendered here.',
+            }
+            ],
+        }).start();
+        
+        window.localStorage.setItem("demo", "true");
+    }
     
-    onClickNext = () => {
-        this.EXPRESSION_SOLVER && this.EXPRESSION_SOLVER.solveNext();
-    };
-    
-    onClickSolveAll = () => {
-        this.EXPRESSION_SOLVER && this.EXPRESSION_SOLVER.solveAll();
-    };
 
     render() {
 

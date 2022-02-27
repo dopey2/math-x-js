@@ -28,6 +28,7 @@
     "@math-x-ts/parser": "0.0.5",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
+    "intro.js": "^5.0.0",
     "katex": "^0.15.2",
     "mdx-mermaid": "^1.2.1",
     "mermaid": "^8.14.0",

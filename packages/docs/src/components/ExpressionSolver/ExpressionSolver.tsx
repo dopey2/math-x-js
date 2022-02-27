@@ -99,7 +99,10 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        return (
            <div className="expression-solver">
 
-               <div className="pills mt-20">
+               <div
+                   id="live-demo-output-type"
+                   className="pills mt-20"
+               >
                    <TabItem
                        value={0}
                        selected={this.state.selectedOutput}
