@@ -54,7 +54,7 @@ export default class Exponent extends MathNode {
     toString(data?: ToStringParam) {
         const base = this.base.toString({ isAfterOperator: data?.isAfterOperator });
         const expo = this.exponent.toString();
-        return `${base}^{${expo}}`;
+        return `${base} ^ {${expo}}`;
     };
 
     /**

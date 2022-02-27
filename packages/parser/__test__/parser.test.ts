@@ -248,23 +248,23 @@ describe("Math parser, exponents", () => {
     it("2 ^ 3", () => {
         const expression = parse("2 ^ 3");
         const res = expression.solve();
-        expect(expression.toString()).toBe("2^{3}");
+        expect(expression.toString()).toBe("2 ^ {3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(8);
     });
 
-    it("2 ^{3}", () => {
-        const expression = parse("2^{3}");
+    it("2 ^ {3}", () => {
+        const expression = parse("2 ^ {3}");
         const res = expression.solve();
-        expect(expression.toString()).toBe("2^{3}");
+        expect(expression.toString()).toBe("2 ^ {3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(8);
     });
 
-    it("2 ^{2 + 2}", () => {
-        const expression = parse("2^{2 + 2}");
+    it("2 ^ {2 + 2}", () => {
+        const expression = parse("2 ^ {2 + 2}");
         const res = expression.solve();
-        expect(expression.toString()).toBe("2^{2 + 2}");
+        expect(expression.toString()).toBe("2 ^ {2 + 2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(16);
     });
@@ -272,7 +272,7 @@ describe("Math parser, exponents", () => {
     it("4 * 3 ^ 2", () => {
         const expression = parse("4 * 3 ^ 2");
         const res = expression.solve();
-        expect(expression.toString()).toBe("4 * 3^{2}");
+        expect(expression.toString()).toBe("4 * 3 ^ {2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(36);
     });
@@ -280,31 +280,31 @@ describe("Math parser, exponents", () => {
     it("(4 * 3)^ 2", () => {
         const expression = parse("(4 * 3) ^ 2");
         const res = expression.solve();
-        expect(expression.toString()).toBe("(4 * 3)^{2}");
+        expect(expression.toString()).toBe("(4 * 3) ^ {2}");
         expect(res).toBeDefined();
         expect(res.value).toBe(144);
     });
 
-    it("(1 + 3)^ 2 * 3 ", () => {
+    it("(1 + 3) ^ 2 * 3 ", () => {
         const expression = parse("(1 + 3) ^ 2 * 3");
         const res = expression.solve();
-        expect(expression.toString()).toBe("(1 + 3)^{2} * 3");
+        expect(expression.toString()).toBe("(1 + 3) ^ {2} * 3");
         expect(res).toBeDefined();
         expect(res.value).toBe(48);
     });
 
-    it("(1 + 3)^{2 * 3} ", () => {
-        const expression = parse("(1 + 3) ^{2 * 3}");
+    it("(1 + 3) ^ {2 * 3} ", () => {
+        const expression = parse("(1 + 3) ^ {2 * 3}");
         const res = expression.solve();
-        expect(expression.toString()).toBe("(1 + 3)^{2 * 3}");
+        expect(expression.toString()).toBe("(1 + 3) ^ {2 * 3}");
         expect(res).toBeDefined();
         expect(res.value).toBe(4096);
     });
 
-    it("5^0", () => {
-        const expression = parse("5^0");
+    it("5 ^ 0", () => {
+        const expression = parse("5 ^ 0");
         const res = expression.solve();
-        expect(expression.toString()).toBe("5^{0}");
+        expect(expression.toString()).toBe("5 ^ {0}");
         expect(res).toBeDefined();
         expect(res.value).toBe(1);
     });
