@@ -15,6 +15,7 @@ import {
     Fraction,
     MathNode,
     Multiply,
+    Negative,
     Parenthesis,
     Subtract
 } from "@math-x-ts/core/src";
@@ -85,19 +86,6 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
             continue;
         }
 
-        // /**
-        //  * Ignore the negative signe which comes from negative numbers ex: Add(-5,3)
-        //  */
-        // if(char === "-") {
-        //     const prevChar = symbols[i - 1];
-        //     if(prevChar === undefined) {
-        //         continue;
-        //     }
-        //     if(isOperator(prevChar)) {
-        //         continue;
-        //     }
-        // }
-
         if(isOperator(char)) {
             const OPERATOR_PRIORITY = getOperatorPriority(char);
             if(OPERATOR_PRIORITY <= lowestPriority) {
@@ -115,6 +103,12 @@ const buildMathNode: (symbols: string[]) => MathNode = (symbols: string[]) => {
     if(symbols.length === 1 && isNumber(symbols[0])) {
         return new Constant(parseFloat(symbols[0]));
     }
+
+    // todo try to normalize this case -2 inside (-2) should be a single symbol
+    if(symbols.length === 2 && symbols[0] === '-' && isNumber(symbols[1])) {
+        return new Constant(parseFloat(`-${symbols[1]}`));
+    }
+
 
     if(isInParenthesis(symbols) || isInBracket(symbols)) {
         return parseParenthesisAndBracket(symbols);
@@ -151,17 +145,17 @@ export const parse: (expression: string) => MathNode = (expression: string) => {
 };
 
 const mathNodeFactory = (operator: string, left: MathNode, right: MathNode) => {
+
+    // when left is NaN
+    if(left.value !== left.value) {
+        if(operator === "-") {
+            return new Negative(right);
+        }
+    }
+
     if(operator === "+") {
         return new Add(left, right);
     } else if(operator === "-") {
-        // if(left instanceof Constant && left.value !== left.value) {
-        //     if(right instanceof Constant) {
-        //         return new Constant(-right.value);
-        //     }
-        //     // else {
-        //     //     return new Negative(right);
-        //     // }
-        // }
         return new Subtract(left, right);
     } else if(operator === "*") {
         return new Multiply(left, right);
@@ -173,5 +167,6 @@ const mathNodeFactory = (operator: string, left: MathNode, right: MathNode) => {
         return new Exponent(left, right);
     }
 
+    // other edge case
     return new Constant(NaN);
 };

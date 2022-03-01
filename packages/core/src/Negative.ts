@@ -23,11 +23,17 @@ export default class Negative extends MathNode {
      * @inheritDoc
      */
     next() {
-        if (this.content instanceof Constant) {
+        if(this.content instanceof Constant) {
             return new Constant(-this.content.value);
         }
 
-        return new Negative(this.content.next());
+        const next = this.content.next({ isNegative: true });
+
+        if(next instanceof Constant) {
+            return new Constant(-next.value);
+        }
+
+        return new Negative(next);
     };
 
     /**
@@ -44,16 +50,14 @@ export default class Negative extends MathNode {
      * @inheritDoc
      */
     toString() {
-        const content = this.content.toString({ isAfterOperator: true });
-        return `-(${content}) `;
+        return `-${this.content.toString()}`;
     };
 
     /**
      * @inheritDoc
      */
     toTex() {
-        const content = this.content.toTex({ isAfterOperator: true });
-        return `- ${content} `;
+        return `-${this.content.toTex()} `;
     };
 
     /**

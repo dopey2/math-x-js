@@ -25,7 +25,10 @@ const normalizeNegativeNumbers = (arr: string[]) => {
         const nextSymbol = symbols[i + 1];
 
         if(symbol === '-') {
-            if((!lastSymbol || isOperator(lastSymbol)) && !(nextSymbol && nextSymbol === "(")) {
+            if(
+                (!lastSymbol || isOperator(lastSymbol))
+                && !(nextSymbol && (nextSymbol === "("))
+            ) {
                 const left = symbols.slice(0, i);
 
                 const NEXT_NUMBER_INDEX = findNextNumberIndex(symbols, i);

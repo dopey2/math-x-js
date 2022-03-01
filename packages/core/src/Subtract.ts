@@ -21,33 +21,12 @@ export default class Subtract extends MathNode {
         super();
         this.left = left;
         this.right = right;
-
-        // todo remove this, put inside parser
-
-        if(this.left.value !== this.left.value && this.right instanceof Constant) {
-            // @ts-ignore
-            return new Constant(-this.right.value);
-        }
-        
     }
 
     /**
      * @inheritDoc
      */
     next() {
-        if(this.left.value !== this.left.value) {
-            if(this.right instanceof Constant) {
-                return new Constant(-this.right.value);
-            } else if(!this.right.isAtomic) {
-                const next = this.right.next({ isNegative: true });
-                if(next instanceof Constant) {
-                    return new Constant(-next.value);
-                }
-
-                return new Subtract(this.left, next);
-            }
-        }
-
         if (this.left instanceof Constant && this.right instanceof Constant) {
             if (this.right.value < 0) {
                 return new Add(this.left, new Constant(Math.abs(this.right.value)));
@@ -88,15 +67,6 @@ export default class Subtract extends MathNode {
     toString(data?: ToStringParam) {
         const left = this.left.toString({ isAfterOperator: data?.isAfterOperator });
         const right = this.right.toString({ isAfterOperator: true });
-        
-        if(this.left instanceof Constant && this.left.value !== this.left.value) {
-            if(this.right instanceof Constant) {
-                return `-${this.right.toString()}`;
-            }
-
-            return `-${this.right}`;
-        }
-        
         return `${left} - ${right}`;
     };
 
