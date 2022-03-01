@@ -401,7 +401,7 @@ describe("Math parser fraction expressions", () => {
     });
 })
 
-describe("Negative values edges case", () => {
+describe("Negative cases", () => {
     const expression1 = "-(-(-(-(5))))";
 
     it(expression1, () => {
@@ -463,4 +463,45 @@ describe("Negative values edges case", () => {
     })
 
 
+    const expression5 = "-(-(-5 + 3))";
+
+    it(expression5, () => {
+        const node1 = parse(expression5);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node1.toString()).toBe(expression5);
+        expect(node2.toString()).toBe("-(-(-2))")
+        expect(node3.toString()).toBe("-(2)")
+        expect(node4.toString()).toBe("-2")
+    })
+
+    const expression6 = "-(-(5 - 9))";
+
+    it(expression6, () => {
+        const node1 = parse(expression6);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node1.toString()).toBe(expression6);
+        expect(node2.toString()).toBe("-(-(-4))")
+        expect(node3.toString()).toBe("-(4)")
+        expect(node4.toString()).toBe("-4")
+    })
+
+    const expression7 = "-(12 + 3) - (12 - 7)";
+
+    it(expression7, () => {
+        const node1 = parse(expression7);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node1.toString()).toBe(expression7);
+        expect(node2.toString()).toBe("-(15) - 5")
+        expect(node3.toString()).toBe("-15 - 5")
+        expect(node4.toString()).toBe("-20")
+    })
 })

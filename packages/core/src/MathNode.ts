@@ -51,7 +51,9 @@ export default abstract class MathNode {
      * - The next operation should simplify the deepest node from the binary tree.
      * - Eg: 'new Add(new Constant(2) , new Constant(3)).next()' will become 'new Constant(5)'.
      */
-    public abstract next(depth?: number): MathNode;
+    public abstract next(args?: {
+        isNegative?: boolean
+    }): MathNode;
 
     /**
      * Return a JSON representation of the node.

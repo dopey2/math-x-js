@@ -21,12 +21,14 @@ export default class Parenthesis extends MathNode {
     /**
      * @inheritDoc
      */
-    next(depth = 0) {
+    next(args: any) {
+        const isNegative = args?.isNegative ?? false;
+
         if(this.content instanceof Constant) {
             return this.content;
         } else {
-            const solvedParenthesis = this.content.next(depth + 1);
-            if(solvedParenthesis instanceof Constant) {
+            const solvedParenthesis = this.content.next();
+            if(solvedParenthesis instanceof Constant && !isNegative) {
                 return solvedParenthesis;
             }
             return new Parenthesis(solvedParenthesis);

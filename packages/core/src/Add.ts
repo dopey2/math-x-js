@@ -23,6 +23,7 @@ export default class Add extends MathNode {
         this.right = right;
 
         if (this.right.value !== null && this.right.value < 0) {
+            // @ts-ignore
             return new Subtract(this.left, new Constant(Math.abs(this.right.value)));
         }
     }

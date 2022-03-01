@@ -21,18 +21,26 @@ export default class Subtract extends MathNode {
         super();
         this.left = left;
         this.right = right;
+
+        // todo remove this, put inside parser
+
+        if(this.left.value !== this.left.value && this.right instanceof Constant) {
+            // @ts-ignore
+            return new Constant(-this.right.value);
+        }
+        
     }
 
     /**
      * @inheritDoc
      */
-    next(depth = 0) {
+    next() {
         if(this.left.value !== this.left.value) {
             if(this.right instanceof Constant) {
                 return new Constant(-this.right.value);
             } else if(!this.right.isAtomic) {
-                const next = this.right.next(depth + 1);
-                if(depth === 0 && next instanceof Constant) {
+                const next = this.right.next({ isNegative: true });
+                if(next instanceof Constant) {
                     return new Constant(-next.value);
                 }
 
@@ -57,7 +65,7 @@ export default class Subtract extends MathNode {
         }
 
         if (!this.left.isAtomic || !this.right.isAtomic) {
-            return new Subtract(this.left.next(depth + 1), this.right.next(depth + 1));
+            return new Subtract(this.left.next(), this.right.next());
         }
 
         return this;
