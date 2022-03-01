@@ -1,4 +1,13 @@
 import {
+    getParenthesisContent,
+    isInBracket,
+    isInParenthesis,
+    isNumber,
+    isOperator,
+    splitStringExpressionToSymbols
+} from "./utils";
+import { normalize } from "./normalisation";
+import {
     Add,
     Constant,
     Divide,
@@ -8,73 +17,8 @@ import {
     Multiply,
     Parenthesis,
     Subtract
-} from "@math-x-ts/core";
+} from "@math-x-ts/core/src";
 
-
-const isNumber = (n: string) => !isNaN(Number(n));
-
-const isInParenthesis = (expression: string) => {
-    const exp = expression.trim();
-    const first = exp[0];
-    const last = exp[exp.length - 1];
-
-    const HAS_PARENTHESIS = first === "(" && last === ")";
-
-    let numberOfParenthesis = 0;
-    let depth = 0;
-    
-    for(let i = 0; i < exp.length && HAS_PARENTHESIS; i++) {
-        let char = exp[i];
-
-        if(char === "(") {
-            if(depth === 0) {
-                numberOfParenthesis++;
-            }
-
-            depth++;
-        }
-        if(char === ")") {
-            depth--;
-        }
-    }
-
-    return numberOfParenthesis === 1;
-};
-
-const isInBracket = (expression: string) => {
-    const exp = expression.trim();
-    const first = exp[0];
-    const last = exp[exp.length - 1];
-    const HAS_BRACKET = first === "{" && last === "}";
-
-    let numberOfBracket = 0;
-    let depth = 0;
-
-    for(let i = 0; i < exp.length && HAS_BRACKET; i++) {
-        let char = exp[i];
-
-        if(char === "{") {
-            if(depth === 0) {
-                numberOfBracket++;
-            }
-
-            depth++;
-        }
-        if(char === "}") {
-            depth--;
-        }
-    }
-
-    return numberOfBracket === 1;
-};
-
-const getParenthesisContent = (expression: string) => {
-    return expression.slice(1, expression.length - 1);
-};
-
-const isOperator = (c: string) => {
-    return ["+", "-", "*", ":", "/", "^"].indexOf(c) !== -1;
-};
 
 const getOperatorPriority = (operator: string) => {
     if(operator === "+" || operator === "-") {
@@ -87,18 +31,22 @@ const getOperatorPriority = (operator: string) => {
     return 0;
 };
 
-const parseParenthesisAndBracket = (exp: string) => {
-    if(isInParenthesis(exp)) {
-        const content = getParenthesisContent(exp);
-        return new Parenthesis(parse(content));
+const parseParenthesisAndBracket = (symbols: string[]) => {
+    if(!symbols.length) {
+        return new Constant(NaN);
     }
     
-    if(isInBracket(exp)) {
-        const content = getParenthesisContent(exp);
-        return parse(content);
+    if(isInParenthesis(symbols)) {
+        const content = getParenthesisContent(symbols);
+        return new Parenthesis(buildMathNode(content));
+    }
+    
+    if(isInBracket(symbols)) {
+        const content = getParenthesisContent(symbols);
+        return buildMathNode(content);
     }
 
-    return parse(exp);
+    return buildMathNode(symbols);
 };
 
 /**
@@ -137,18 +85,18 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
             continue;
         }
 
-        /**
-         * Ignore the negative signe which comes from negative numbers ex: Add(-5,3)
-         */
-        if(char === "-") {
-            const prevChar = symbols[i - 1];
-            if(prevChar === undefined) {
-                continue;
-            }
-            if(isOperator(prevChar)) {
-                continue;
-            }
-        }
+        // /**
+        //  * Ignore the negative signe which comes from negative numbers ex: Add(-5,3)
+        //  */
+        // if(char === "-") {
+        //     const prevChar = symbols[i - 1];
+        //     if(prevChar === undefined) {
+        //         continue;
+        //     }
+        //     if(isOperator(prevChar)) {
+        //         continue;
+        //     }
+        // }
 
         if(isOperator(char)) {
             const OPERATOR_PRIORITY = getOperatorPriority(char);
@@ -160,6 +108,28 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
     }
 
     return lastLowestPriorityIndex;
+};
+
+
+const buildMathNode: (symbols: string[]) => MathNode = (symbols: string[]) => {
+    if(symbols.length === 1 && isNumber(symbols[0])) {
+        return new Constant(parseFloat(symbols[0]));
+    }
+
+    if(isInParenthesis(symbols) || isInBracket(symbols)) {
+        return parseParenthesisAndBracket(symbols);
+    }
+
+    const OPERATOR_INDEX = findLastLowestPriorityOperator(symbols);
+
+    const operator = symbols[OPERATOR_INDEX];
+    const leftString = symbols.slice(0, OPERATOR_INDEX);
+    const rightString = symbols.slice(OPERATOR_INDEX + 1, symbols.length);
+
+    const left = parseParenthesisAndBracket(leftString);
+    const right = parseParenthesisAndBracket(rightString);
+
+    return mathNodeFactory(operator, left, right) as MathNode;
 };
 
 /**
@@ -175,41 +145,33 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
  * @return {MathNode} a math node that represent the expression from the input
  */
 export const parse: (expression: string) => MathNode = (expression: string) => {
-    if(isNumber(expression)) {
-        return new Constant(parseFloat(expression));
-    }
-    
-    if(isInParenthesis(expression) || isInBracket(expression)) {
-        return parseParenthesisAndBracket(expression);
-    }
-
-    const symbols = expression.split("").filter((c)=>c !== " ");
-    const OPERATOR_INDEX = findLastLowestPriorityOperator(symbols);
-
-    const operator = symbols[OPERATOR_INDEX];
-    const leftString = symbols.slice(0, OPERATOR_INDEX).join("");
-    const rightString = symbols.slice(OPERATOR_INDEX + 1, symbols.length).join("");
-
-    const left = parseParenthesisAndBracket(leftString);
-    const right = parseParenthesisAndBracket(rightString);
-
-    return buildMathNode(operator, left, right);
+    const symbols = splitStringExpressionToSymbols(expression);
+    const normalized = normalize(symbols);
+    return buildMathNode(normalized);
 };
 
-const buildMathNode = (operator: string, left: MathNode, right: MathNode) => {
+const mathNodeFactory = (operator: string, left: MathNode, right: MathNode) => {
     if(operator === "+") {
         return new Add(left, right);
     } else if(operator === "-") {
+        // if(left instanceof Constant && left.value !== left.value) {
+        //     if(right instanceof Constant) {
+        //         return new Constant(-right.value);
+        //     }
+        //     // else {
+        //     //     return new Negative(right);
+        //     // }
+        // }
         return new Subtract(left, right);
     } else if(operator === "*") {
         return new Multiply(left, right);
     } else if (operator === ":") {
         return new Divide(left, right);
-    }else if(operator === "/") {
+    } else if(operator === "/") {
         return new Fraction(left, right);
     } else if(operator === "^") {
         return new Exponent(left, right);
     }
 
-    return new Add(new Constant(0), new Constant(0));
+    return new Constant(NaN);
 };

@@ -5,6 +5,7 @@ import Exponent from "./Exponent";
 import Fraction from "./Fraction";
 import MathNode, { MathNodeType } from "./MathNode";
 import Multiply from "./Multiply";
+import Negative from "./Negative";
 import Parenthesis from "./Parenthesis";
 import Subtract from "./Subtract";
 
@@ -18,6 +19,7 @@ export {
     MathNode,
     MathNodeType,
     Multiply,
+    Negative,
     Parenthesis,
     Subtract
 };

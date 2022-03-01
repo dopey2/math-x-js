@@ -400,3 +400,67 @@ describe("Math parser fraction expressions", () => {
         expect(res.value).toBe(3);
     });
 })
+
+describe("Negative values edges case", () => {
+    const expression1 = "-(-(-(-(5))))";
+
+    it(expression1, () => {
+        const node1 = parse(expression1);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+        const node5 = node4.next();
+
+        expect(node1.toString()).toBe(expression1);
+        expect(node2.toString()).toBe("-(-(-(-5)))")
+        expect(node3.toString()).toBe("-(-(5))")
+        expect(node4.toString()).toBe("-(-5)")
+        expect(node5.toString()).toBe("5")
+        expect(node5.value).toBe(5);
+    })
+
+    const expression2 = "-(-(-(-(-5))))";
+
+    it(expression2, () => {
+        const node1 = parse(expression2);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+        const node5 = node4.next();
+
+        expect(node1.toString()).toBe(expression2);
+        expect(node2.toString()).toBe("-(-(-(5)))")
+        expect(node3.toString()).toBe("-(-(-5))")
+        expect(node4.toString()).toBe("-(5)")
+        expect(node5.toString()).toBe("-5")
+        expect(node5.value).toBe(-5);
+    })
+
+    const expression3 = "-(2 + 3)";
+
+    it(expression3, () => {
+        const node1 = parse(expression3);
+        const node2 = node1.next();
+        const node3 = node2.next();
+
+        expect(node1.toString()).toBe(expression3);
+        expect(node2.toString()).toBe("-(5)")
+        expect(node3.toString()).toBe("-5")
+    })
+
+    const expression4 = "-(-(2 + 3))";
+
+    it(expression4, () => {
+        const node1 = parse(expression4);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        const node4 = node3.next();
+
+        expect(node1.toString()).toBe(expression4);
+        expect(node2.toString()).toBe("-(-(5))")
+        expect(node3.toString()).toBe("-(-5)")
+        expect(node4.toString()).toBe("5")
+    })
+
+
+})

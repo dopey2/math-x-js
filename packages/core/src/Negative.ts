@@ -2,16 +2,17 @@ import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 
 /**
- * Represent the parenthesis as a math node.
+ * Represent the Addition operation as a math node.
  */
-export default class Parenthesis extends MathNode {
-    type = MathNodeType.Parenthesis;
+export default class Negative extends MathNode {
+    type = MathNodeType.Negative;
     isAtomic = false;
 
-    private readonly content: MathNode;
+    content: MathNode;
+
 
     /**
-     * @param {MathNode} content The content of the parenthesis.
+     * @param {MathNode} content - The negative node.
      */
     constructor(content: MathNode) {
         super();
@@ -21,16 +22,12 @@ export default class Parenthesis extends MathNode {
     /**
      * @inheritDoc
      */
-    next(depth = 0) {
-        if(this.content instanceof Constant) {
-            return this.content;
-        } else {
-            const solvedParenthesis = this.content.next(depth + 1);
-            if(solvedParenthesis instanceof Constant) {
-                return solvedParenthesis;
-            }
-            return new Parenthesis(solvedParenthesis);
+    next() {
+        if (this.content instanceof Constant) {
+            return new Constant(-this.content.value);
         }
+
+        return new Negative(this.content.next());
     };
 
     /**
@@ -47,14 +44,16 @@ export default class Parenthesis extends MathNode {
      * @inheritDoc
      */
     toString() {
-        return `(${this.content.toString()})`;
+        const content = this.content.toString({ isAfterOperator: true });
+        return `-(${content}) `;
     };
 
     /**
      * @inheritDoc
      */
     toTex() {
-        return `(${this.content.toTex()})`;
+        const content = this.content.toTex({ isAfterOperator: true });
+        return `- ${content} `;
     };
 
     /**
