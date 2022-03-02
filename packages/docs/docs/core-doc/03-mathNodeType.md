@@ -13,3 +13,4 @@ MathNodeType is a typescript enum
 | MathNodeType.Fraction    |    [Fraction](./fraction)    |
 | MathNodeType.Exponent    |    [Exponent](./exponent)    |
 | MathNodeType.Parenthesis | [Parenthesis](./parenthesis) |
+| MathNodeType.Negative    |    [Negative](./negative)    |
