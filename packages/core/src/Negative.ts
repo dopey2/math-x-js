@@ -2,7 +2,7 @@ import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 
 /**
- * Represent the Addition operation as a math node.
+ * Represent the Negative operation as a math node.
  */
 export default class Negative extends MathNode {
     type = MathNodeType.Negative;
