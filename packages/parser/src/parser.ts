@@ -1,13 +1,4 @@
 import {
-    getParenthesisContent,
-    isInBracket,
-    isInParenthesis,
-    isNumber,
-    isOperator,
-    splitStringExpressionToSymbols
-} from "./utils";
-import { normalize } from "./normalisation";
-import {
     Add,
     Constant,
     Divide,
@@ -19,6 +10,16 @@ import {
     Parenthesis,
     Subtract
 } from "@math-x-ts/core/src";
+
+import { normalize } from "./normalisation";
+import {
+    getParenthesisContent,
+    isInBracket,
+    isInParenthesis,
+    isNumber,
+    isOperator,
+    splitStringExpressionToSymbols
+} from "./utils";
 
 
 const getOperatorPriority = (operator: string) => {
