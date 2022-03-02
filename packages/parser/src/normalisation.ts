@@ -18,7 +18,7 @@ const findNextNumberIndex = (symbols: string[], startIndex = 0) => {
  * Surround with bracket negative numbers
  * If at the beginning of the expression ex: "-2 +3" becomes "{-2} + 3"
  * If after operator ex:  "2 * -3" becomes "2 * {-3}"
- * Expect in front of parenthesis
+ * Except in front of parenthesis
  * @param {string[]} arr An array of symbols
  */
 export const normalizeNegativeNumbers = (arr: string[]) => {
