@@ -504,4 +504,57 @@ describe("Negative cases", () => {
         expect(node3.toString()).toBe("-15 - 5")
         expect(node4.toString()).toBe("-20")
     })
+
+    const expression8 = "-5";
+
+    it(expression8, () => {
+        const node1 = parse(expression8);
+        expect(node1.toString()).toBe(expression8);
+    })
+
+    const expression9 = "--5";
+
+    it(expression9, () => {
+        const node1 = parse(expression9);
+        const node2 = node1.next();
+        expect(node1.toString()).toBe(expression9);
+        expect(node2.toString()).toBe('5');
+    })
+
+    const expression10 = "---5";
+
+    it(expression10, () => {
+        const node1 = parse(expression10);
+        const node2 = node1.next();
+        expect(node1.toString()).toBe(expression10);
+        expect(node2.toString()).toBe('-5');
+    })
+
+    const expression11 = "{-5}"
+
+    it(expression11, () => {
+        const node1 = parse(expression11);
+        expect(node1.toString()).toBe("-5");
+    })
+
+
+    const expression12 = "{-{-5}}"
+
+    it(expression12, () => {
+        const node1 = parse(expression12);
+        const node2 = node1.next();
+        expect(node1.toString()).toBe("--5");
+        expect(node2.toString()).toBe("5");
+    })
+
+    const expression13 = "{-{-{-5}}}"
+
+    it(expression13, () => {
+        const node1 = parse(expression13);
+        const node2 = node1.next();
+        expect(node1.toString()).toBe("---5");
+        expect(node2.toString()).toBe("-5");
+    })
+
+
 })

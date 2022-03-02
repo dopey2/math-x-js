@@ -25,6 +25,18 @@ const expressions = [
     "6 * (4 + (2 + 2)) + 2",
     "4 / 2",
     "(4 + 4) / (2 + 2)",
+    "--1",
+    "---1",
+    "-5 + 3",
+    "-(5)",
+    "-(-(5))",
+    "-(-(-(5)))",
+    "-(-5)",
+    "-(-(-5))",
+    "-(-(-(-5)))",
+    "-(5 + 3)",
+    "-(5 - 3)",
+    "-(5 - 3) * 2",
 ]
 
 describe("The toString method of a parsed expression, return the same node when parsed again", () => {
