@@ -314,11 +314,12 @@ describe("Math parser, exponents", () => {
 describe("Math parser, edge case", () => {
     it("3 + -2", () => {
         const n = -2;
-        const expression = parse(`3 + ${n}`);
-        const res = expression.solve();
-        expect(expression.toString()).toBe("3 - 2");
-        expect(res).toBeDefined();
-        expect(res.value).toBe(1);
+        const node1 = parse(`3 + ${n}`);
+        const node2 = node1.next();
+        const node3 = node2.next();
+        expect(node1.toString()).toBe("3 + (-2)");
+        expect(node2.toString()).toBe("3 - 2");
+        expect(node3.value).toBe(1);
     });
 
     it("3 * -2", () => {
@@ -517,7 +518,7 @@ describe("Negative cases", () => {
     it(expression9, () => {
         const node1 = parse(expression9);
         const node2 = node1.next();
-        expect(node1.toString()).toBe(expression9);
+        expect(node1.toString()).toBe("-(-5)");
         expect(node2.toString()).toBe('5');
     })
 
@@ -526,8 +527,10 @@ describe("Negative cases", () => {
     it(expression10, () => {
         const node1 = parse(expression10);
         const node2 = node1.next();
-        expect(node1.toString()).toBe(expression10);
-        expect(node2.toString()).toBe('-5');
+        const node3 = node2.next();
+        expect(node1.toString()).toBe("-(-(-5))");
+        expect(node2.toString()).toBe('-(5)');
+        expect(node3.toString()).toBe('-5');
     })
 
     const expression11 = "{-5}"
@@ -555,6 +558,4 @@ describe("Negative cases", () => {
         expect(node1.toString()).toBe("---5");
         expect(node2.toString()).toBe("-5");
     })
-
-
 })

@@ -31,14 +31,14 @@ export const normalizeNegativeNumbers = (arr: string[]) => {
 
         if(symbol === '-') {
             if(
-                (!lastSymbol || isOperator(lastSymbol))
+                (isOperator(lastSymbol))
                 && !(nextSymbol && (nextSymbol === "("))
             ) {
                 const left = symbols.slice(0, i);
 
                 const NEXT_NUMBER_INDEX = findNextNumberIndex(symbols, i);
 
-                let mid = symbols.slice(i + 1, NEXT_NUMBER_INDEX + 1);
+                let mid = symbols.slice(i, NEXT_NUMBER_INDEX + 1);
                 mid = normalizeNegativeNumbers(mid);
 
                 if(mid.length === 2 && mid[0] === "-" && isNumber(mid[1])) {
@@ -47,7 +47,7 @@ export const normalizeNegativeNumbers = (arr: string[]) => {
                 
                 const right = symbols.slice(NEXT_NUMBER_INDEX + 1, symbols.length);
 
-                symbols = [...left, '{' , '-', ...mid, '}', ...right];
+                symbols = [...left, '(' , ...mid, ')', ...right];
             }
         }
     }

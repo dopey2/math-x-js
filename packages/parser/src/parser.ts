@@ -141,6 +141,12 @@ const buildMathNode: (symbols: string[]) => MathNode = (symbols: string[]) => {
  */
 export const parse: (expression: string) => MathNode = (expression: string) => {
     const symbols = splitStringExpressionToSymbols(expression);
+
+    if(isOperator(symbols[symbols.length - 1]) && isOperator(symbols[symbols.length - 2])) {
+        throw Error("Parse error");
+    }
+
+
     const normalized = normalize(symbols);
     return buildMathNode(normalized);
 };
