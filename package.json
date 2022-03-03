@@ -6,7 +6,7 @@
   "workspaces": [
     "packages/core",
     "packages/parser",
-    "packages/docs"
+    "packages/documentation"
   ],
   "scripts": {
     "postinstall": "husky install",

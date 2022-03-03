@@ -1,5 +1,5 @@
 {
-  "name": "@math-x-ts/docs",
+  "name": "@math-x-ts/documentation",
   "version": "0.0.5",
   "scripts": {
     "clean:lib": "echo 'Skip docs'",
