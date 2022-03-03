@@ -23,3 +23,5 @@ yarn.lock
 lib/
 draft/
 packages/**/lib
+# Local Netlify folder
+.netlify
