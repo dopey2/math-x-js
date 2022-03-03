@@ -54,8 +54,7 @@ const mathNode = new Add(
 
 Imagine now having a much longer expression like **3 * (4 + 5 + (10 - 6))**.
 Creating a binary tree by yourself for this kind of expression can be annoying.
-This is where the parser comes in. It read a mathematical expression and provide code generation for building binary tree
-using **@math-x-ts/core**
+This is where the parser comes in. It read mathematical expressions and structure the input using **@math-x-ts/core**
 
 Here is an example in the code.
 

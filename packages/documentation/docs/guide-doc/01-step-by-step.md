@@ -2,7 +2,7 @@
 
 Let's get a step by step solution for the expression **2 * (3 + 4)** <br/>
 
-## Using .next() function
+## Using .next()
 
 ```ts
 import { parse } from '@math-x-ts/parser';

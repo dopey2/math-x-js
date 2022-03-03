@@ -79,21 +79,21 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        if(this.props.selectedOutput === 0) {
            return <Katex tex={mathNode.toTex()} key={i}/>;
        } else if(this.props.selectedOutput === 1) {
-           return <div key={i}>{mathNode.toString()}</div>
+           const mermaidCode = mathNodeToMermaid(mathNode)
+
+           return (
+               <Mermaid key={i} id={`scheme-${i}`}>{mermaidCode}</Mermaid>
+           )
        } else if(this.props.selectedOutput === 2) {
-           return <div key={i}>{mathNode.toTex()}</div>
+           return <div key={i}>{mathNode.toString()}</div>
        } else if(this.props.selectedOutput === 3) {
+           return <div key={i}>{mathNode.toTex()}</div>
+       } else if(this.props.selectedOutput === 4) {
            return (
                <CodeBlock
                    key={i}
                    className="language-jsx">{JSON.stringify(mathNode.toJson(), null, '\t')}
                </CodeBlock>
-           )
-       } else if(this.props.selectedOutput === 4) {
-           const mermaidCode = mathNodeToMermaid(mathNode)
-
-           return (
-               <Mermaid key={i} id={`scheme-${i}`}>{mermaidCode}</Mermaid>
            )
        }
    }
@@ -112,30 +112,31 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
                        onChange={this.props.onSelectedOutputChange}
                        label="Katex renderer"
                    />
+
                    <TabItem
                        value={1}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
+                       label="Tree"
+                   />
+
+                   <TabItem
+                       value={2}
                        selected={this.props.selectedOutput}
                        onChange={this.props.onSelectedOutputChange}
                        label="toString()"
                    />
                    <TabItem
-                       value={2}
+                       value={3}
                        selected={this.props.selectedOutput}
                        onChange={this.props.onSelectedOutputChange}
                        label="toTex()"
                    />
                    <TabItem
-                       value={3}
-                       selected={this.props.selectedOutput}
-                       onChange={this.props.onSelectedOutputChange}
-                       label="toJson()"
-                   />
-
-                   <TabItem
                        value={4}
                        selected={this.props.selectedOutput}
                        onChange={this.props.onSelectedOutputChange}
-                       label="Tree"
+                       label="toJson()"
                    />
 
                </div>
