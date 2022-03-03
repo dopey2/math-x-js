@@ -1,8 +1,8 @@
-import LiveDemoTopBar from './LiveDemoTopBar/LiveDemoTopBar';
-import ExpressionSolver from './ExpressionSolver/ExpressionSolver';
 import React from 'react';
 import { parse } from '@math-x-ts/parser';
 import introJs from 'intro.js';
+import ExpressionSolver from './ExpressionSolver/ExpressionSolver';
+import LiveDemoTopBar from './LiveDemoTopBar/LiveDemoTopBar';
 import 'intro.js/introjs.css';
 
 
@@ -32,6 +32,7 @@ export default class SampleLiveDemo extends React.PureComponent {
 
     state = {
         expression: expressionList[0],
+        selectedOutput: 0,
     };
 
     EXPRESSION_SOLVER: ExpressionSolver | null = null;
@@ -48,6 +49,10 @@ export default class SampleLiveDemo extends React.PureComponent {
     onExpressionChange = (expression) => {
         this.setState({ expression });
     };
+    
+    onSelectedOutputChange = (tab) => {
+        this.setState({ selectedOutput: tab });
+    }; 
 
     getMathNodeFromExpression = () => {
         let mathNode = null;
@@ -116,6 +121,8 @@ export default class SampleLiveDemo extends React.PureComponent {
                         ref={(ref) => this.EXPRESSION_SOLVER = ref }
                         key={this.state.expression}
                         expression={mathNode}
+                        onSelectedOutputChange={this.onSelectedOutputChange}
+                        selectedOutput={this.state.selectedOutput}
                     />
                 ) : (
                     <div style={{ marginTop: 20, color: 'red' }}>Error</div>

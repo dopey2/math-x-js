@@ -6,16 +6,19 @@ import CodeBlock from '@theme/CodeBlock';
 import { MathNode } from '@math-x-ts/core';
 import Katex from '../Katex/Katex';
 import './expression-solver.css';
+import Mermaid from "../Mermaid/Mermaid";
+import { mathNodeToMermaid } from "../../tools/tools";
 
 
 interface Props {
  expression: MathNode;
+ selectedOutput: number;
+ onSelectedOutputChange: (v: number) => void
 }
 
 interface State {
  lastStep: MathNode;
  steps: MathNode[];
- selectedOutput: number;
 }
 
 const TabItem = (props: {value: number, selected: number, label: string, onChange: (value: any) => void}) => {
@@ -37,10 +40,8 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        this.state = {
            lastStep: props.expression,
            steps: [props.expression],
-           selectedOutput: 0,
        };
 
-       this.onTabChange = this.onTabChange.bind(this);
        this.solveAll = this.solveAll.bind(this);
        this.solveNext = this.solveNext.bind(this);
    }
@@ -74,59 +75,69 @@ export default class ExpressionSolver extends React.PureComponent<Props, State> 
        this.setState({ steps, lastStep: steps[steps.length - 1] });
    };
 
-   onTabChange(tab: number) {
-       this.setState({ selectedOutput: tab });
-   };
-
    getOutputForNode(mathNode: MathNode, i: number) {
-       if(this.state.selectedOutput === 0) {
+       if(this.props.selectedOutput === 0) {
            return <Katex tex={mathNode.toTex()} key={i}/>;
-       } else if(this.state.selectedOutput === 1) {
+       } else if(this.props.selectedOutput === 1) {
            return <div key={i}>{mathNode.toString()}</div>
-       } else if(this.state.selectedOutput === 2) {
+       } else if(this.props.selectedOutput === 2) {
            return <div key={i}>{mathNode.toTex()}</div>
-       } else if(this.state.selectedOutput === 3) {
+       } else if(this.props.selectedOutput === 3) {
            return (
                <CodeBlock
                    key={i}
                    className="language-jsx">{JSON.stringify(mathNode.toJson(), null, '\t')}
                </CodeBlock>
            )
+       } else if(this.props.selectedOutput === 4) {
+           const mermaidCode = mathNodeToMermaid(mathNode)
+
+           return (
+               <Mermaid key={i} id={`scheme-${i}`}>{mermaidCode}</Mermaid>
+           )
        }
    }
 
-   render() {
+
+    render() {
        return (
            <div className="expression-solver">
-
                <div
                    id="live-demo-output-type"
                    className="pills mt-20"
                >
                    <TabItem
                        value={0}
-                       selected={this.state.selectedOutput}
-                       onChange={this.onTabChange}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
                        label="Katex renderer"
                    />
                    <TabItem
                        value={1}
-                       selected={this.state.selectedOutput}
-                       onChange={this.onTabChange}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
                        label="toString()"
                    />
                    <TabItem
                        value={2}
-                       selected={this.state.selectedOutput}
-                       onChange={this.onTabChange}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
                        label="toTex()"
                    />
                    <TabItem
                        value={3}
-                       selected={this.state.selectedOutput}
-                       onChange={this.onTabChange}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
                        label="toJson()"
                    />
+
+                   <TabItem
+                       value={4}
+                       selected={this.props.selectedOutput}
+                       onChange={this.props.onSelectedOutputChange}
+                       label="Tree"
+                   />
+
                </div>
 
                <div className="expression-solver__steps-container">

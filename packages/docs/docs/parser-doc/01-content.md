@@ -7,7 +7,7 @@ The **@math-x-ts/parser** package contain some high level functions which help t
 This is the main function from this package. It parses math expression and create a binary tree
 using **@math-x-ts/core**
 
-### example
+### Example
 
 ```ts
 import { parse } from '@math-x-ts/parser'
@@ -26,11 +26,14 @@ console.log(mathNode3.toString()); // '6'
 console.log(mathNode3.value); // 6
 ```
 
+
+---
+
 ## solve
 
 This function is build on top of [parse](./content#parse). It parses the expression then it solves it (returns the last step)
 
-### example
+### Example
 
 ```ts
 import { solve } from '@math-x-ts/parser'
@@ -46,7 +49,7 @@ console.log(mathNode.value);  // 6
 
 This function is build on top of [parse](./content#parse). It parses the expression then it solves it, and finally it returns its value as a number
 
-### example
+### Example
 
 ```ts
 import { evaluate } from '@math-x-ts/parser'
