@@ -45,6 +45,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "commitizen": "^4.2.4",
+    "cz-emoji": "^1.3.1",
     "eslint": "^8.8.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsdoc": "^37.9.4",
@@ -60,6 +61,81 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "yargs": "^17.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-emoji"
+    },
+    "cz-emoji": {
+      "types": [
+        {
+          "emoji": "✨",
+          "code": ":sparkles:",
+          "description": "A new feature",
+          "name": "feat"
+        },
+        {
+          "emoji": "\uD83D\uDC1B",
+          "code": ":bug:",
+          "description": "A bug fix",
+          "name": "fix"
+        },
+        {
+          "emoji": "\uD83D\uDCDD",
+          "code": ":memo:",
+          "description": "Documentation only changes",
+          "name": "docs"
+        },
+        {
+          "emoji": "\uD83C\uDFA8",
+          "code": ":art:",
+          "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+          "name": "style"
+        },
+        {
+          "emoji": "\uD83D\uDD28",
+          "code": ":hammer:",
+          "description": "A code change that neither fixes a bug nor adds a feature",
+          "name": "refactor"
+        },
+        {
+          "emoji": "\uD83D\uDE80",
+          "code": ":rocket:",
+          "description": "A code change that improves performance",
+          "name": "perf"
+        },
+        {
+          "emoji": "\uD83E\uDDEA ",
+          "code": ":test_tube:",
+          "description": "Adding missing tests or correcting existing tests",
+          "name": "test"
+        },
+        {
+          "emoji": "\uD83D\uDCE6",
+          "code": ":package:",
+          "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+          "name": "build"
+        },
+        {
+          "emoji": "\uD83D\uDC77",
+          "code": ":construction_worker:",
+          "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)",
+          "name": "ci"
+        },
+        {
+          "emoji": "\uD83D\uDD27",
+          "code": ":wrench:",
+          "description": "Other changes that don't modify src or test files",
+          "name": "chore"
+        },
+        {
+          "emoji": "⏪️",
+          "code": ":rewind:",
+          "description": "Reverts a previous commit",
+          "name": "revert"
+        }
+      ]
+    }
   },
   "how to": {
     "change version in all packages": {
