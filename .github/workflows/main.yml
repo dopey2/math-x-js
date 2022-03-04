@@ -8,9 +8,56 @@ jobs:
 #  test:
 #    uses: ./.github/workflows/test.yml
 
-  test_npm_token:
-    name: Testing npm token
+  build_lib:
+    name: Build lib
     runs-on: ubuntu-latest
+    needs: [ test ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/setup
+
+      - name: Building the libs
+        run: yarn build:all
+
+      - name: Upload articact for core/lib
+        uses: actions/upload-artifact@v3
+        with:
+          name: core_lib
+          path: ./packages/core/lib
+
+      - name: Upload articact for parser/lib
+        uses: actions/upload-artifact@v3
+        with:
+          name: parser_lib
+          path: ./packages/parser/lib
+
+  test_bundle:
+    name: Test bundle
+    runs-on: ubuntu-latest
+    needs: [ build_lib ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/setup
+
+      - name: Download core/lib artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: core_lib
+          path: packages/core/lib
+
+      - name: Download parser/lib artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: parser_lib
+          path: packages/parser/lib
+
+      - name: Testing the bundle
+        run: yarn test:bundle
+
+  publish_packages:
+    name: Publish packages to npm
+    runs-on: ubuntu-latest
+    needs: [ test_bundle ]
 
     steps:
       - uses: actions/checkout@v2
@@ -22,51 +69,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
 
-      - name: Log token
-        run: npm whoami
-
-#  build_lib:
-#    name: Build lib
-#    runs-on: ubuntu-latest
-#    needs: [ test ]
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: ./.github/workflows/setup
-#
-#      - name: Building the libs
-#        run: yarn build:all
-#
-#      - name: Upload articact for core/lib
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: core_lib
-#          path: ./packages/core/lib
-#
-#      - name: Upload articact for parser/lib
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: parser_lib
-#          path: ./packages/parser/lib
-#
-#  test_bundle:
-#    name: Test bundle
-#    runs-on: ubuntu-latest
-#    needs: [ build_lib ]
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: ./.github/workflows/setup
-#
-#      - name: Download core/lib artifact
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: core_lib
-#          path: packages/core/lib
-#
-#      - name: Download parser/lib artifact
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: parser_lib
-#          path: packages/parser/lib
-#
-#      - name: Testing the bundle
-#        run: yarn test:bundle
+      - name: Publish all packages
+        run: npm run npm:publish
