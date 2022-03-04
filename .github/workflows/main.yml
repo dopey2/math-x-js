@@ -43,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: core_lib
-          path: packages/core
+          path: packages/core/lib
 
       - name: Download parser/lib artifact
         uses: actions/download-artifact@v3
         with:
           name: parser_lib
-          path: packages/parser
+          path: packages/parser/lib
 
 
       - name: debug
