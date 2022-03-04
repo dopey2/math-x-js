@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
 
-      - shell: bash
+      - name: Setup npm credentials
+        shell: bash
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
