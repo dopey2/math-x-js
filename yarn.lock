@@ -2260,34 +2260,34 @@
     "@svgr/plugin-jsx" "^6.2.1"
     "@svgr/plugin-svgo" "^6.2.0"
 
-"@swc/core-win32-x64-msvc@1.2.143":
-  "integrity" "sha512-IBJ4DLOtMOAzW1+fFkdoj0e85l+CLj+Zn3jjUtdlYKroEunA3xNGci5+Ak/NRvt4lnlPlyVyw+2JXsfpnV2FCA=="
-  "resolved" "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.2.143.tgz"
-  "version" "1.2.143"
+"@swc/core-win32-x64-msvc@1.2.148":
+  "integrity" "sha512-BAKfOXvPTGLo8K8+BheDqyIZHUFdbtw/7wBHhBBIDJK/D4et1dg886uyP1A0Qib2L/jtYMD/XcyRaTEw3VAW7A=="
+  "resolved" "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.2.148.tgz"
+  "version" "1.2.148"
 
-"@swc/core@*", "@swc/core@^1.2.143", "@swc/core@^1.2.52", "@swc/core@>=1.2.50":
-  "integrity" "sha512-kZ1OVaNS183b3nMZBDQMev/ULpF/iUcF4bwlx+Nz6GH7D9qGTTbhiN7xWkoCWjcCY1TF8Bt7z1+ddX6ibPSc8w=="
-  "resolved" "https://registry.npmjs.org/@swc/core/-/core-1.2.143.tgz"
-  "version" "1.2.143"
+"@swc/core@*", "@swc/core@^1.2.148", "@swc/core@^1.2.52", "@swc/core@>=1.2.50":
+  "integrity" "sha512-kIuHnJx3WEzmAx+9V5KO6JlGdILMyw75iKwqp5U+zf+kmcB2kWgUh5ofb8YxJY04yxBIurlTxkkRE0SV+cHKaw=="
+  "resolved" "https://registry.npmjs.org/@swc/core/-/core-1.2.148.tgz"
+  "version" "1.2.148"
   optionalDependencies:
-    "@swc/core-android-arm-eabi" "1.2.143"
-    "@swc/core-android-arm64" "1.2.143"
-    "@swc/core-darwin-arm64" "1.2.143"
-    "@swc/core-darwin-x64" "1.2.143"
-    "@swc/core-freebsd-x64" "1.2.143"
-    "@swc/core-linux-arm-gnueabihf" "1.2.143"
-    "@swc/core-linux-arm64-gnu" "1.2.143"
-    "@swc/core-linux-arm64-musl" "1.2.143"
-    "@swc/core-linux-x64-gnu" "1.2.143"
-    "@swc/core-linux-x64-musl" "1.2.143"
-    "@swc/core-win32-arm64-msvc" "1.2.143"
-    "@swc/core-win32-ia32-msvc" "1.2.143"
-    "@swc/core-win32-x64-msvc" "1.2.143"
+    "@swc/core-android-arm-eabi" "1.2.148"
+    "@swc/core-android-arm64" "1.2.148"
+    "@swc/core-darwin-arm64" "1.2.148"
+    "@swc/core-darwin-x64" "1.2.148"
+    "@swc/core-freebsd-x64" "1.2.148"
+    "@swc/core-linux-arm-gnueabihf" "1.2.148"
+    "@swc/core-linux-arm64-gnu" "1.2.148"
+    "@swc/core-linux-arm64-musl" "1.2.148"
+    "@swc/core-linux-x64-gnu" "1.2.148"
+    "@swc/core-linux-x64-musl" "1.2.148"
+    "@swc/core-win32-arm64-msvc" "1.2.148"
+    "@swc/core-win32-ia32-msvc" "1.2.148"
+    "@swc/core-win32-x64-msvc" "1.2.148"
 
-"@swc/jest@^0.2.17":
-  "integrity" "sha512-n/g989+O8xxMcTZnP0phDrrgezGZBQBf7cX4QuzEsn07QkWbqmMsfaCxdF0kzajXublXWJ8yk5vRe3VNk1tczA=="
-  "resolved" "https://registry.npmjs.org/@swc/jest/-/jest-0.2.17.tgz"
-  "version" "0.2.17"
+"@swc/jest@^0.2.20":
+  "integrity" "sha512-5qSUBYY1wyIMn7p0Vl9qqV4hMI69oJwZCIPUpBsTFWN2wlwn6RDugzdgCn+bLXVYh+Cxi8bJcZ1uumDgsoL+FA=="
+  "resolved" "https://registry.npmjs.org/@swc/jest/-/jest-0.2.20.tgz"
+  "version" "0.2.20"
   dependencies:
     "@jest/create-cache-key-function" "^27.4.2"
 

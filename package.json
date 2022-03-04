@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/dopey2/math-x-js#readme",
   "devDependencies": {
-    "@swc/core": "^1.2.143",
-    "@swc/jest": "^0.2.17",
+    "@swc/core": "^1.2.148",
+    "@swc/jest": "^0.2.20",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.11.0",
