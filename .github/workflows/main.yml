@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Main
 
 on:
   push:
@@ -6,28 +6,4 @@ on:
 
 jobs:
   test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup
-      - name: Run test
-        run: yarn test
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup
-      - name: Lint
-        run: yarn lint
-
-  check_types:
-    name: Check types
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup
-      - name: Check types
-        run: yarn check:types
+    uses: ./.github/workflows/test-workflow
