@@ -1,0 +1,58 @@
+name: Main & Dev
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+    uses: ./.github/workflows/test-workflow.yml
+
+  build_lib:
+    name: Build lib
+    runs-on: ubuntu-latest
+    needs: [ test ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/setup
+
+      - name: Building the libs
+        run: yarn build:all
+
+      - name: Upload articact for core/lib
+        uses: actions/upload-artifact@v3
+        with:
+          name: core_lib
+          path: ./packages/core/lib
+
+      - name: Upload articact for parser/lib
+        uses: actions/upload-artifact@v3
+        with:
+          name: parser_lib
+          path: ./packages/parser/lib
+
+  test_bundle:
+    name: Test bundle
+    runs-on: ubuntu-latest
+    needs: [ build_lib ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/setup
+
+      - name: Download core/lib artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: core_lib
+          path: packages/core/lib
+
+      - name: Download parser/lib artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: parser_lib
+          path: packages/parser/lib
+
+      - name: Testing the bundle
+        run: yarn test:bundle
