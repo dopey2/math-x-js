@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@math-x-ts/parser",
-  "version": "0.0.6",
+  "version": "0.0.5",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "unpkg": "./lib/umd/index.js",
@@ -25,7 +25,7 @@
     "npm:publish": "npm publish --access public"
   },
   "dependencies": {
-    "@math-x-ts/core": "0.0.6"
+    "@math-x-ts/core": "0.0.5"
   },
   "license": "MIT"
 }
