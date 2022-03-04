@@ -2,22 +2,37 @@ const puppeteer = require('puppeteer')
 
 describe("UMD", () => {
     test("Testing that objects from packages are correctly defined ", async () => {
-        // const browser = await puppeteer.launch({ headless: false })
-        const browser = await puppeteer.launch();
 
-        const page = await browser.newPage();
-        await page.goto(`file://${__dirname}/index.html`);
+        let browser = null;
+        let title = null;
+        let isMathXCoreDefined = null;
+        let isMathXParserDefined = null;
+        let res = null;
 
-        const title = await page.title()
-        const isMathXCoreDefined = await page.evaluate("!!MathXCore");
-        const isMathXParserDefined = await page.evaluate("!!MathXParser");
-        const res = await page.evaluate("MathXParser.evaluate('1 + 2 * 3')");
+        try {
+            // browser = await puppeteer.launch({ headless: false })
+            browser = await puppeteer.launch();
 
-        await browser.close()
+            const page = await browser.newPage();
+            await page.goto(`file://${__dirname}/index.html`);
 
-        expect(title).toBe("@math-x-ts/parser")
-        expect(isMathXCoreDefined).toBe(true);
-        expect(isMathXParserDefined).toBe(true)
-        expect(res).toBe(7)
+            title = await page.title()
+            isMathXCoreDefined = await page.evaluate("!!MathXCore");
+            isMathXParserDefined = await page.evaluate("!!MathXParser");
+            res = await page.evaluate("MathXParser.evaluate('1 + 2 * 3')");
+
+        } catch (err) {
+            console.log(err);
+        } finally {
+            if(browser) {
+                await browser.close()
+            }
+
+            expect(title).toBe("@math-x-ts/parser")
+            expect(isMathXCoreDefined).toBe(true);
+            expect(isMathXParserDefined).toBe(true)
+            expect(res).toBe(7)
+        }
+
     }, 10000);
 })
