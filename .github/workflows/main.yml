@@ -43,8 +43,6 @@ jobs:
       - name: Lint
       - run: yarn lint
 
-
-
   check_types:
     runs-on: ubuntu-latest
 
