@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup@v1
+      - uses: actions/setup@v1
       - name: Run test
         run: yarn test
 
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup@v1
+      - uses: actions/setup
       - name: Lint
         run: yarn lint
 
@@ -28,6 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/setup@v1
+      - uses: ./.github/workflows/setup
       - name: Check types
         run: yarn check:types
