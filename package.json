@@ -54,6 +54,7 @@
     "jest": "^27.5.1",
     "puppeteer": "^13.3.2",
     "rimraf": "^3.0.2",
+    "standard-version": "^9.3.2",
     "swc-loader": "^0.1.15",
     "ts-node": "^10.5.0",
     "tslint": "^6.1.3",
@@ -75,55 +76,55 @@
           "name": "feat"
         },
         {
-          "emoji": "\uD83D\uDC1B",
+          "emoji": "🐛",
           "code": ":bug:",
           "description": "A bug fix",
           "name": "fix"
         },
         {
-          "emoji": "\uD83D\uDCDD",
+          "emoji": "📝",
           "code": ":memo:",
           "description": "Documentation only changes",
           "name": "docs"
         },
         {
-          "emoji": "\uD83C\uDFA8",
+          "emoji": "🎨",
           "code": ":art:",
           "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
           "name": "style"
         },
         {
-          "emoji": "\uD83D\uDD28",
+          "emoji": "🔨",
           "code": ":hammer:",
           "description": "A code change that neither fixes a bug nor adds a feature",
           "name": "refactor"
         },
         {
-          "emoji": "\uD83D\uDE80",
+          "emoji": "🚀",
           "code": ":rocket:",
           "description": "A code change that improves performance",
           "name": "perf"
         },
         {
-          "emoji": "\uD83E\uDDEA ",
+          "emoji": "🧪 ",
           "code": ":test_tube:",
           "description": "Adding missing tests or correcting existing tests",
           "name": "test"
         },
         {
-          "emoji": "\uD83D\uDCE6",
+          "emoji": "📦",
           "code": ":package:",
           "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
           "name": "build"
         },
         {
-          "emoji": "\uD83D\uDC77",
+          "emoji": "👷",
           "code": ":construction_worker:",
           "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)",
           "name": "ci"
         },
         {
-          "emoji": "\uD83D\uDD27",
+          "emoji": "🔧",
           "code": ":wrench:",
           "description": "Other changes that don't modify src or test files",
           "name": "chore"
