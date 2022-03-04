@@ -9,6 +9,7 @@
     "test": "echo 'Skip docs'",
     "check:types": "echo 'SKip docs'",
     "check:all": "echo 'Skip docs'",
+    "test:bundle": "echo 'Skip docs'",
     "npm:publish": "echo 'Skip docs'",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
