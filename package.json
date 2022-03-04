@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "math-x-ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
     "packages/core",
@@ -19,7 +19,8 @@
     "check:types": "yarn workspaces run check:types",
     "check:all": "yarn workspaces run check:all",
     "npm:publish": "npm run npm:publish --workspaces",
-    "apply:version": "ts-node ./scripts/version.ts --applyVersion"
+    "apply:version": "ts-node ./scripts/version.ts --applyVersion",
+    "tag": "git reset --hard && npm run apply:version $npm_config_version && git add * && standard-version --skip.bump && git push --follow-tag origin main"
   },
   "repository": {
     "type": "git",
@@ -148,10 +149,9 @@
       "2": "npm run npm:publish"
     },
     "publish workflow": {
-      "1": "Test everything via                   => yarn check:all",
-      "2": "Build packages                        => yarn build:all",
-      "3": "Check that all bundles work correclty => yarn test:bundle",
-      "4": "Call the publish cmd in the root dir  => npm run npm:publish"
+      "0": "Should be run on main branches only after all test passes",
+      "1": "Tag a version                         => npm run tag --version 1.0.0",
+      "2": "The CI will handle the rest           => ___________________________"
     }
   }
 }
