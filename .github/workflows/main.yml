@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup@v1
+      - uses: ./.github/workflows/setup
       - name: Run test
         run: yarn test
 
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup
+      - uses: ./.github/workflows/setup
       - name: Lint
         run: yarn lint
 
