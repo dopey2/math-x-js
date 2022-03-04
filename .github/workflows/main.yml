@@ -39,6 +39,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
 
+      - name: debug
+        run: cd packages/core/lib && ls && cd ../../parser/lib && ls
+
+
       - name: Download core/lib artifact
         uses: actions/download-artifact@v3
         with:
@@ -48,6 +52,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: parser_lib
-          
+
       - name: Testing the bundle
         run: yarn test:bundle
