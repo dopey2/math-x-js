@@ -5,8 +5,8 @@ on:
   pull_request:
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
+#  test:
+#    uses: ./.github/workflows/test.yml
 
   build_lib:
     name: Build lib
