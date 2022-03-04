@@ -13,10 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
-      - name: Test NPM Token
-        run:  npm config set //registry.npmjs.org/:_authToken "${secrets.NPM_TOKEN}"
+
+      - shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.SuperSecret }}
+        run: npm config set //registry.npmjs.org/:_authToken "$secrets.NPM_TOKEN"
+            
       - name: Log token
         run: npm whoami
 
