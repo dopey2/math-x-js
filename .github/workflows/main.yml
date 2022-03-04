@@ -19,9 +19,9 @@ jobs:
 
       - shell: bash
         env:
-          SUPER_SECRET: ${{ secrets.SuperSecret }}
-        run: npm config set //registry.npmjs.org/:_authToken "$secrets.NPM_TOKEN"
-            
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+
       - name: Log token
         run: npm whoami
 
