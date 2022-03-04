@@ -6,6 +6,7 @@ on:
 
 jobs:
   test:
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,6 +26,7 @@ jobs:
     - run: yarn test
 
   lint:
+    name: Lint
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,33 +35,34 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }} A
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Install dependencies A
+      - name: Install dependencies
       - run: npm ci
-      - name: Lint A
+      - name: Lint
       - run: yarn lint
 
-#  check_types:
-#    runs-on: ubuntu-latest
-#
-#    strategy:
-#      matrix:
-#        node-version: [ 16.x ]
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#      - name: Use Node.js ${{ matrix.node-version }}
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#          cache: 'npm'
-#      - name: Install dependencies
-#      - run: npm ci
-#      - name: Check types
-#      - run: yarn check:types
-#
-#
+  check_types:
+    name: Check types
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install dependencies
+      - run: npm ci
+      - name: Check types
+      - run: yarn check:types
+
+
