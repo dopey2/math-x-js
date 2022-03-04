@@ -4,8 +4,8 @@
   "scripts": {
     "clean:lib": "echo 'Skip docs'",
     "build:all": "echo 'Skip docs'",
-    "lint": "echo Skip docs'",
-    "lint:fix": "echo Skip docs'",
+    "lint": "echo 'Skip docs'",
+    "lint:fix": "echo 'Skip docs'",
     "test": "echo 'Skip docs'",
     "check:types": "echo 'SKip docs'",
     "check:all": "echo 'Skip docs'",
