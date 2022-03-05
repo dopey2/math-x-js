@@ -1,6 +1,6 @@
 {
   "name": "@math-x-ts/documentation",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "scripts": {
     "clean:lib": "echo 'Skip docs'",
     "build:all": "echo 'Skip docs'",
@@ -25,8 +25,8 @@
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.15",
     "@docusaurus/preset-classic": "2.0.0-beta.15",
-    "@math-x-ts/core": "0.0.5",
-    "@math-x-ts/parser": "0.0.5",
+    "@math-x-ts/core": "0.0.8",
+    "@math-x-ts/parser": "0.0.8",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "intro.js": "^5.0.0",
