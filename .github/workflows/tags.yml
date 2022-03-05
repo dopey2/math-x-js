@@ -95,3 +95,4 @@ jobs:
       - run: gh release create $"git describe --tags --abbrev=0" -F ./CHANGELOG.md"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          shell: bash
