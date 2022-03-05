@@ -79,7 +79,7 @@
       "3": "Check diff, update changelog etc..        => _________________________________",
       "4": "Commit all files                          => chore(release) 1.0.0",
       "5": "Create a tag                              => git tag v1.0.0",
-      "6": "Push the everything to git to main        => git push --follow-tag origin main",
+      "6": "Push the everything to git to main        => git push --tags",
       "7": "The CI will handle the rest               => _________________________________"
     }
   }
