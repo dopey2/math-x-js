@@ -102,11 +102,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+      NETLIFY_APP_ID: ${{ secrets.NETLIFY_APP_ID }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
+      - name: Link netlify project
+        run: netlify link --id $"NETLIFY_APP_ID"
       - name: Build the documentation package
         run: cd ./packages/documentation && netlify build
-      - name: Deploy the netlify
+      - name: Deploy to netlify
         run: netlify deploy --dir build
 
