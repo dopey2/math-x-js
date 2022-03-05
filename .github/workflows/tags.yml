@@ -111,7 +111,7 @@ jobs:
       - name: check modules
         run: cat node_modules/@math-x-ts/core/package.json
       - name: Build the documentation package
-        run: cd ./packages/documentation && netlify build
+        run: cd ./packages/documentation && yarn build
       - name: Deploy to netlify
         run: netlify deploy --dir build
 
