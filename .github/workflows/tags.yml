@@ -101,12 +101,12 @@ jobs:
     name: Deploy docs
     runs-on: ubuntu-latest
     env:
-      NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
       - name: Build the documentation package
         run: cd ./packages/documentation && netlify build
       - name: Deploy the netlify
-        run: netlify deploy --dir build --auth $"NETLIFY_TOKEN" --prod
+        run: netlify deploy --dir build
 
