@@ -85,14 +85,28 @@ jobs:
 #      - name: Publish all packages
 #        run: npm run npm:publish
 
-  create_release:
-    name: Create github release
-    runs-on: ubuntu-latest
+#  create_release:
+#    name: Create github release
+#    runs-on: ubuntu-latest
 #    needs: [ publish_packages ]
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: echo $(git describe --tags --abbrev=0)
+#      - run: gh release create $(git describe --tags --abbrev=0) -F ./CHANGELOG.md
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+  build_docs:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - run: echo $(git describe --tags --abbrev=0)
-      - run: gh release create $(git describe --tags --abbrev=0) -F ./CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - uses: ./.github/workflows/setup
+      - name: Build the documentation package
+        run: cd ./package/documentations && netlify build
+      - name: Deploy the netlify
+        run: netlify deploy --dir build --auth $"NETLIFY_TOKEN" --prod
+
