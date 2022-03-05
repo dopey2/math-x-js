@@ -106,7 +106,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
       - name: Build the documentation package
-        run: cd ./package/documentations && netlify build
+        run: cd ./packages/documentation && netlify build
       - name: Deploy the netlify
         run: netlify deploy --dir build --auth $"NETLIFY_TOKEN" --prod
 
