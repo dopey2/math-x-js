@@ -77,10 +77,11 @@
       "1": "Set the version in all packages           => yarn apply:version 1.0.0",
       "2": "Generate CHANGELOG                        => yarn changelog",
       "3": "Check diff, update changelog etc..        => _________________________________",
-      "4": "Commit all files                          => chore(release) 1.0.0",
-      "5": "Create a tag                              => git tag v1.0.0",
-      "6": "Push the everything to git to main        => git push --tags",
-      "7": "The CI will handle the rest               => _________________________________"
+      "4": "Npm install to generate new .lock files   => _________________________________",
+      "5": "Commit all files                          => chore(release) 1.0.0",
+      "6": "Create a tag                              => git tag v1.0.0",
+      "7": "Push the everything to git to main        => git push --tags",
+      "8": "The CI will handle the rest               => _________________________________"
     }
   }
 }
