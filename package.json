@@ -19,7 +19,8 @@
     "check:types": "yarn workspaces run check:types",
     "check:all": "yarn workspaces run check:all",
     "npm:publish": "npm run npm:publish --workspaces",
-    "apply:version": "ts-node ./scripts/version.ts --applyVersion"
+    "apply:version": "ts-node ./scripts/version.ts --applyVersion",
+    "changelog": "npx standard-version --skip.bump --skip.commit --skip.tag"
   },
   "repository": {
     "type": "git",
@@ -72,12 +73,14 @@
       "2": "npm run npm:publish"
     },
     "publish workflow": {
-      "0": "Should be run on main branches only after all test passes",
+      "0": "Should be run on main branches only after all test passes on the CI",
       "1": "Set the version in all packages           => yarn apply:version 1.0.0",
-      "2": "Stage changes                             => git add *",
-      "3": "Generate CHANGELOG                        => npx standard-version --skip.bump",
-      "4": "Push the everything to git to main        => git push --follow-tag origin main",
-      "5": "The CI will handle the rest               => _________________________________"
+      "2": "Generate CHANGELOG                        => yarn changelog",
+      "3": "Check diff, update changelog etc..        => _________________________________",
+      "4": "Commit all files                          => chore(release) 1.0.0",
+      "5": "Create a tag                              => git tag v1.0.0",
+      "6": "Push the everything to git to main        => git push --follow-tag origin main",
+      "7": "The CI will handle the rest               => _________________________________"
     }
   }
 }
