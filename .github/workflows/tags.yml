@@ -92,8 +92,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: echo $"git describe --tags --abbrev=0"
-      - run: gh release create $"git describe --tags --abbrev=0" -F ./CHANGELOG.md
+      - run: echo $(git describe --tags --abbrev=0)
+      - run: gh release create $(git describe --tags --abbrev=0) -F ./CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        shell: sh
