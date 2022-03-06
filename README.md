@@ -11,17 +11,23 @@
 </p>    
 
 
+**[Documentation](https://mathxts.netlify.app/docs/intro)** 
+<br>
+**[Live Demo](https://mathxts.netlify.app/docs/live-example)**
+<br>
+
+
 ## Introduction
 This library is part of an educational project. Its main goal is to give a step by step solution for any mathematical expression.
 
 ## Install
 
 ```bash
-npm install --save math-x-ts
+npm install --save @math-x-ts/parser
 ```
 or
 ```bash
-yarn add math-x-ts
+yarn add @math-x-ts/parser
 ```
 
 ## Usage
@@ -31,65 +37,18 @@ yarn add math-x-ts
 ```ts
 import { evaluate } from '@math-x-ts/parser';
 
-const value = evaluate('4 + (3 * 2)');
-console.log(value); // 10
+console.log(evaluate('4 * (1 + 2)')) // 12;
 ```
 
-### Solve an expression
+### Get step by step solution
 
 ```ts
-import { solve } from '@math-x-ts/parser';
-import { Constant } from '@math-x-ts/core'
+import { parse } from '@math-x-ts/parser';
 
-const mathNode = solve('4 + (3 * 2)');
-console.log(mathNode.value); // 10
-console.log(mathNode); // new Constant(10)
-console.log(mathNode instanceof Constant) // true
+const mathNode = parse('4 * (1 + 2)');
+const steps = mathNode.solveAll();
+
+console.log(steps[0].toString()); // '4 * (1 + 2)'
+console.log(steps[1].toString()); // '4 * 3'
+console.log(steps[2].toString()); // '12'
 ```
-I will explain below what **Constant** is and the rest of "@math-x-ts/core"
-
-### Compile an expression
-
-```ts
-import { parse } from '@math-x-ts/parser'
-import { Add, Constant, MathNode, MathNodeType, Multiply, Parenthesis } from '@math-x-ts/core';
-import { isEqual } from 'lodash';
-
-const mathNodeA = parse("4 + (3 * 2)");
-
-const mathNodeB = new Add(
-    new Constant(4),
-    new Parenthesis(
-        new Multiply(
-            new Constant(3),
-            new Constant(2)
-        )
-    )
-);
-
-const mathNodeJson = {
-    type: MathNodeType.Add,
-    left: {
-        type: MathNodeType.Constant,
-        value: 4
-    },
-    right: {
-        type: MathNodeType.Parenthesis,
-        content: {
-            type: MathNodeType.Multiply,
-            left: {
-                type: MathNodeType.Constant,
-                value: 3,
-            },
-            right: {
-                type: MathNodeType.Constant,
-                value: 2,
-            }
-        }
-    }
-}
-
-console.log(isEqual(mathNodeA.toJson(), mathNodeB.toJson())); // true
-console.log(isEqual(mathNodeA.toJson(), mathNodeJson)); // true
-```
-
