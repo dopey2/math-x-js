@@ -50,11 +50,6 @@ const config = {
                     label: 'Tutorial',
                 },
                 {
-                    href: './',
-                    label: '2',
-                    position: 'right',
-                },
-                {
                     href: 'https://github.com/dopey2/math-x-ts',
                     label: 'GitHub',
                     position: 'right',
