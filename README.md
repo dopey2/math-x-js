@@ -1,5 +1,15 @@
 # math-x-ts
-Math parser, AST builder for math expression &amp; step by step solution
+> Math parser, AST builder for math expression &amp; step by step solution
+
+<br>
+
+<p>
+  <a href="https://www.npmjs.com/package/@math-x-ts/parser"><img src="https://img.shields.io/npm/v/@math-x-ts/parser.svg?&color=default" alt="npm version"></a>
+  <a href="https://github.com/dopey2/math-x-ts/actions/workflows/main-dev.yml"><img src="https://github.com/dopey2/math-x-ts/actions/workflows/main-dev.yml/badge.svg" alt="CI"></a>
+  <a href="CONTRIBUTING.md#pull-requests"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+</p>    
+
 
 ## Introduction
 This library is part of an educational project. Its main goal is to give a step by step solution for any mathematical expression.
