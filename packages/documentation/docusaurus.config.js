@@ -51,7 +51,7 @@ const config = {
                 },
                 {
                     href: './',
-                    label: '1',
+                    label: '2',
                     position: 'right',
                 },
                 {
