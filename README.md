@@ -11,9 +11,9 @@
 </p>    
 
 
-**[Documentation](https://mathxts.netlify.app/docs/intro)** 
+**[📝 Documentation](https://mathxts.netlify.app/docs/intro)** 
 <br>
-**[Live Demo](https://mathxts.netlify.app/docs/live-example)**
+**[🧑‍💻 Live Demo](https://mathxts.netlify.app/docs/live-example)**
 <br>
 
 
