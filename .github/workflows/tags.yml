@@ -127,5 +127,5 @@ jobs:
       - name: Build the documentation package
         run: cd ./packages/documentation && netlify build
       - name: Deploy to netlify
-        run: netlify deploy --dir build
+        run: netlify deploy --dir ./packages/documentation/build
 
