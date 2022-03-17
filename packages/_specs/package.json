@@ -1,0 +1,15 @@
+{
+  "name": "@math-x-ts/specs",
+  "version": "0.0.9",
+  "description": "Contains the specification for @math-x-ts",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.3.2",
+    "cucumber-tsflow": "^4.0.0-preview.7"
+  }
+}
