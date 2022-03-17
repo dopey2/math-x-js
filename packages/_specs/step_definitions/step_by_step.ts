@@ -1,6 +1,6 @@
 import { binding, given,when, then } from "cucumber-tsflow";
 import { MathNode } from "@math-x-ts/core/src";
-import { parse } from '../../../parser/src';
+import { parse } from '@math-x-ts/parser/src';
 
 
 const assert = require('assert');
