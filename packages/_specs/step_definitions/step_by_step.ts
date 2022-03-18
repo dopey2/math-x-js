@@ -35,4 +35,3 @@ export default class StepByStep {
         assert.strictEqual(this.steps[step + 1], undefined);
     }
 }
-

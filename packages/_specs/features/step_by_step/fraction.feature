@@ -57,7 +57,6 @@ Feature: Step by step fractions
     Then step 3 should be "{24 + 20} / {12}"
     Then step 4 should be "{44} / {12}"
 
-
   Scenario: Expression "10 / {3 + 4} + {8} / 5"
     Given the expression "10 / {3 + 4} + {8} / 5"
     When all steps are solved
