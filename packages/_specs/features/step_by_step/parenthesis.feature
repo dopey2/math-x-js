@@ -102,17 +102,7 @@ Feature: Step by step fractions
     Then step 1 should be "(3 + 6) * 2 - 9 * 2"
     Then step 2 should be "9 * 2 - 18"
     Then step 3 should be "18 - 18"
-    Then step 4 should be "18"
-    Then step 4 should be atomic
-
-  Scenario: Expression "(3 + (2 * 3)) * 2 - (4 + 5) * 2"
-    Given the expression "(3 + (2 * 3)) * 2 - (4 + 5) * 2"
-    When all steps are solved
-    Then step 0 should be "(3 + (2 * 3)) * 2 - (4 + 5) * 2"
-    Then step 1 should be "(3 + 6) * 2 - 9 * 2"
-    Then step 2 should be "9 * 2 - 18"
-    Then step 3 should be "18 - 18"
-    Then step 4 should be "18"
+    Then step 4 should be "0"
     Then step 4 should be atomic
 
   Scenario: Expression "(1 + 1)"
