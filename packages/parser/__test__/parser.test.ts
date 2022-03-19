@@ -312,25 +312,6 @@ describe("Math parser, exponents", () => {
 
 
 describe("Math parser, edge case", () => {
-    it("3 + -2", () => {
-        const n = -2;
-        const node1 = parse(`3 + ${n}`);
-        const node2 = node1.next();
-        const node3 = node2.next();
-        expect(node1.toString()).toBe("3 + (-2)");
-        expect(node2.toString()).toBe("3 - 2");
-        expect(node3.value).toBe(1);
-    });
-
-    it("3 * -2", () => {
-        const n = -2;
-        const expression = parse(`3 * ${n}`);
-        const res = expression.solve();
-        expect(expression.toString()).toBe("3 * (-2)");
-        expect(res).toBeDefined();
-        expect(res.value).toBe(-6);
-    });
-
     it("3 - -2", () => {
         const n = -2;
         const expression = parse(`3 - ${n}`);
