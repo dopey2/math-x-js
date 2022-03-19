@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { binding, given,when, then } from "cucumber-tsflow";
 import { MathNode } from "@math-x-ts/core/src";
-import { parse } from '@math-x-ts/parser/src';
+import { parse, evaluate, solve } from '@math-x-ts/parser/src';
 
 
 @binding()
@@ -40,5 +40,9 @@ export default class StepByStep {
     public checkLastStepIsAtomic(step: number) {
         assert.strictEqual(this.steps[step].isAtomic, true);
         assert.strictEqual(this.steps[step + 1], undefined);
+
+        // Also checking that evaluate & solve functions are working correctly
+        assert.strictEqual(evaluate(this.expression), this.steps[step].value);
+        assert.strictEqual(solve(this.expression).value, this.steps[step].value);
     }
 }

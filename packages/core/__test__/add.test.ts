@@ -23,7 +23,6 @@ describe("Adding constant", () => {
             },
         });
 
-
         const solved = mathNode.next();
         expect(solved).toBeDefined();
         expect(solved?.isAtomic).toBe(true);

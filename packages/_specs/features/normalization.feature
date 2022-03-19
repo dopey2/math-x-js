@@ -1,4 +1,6 @@
-Feature: Normalization  Following expression should be normalized when parsed
+Feature: Normalization
+  Following expression should be normalized when parsed
+
 
   Scenario: Expression "-0"
     Given the expression "-0"

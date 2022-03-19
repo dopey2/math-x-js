@@ -1,5 +1,6 @@
 Feature: Step by step exponent
-  Check step by step solution
+  Check step by step solution for the following expressions
+
 
   Scenario: Expression "3 ^ 2"
     Given the expression "3 ^ 2"
@@ -21,7 +22,6 @@ Feature: Step by step exponent
     Then step 0 should be "3 ^ {2}"
     Then step 1 should be "9"
     Then step 1 should be atomic
-
 
   Scenario: Expression "2 ^ {2 + 2}"
     Given the expression "2 ^ {2 + 2}"
@@ -56,7 +56,6 @@ Feature: Step by step exponent
     Then step 3 should be "48"
     Then step 3 should be atomic
 
-
   Scenario: Expression "(1 + 3) ^ {2 * 3}"
     Given the expression "(1 + 3) ^ {2 * 3}"
     When all steps are solved
@@ -64,4 +63,3 @@ Feature: Step by step exponent
     Then step 1 should be "4 ^ {6}"
     Then step 2 should be "4096"
     Then step 2 should be atomic
-

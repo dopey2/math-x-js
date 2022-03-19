@@ -1,6 +1,7 @@
 Feature: Step by step fractions
   Check step by step solution for the following fractions
 
+
   Scenario: Expression "6 / 3"
     Given the expression "6 / 3"
     When all steps are solved
