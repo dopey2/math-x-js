@@ -23,29 +23,6 @@ Feature: Step by step
     Then step 2 should be "-5"
     And step 2 should be atomic
 
-  # Bracket syntax should not be used by E2E users except for fractions and exponent"
-  Scenario: Expression "{-5}"
-    Given the expression "{-5}"
-    When all steps are solved
-    Then step 0 should be "-5"
-    And step 0 should be atomic
-
-  # Bracket syntax should not be used by E2E users except for fractions and exponent"
-  Scenario: Expression "{-{-5}}"
-    Given the expression "{-{-5}}"
-    When all steps are solved
-    Then step 0 should be "--5"
-    Then step 1 should be "5"
-    And step 1 should be atomic
-
-  # Bracket syntax should not be used by E2E users except for fractions and exponent"
-  Scenario: Expression "{-{-{-5}}}"
-    Given the expression "{-{-{-5}}}"
-    When all steps are solved
-    Then step 0 should be "---5"
-    Then step 1 should be "-5"
-    And step 1 should be atomic
-
   Scenario: Expression "-(-(-(-(5))))"
     Given the expression "-(-(-(-(5))))"
     When all steps are solved
@@ -131,3 +108,23 @@ Feature: Step by step
     Then step 1 should be "-(15) - 5"
     Then step 2 should be "-15 - 5"
     Then step 3 should be "-20"
+    
+  Scenario: Expression "{-5}"
+    Given the expression "{-5}"
+    When all steps are solved
+    Then step 0 should be "-5"
+    And step 0 should be atomic
+
+  Scenario: Expression "{-{-5}}"
+    Given the expression "{-{-5}}"
+    When all steps are solved
+    Then step 0 should be "--5"
+    Then step 1 should be "5"
+    And step 1 should be atomic
+
+  Scenario: Expression "{-{-{-5}}}"
+    Given the expression "{-{-{-5}}}"
+    When all steps are solved
+    Then step 0 should be "---5"
+    Then step 1 should be "-5"
+    And step 1 should be atomic
