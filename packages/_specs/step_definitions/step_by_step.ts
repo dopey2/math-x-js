@@ -26,6 +26,7 @@ export default class StepByStep {
      * We must make sure that both syntax produce the same math node
      * For example "4 / 2" when parsed is "{4} / {2}"
      * Then both expression when parsed should have deep equals nodes
+     *
      */
     @then("the parsed expression should be isometric")
     public checkNodeIsometric() {

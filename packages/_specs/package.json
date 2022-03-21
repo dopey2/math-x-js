@@ -11,6 +11,10 @@
   "devDependencies": {
     "@cucumber/cucumber": "^7.3.2",
     "@cucumber/pretty-formatter": "^1.0.0-alpha.2",
-    "cucumber-tsflow": "^4.0.0-preview.7"
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "c8": "^7.11.0",
+    "cucumber-tsflow": "^4.0.0-preview.7",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.21"
   }
 }
