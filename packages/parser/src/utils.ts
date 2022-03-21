@@ -61,8 +61,6 @@ export const getParenthesisContent = (symbols: string[]) => {
     return symbols.slice(1, symbols.length - 1);
 };
 
-
-// TODO test this
 export const splitStringExpressionToSymbols = (expression: string) => {
     expression = expression.split("").filter((c)=>c !== " ").join("");
     let symbols: string[] = [];
