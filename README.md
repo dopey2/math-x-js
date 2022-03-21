@@ -65,7 +65,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/dopey2"><img src="https://avatars.githubusercontent.com/u/22329040?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dopey2</b></sub></a><br /><a href="https://github.com/@math-x-ts/math-x-ts/commits?author=dopey2" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dopey2"><img src="https://avatars.githubusercontent.com/u/22329040?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dopey2</b></sub></a><br /><a href="https://github.com/@math-x-ts/math-x-ts/commits?author=dopey2" title="Code">💻</a> <a href="#ideas-dopey2" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
