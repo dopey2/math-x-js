@@ -18,14 +18,17 @@ export default class StepByStep {
     @when("the expression is parsed")
     public whenParsed() {
         this.mathNode = parse(this.expression);
-    }
-
-    @when("all steps are solved")
-    public whenSolveAll() {
-        this.mathNode = parse(this.expression);
         this.steps = this.mathNode.solveAll();
     }
 
+    @then("the parsed expression should be isometric")
+    public checkNodeIsometric() {
+        assert.deepStrictEqual(
+            this.mathNode.toJson(),
+            parse(this.mathNode.toString()).toJson()
+        );
+    }
+    
     @then("the string output should be {string}")
     public checkToString(result: string) {
         assert.strictEqual(this.mathNode.toString(), result);

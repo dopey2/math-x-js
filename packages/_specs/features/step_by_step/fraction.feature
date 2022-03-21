@@ -4,27 +4,31 @@ Feature: Step by step fractions
 
   Scenario: Expression "6 / 3"
     Given the expression "6 / 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{6} / {3}"
     Then step 1 should be "2"
 
   Scenario: Expression "(3 + 5) / (1 + 1)"
     Given the expression "(3 + 5) / (1 + 1)"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{(3 + 5)} / {(1 + 1)}"
     Then step 1 should be "{8} / {2}"
     Then step 2 should be "4"
 
   Scenario: Expression "4 / 2 + 6"
     Given the expression "4 / 2 + 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {2} + 6"
     Then step 1 should be "2 + 6"
     Then step 2 should be "8"
 
   Scenario: Expression "4 / 3 + 6"
     Given the expression "4 / 3 + 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {3} + 6"
     Then step 1 should be "{4} / {3} + {6} / {1}"
     Then step 2 should be "{4} / {3} + {6 * 3} / {1 * 3}"
@@ -34,7 +38,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "4 / 3 + 5 / 3"
     Given the expression "4 / 3 + 5 / 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {3} + {5} / {3}"
     Then step 1 should be "{4 + 5} / {3}"
     Then step 2 should be "{9} / {3}"
@@ -42,7 +47,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "8 / 5 + 10 / 6"
     Given the expression "8 / 5 + 10 / 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{8} / {5} + {10} / {6}"
     Then step 1 should be "{8 * 6} / {5 * 6} + {10 * 5} / {6 * 5}"
     Then step 2 should be "{48} / {30} + {50} / {30}"
@@ -51,7 +57,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "8 / 4 + 10 / 6"
     Given the expression "8 / 4 + 10 / 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{8} / {4} + {10} / {6}"
     Then step 1 should be "{8 * 3} / {4 * 3} + {10 * 2} / {6 * 2}"
     Then step 2 should be "{24} / {12} + {20} / {12}"
@@ -60,7 +67,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "10 / {3 + 4} + {8} / 5"
     Given the expression "10 / {3 + 4} + {8} / 5"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{10} / {3 + 4} + {8} / {5}"
     Then step 1 should be "{10} / {7} + {8} / {5}"
     Then step 2 should be "{10 * 5} / {7 * 5} + {8 * 7} / {5 * 7}"
@@ -70,14 +78,16 @@ Feature: Step by step fractions
 
   Scenario: Expression "4 / 2 - 6"
     Given the expression "4 / 2 - 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {2} - 6"
     Then step 1 should be "2 - 6"
     Then step 2 should be "-4"
 
   Scenario: Expression "4 / 3 - 6"
     Given the expression "4 / 3 - 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {3} - 6"
     Then step 1 should be "{4} / {3} - {6} / {1}"
     Then step 2 should be "{4} / {3} - {6 * 3} / {1 * 3}"
@@ -87,14 +97,16 @@ Feature: Step by step fractions
 
   Scenario: Expression "4 / 3 - 5 / 3"
     Given the expression "4 / 3 - 5 / 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{4} / {3} - {5} / {3}"
     Then step 1 should be "{4 - 5} / {3}"
     Then step 2 should be "{-1} / {3}"
 
   Scenario: Expression "8 / 5 - 10 / 6"
     Given the expression "8 / 5 - 10 / 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{8} / {5} - {10} / {6}"
     Then step 1 should be "{8 * 6} / {5 * 6} - {10 * 5} / {6 * 5}"
     Then step 2 should be "{48} / {30} - {50} / {30}"
@@ -103,7 +115,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "8 / 4 - 10 / 6"
     Given the expression "8 / 4 - 10 / 6"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{8} / {4} - {10} / {6}"
     Then step 1 should be "{8 * 3} / {4 * 3} - {10 * 2} / {6 * 2}"
     Then step 2 should be "{24} / {12} - {20} / {12}"
@@ -112,7 +125,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "10 / {3 + 4} - {8} / 5"
     Given the expression "10 / {3 + 4} - {8} / 5"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{10} / {3 + 4} - {8} / {5}"
     Then step 1 should be "{10} / {7} - {8} / {5}"
     Then step 2 should be "{10 * 5} / {7 * 5} - {8 * 7} / {5 * 7}"
@@ -122,7 +136,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "10 / 5 * 3 / 2"
     Given the expression "10 / 5 * 3 / 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{10} / {5} * {3} / {2}"
     Then step 1 should be "{10 * 3} / {5 * 2}"
     Then step 2 should be "{30} / {10}"
@@ -130,21 +145,24 @@ Feature: Step by step fractions
 
   Scenario: Expression "10 / 5 * 3"
     Given the expression "10 / 5 * 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{10} / {5} * 3"
     Then step 1 should be "2 * 3"
     Then step 2 should be "6"
 
   Scenario: Expression "10 / 6 * 2"
     Given the expression "10 / 6 * 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{10} / {6} * 2"
     Then step 1 should be "{10 * 2} / {6 * 2}"
     Then step 2 should be "{20} / {12}"
 
   Scenario: Expression "{5 + 10} / {2 + 2} + 3"
     Given the expression "{5 + 10} / {2 + 2} + 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 2} + 3"
     Then step 1 should be "{15} / {4} + 3"
     Then step 2 should be "{15} / {4} + {3} / {1}"
@@ -155,7 +173,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "{5 + 10} / {2 + 3} + 3"
     Given the expression "{5 + 10} / {2 + 3} + 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 3} + 3"
     Then step 1 should be "{15} / {5} + 3"
     Then step 2 should be "3 + 3"
@@ -163,7 +182,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "{5 + 10} / {2 + 3} - 2"
     Given the expression "{5 + 10} / {2 + 3} - 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 3} - 2"
     Then step 1 should be "{15} / {5} - 2"
     Then step 2 should be "3 - 2"
@@ -171,7 +191,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "{5 + 10} / {2 + 3} * 3"
     Given the expression "{5 + 10} / {2 + 3} * 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 3} * 3"
     Then step 1 should be "{15} / {5} * 3"
     Then step 2 should be "3 * 3"
@@ -179,7 +200,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "{5 + 10} / {2 + 4} * 3"
     Given the expression "{5 + 10} / {2 + 4} * 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 4} * 3"
     Then step 1 should be "{15} / {6} * 3"
     Then step 2 should be "{15 * 3} / {6 * 3}"
@@ -187,7 +209,8 @@ Feature: Step by step fractions
 
   Scenario: Expression "{5 + 10} / {2 + 2} : 3"
     Given the expression "{5 + 10} / {2 + 2} : 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "{5 + 10} / {2 + 2} : 3"
     Then step 1 should be "{15} / {4} : 3"
     Then step 2 should be "{15} / {4} * {1} / {3}"

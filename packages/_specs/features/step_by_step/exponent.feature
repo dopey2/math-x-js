@@ -4,28 +4,32 @@ Feature: Step by step exponent
 
   Scenario: Expression "3 ^ 2"
     Given the expression "3 ^ 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "3 ^ {2}"
     Then step 1 should be "9"
     Then step 1 should be atomic
 
   Scenario: Expression "3 ^ 0"
     Given the expression "3 ^ 0"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "3 ^ {0}"
     Then step 1 should be "1"
     Then step 1 should be atomic
 
   Scenario: Expression "3 ^ {2}"
     Given the expression "3 ^ {2}"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "3 ^ {2}"
     Then step 1 should be "9"
     Then step 1 should be atomic
 
   Scenario: Expression "2 ^ {2 + 2}"
     Given the expression "2 ^ {2 + 2}"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "2 ^ {2 + 2}"
     Then step 1 should be "2 ^ {4}"
     Then step 2 should be "16"
@@ -33,7 +37,8 @@ Feature: Step by step exponent
 
   Scenario: Expression "4 * 3 ^ 2"
     Given the expression "4 * 3 ^ 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "4 * 3 ^ {2}"
     Then step 1 should be "4 * 9"
     Then step 2 should be "36"
@@ -41,7 +46,8 @@ Feature: Step by step exponent
 
   Scenario: Expression "(4 * 3) ^ 2"
     Given the expression "(4 * 3) ^ 2"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "(4 * 3) ^ {2}"
     Then step 1 should be "12 ^ {2}"
     Then step 2 should be "144"
@@ -49,7 +55,8 @@ Feature: Step by step exponent
 
   Scenario: Expression "(4 * 3)^ 2"
     Given the expression "(1 + 3) ^ 2 * 3"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "(1 + 3) ^ {2} * 3"
     Then step 1 should be "4 ^ {2} * 3"
     Then step 2 should be "16 * 3"
@@ -58,7 +65,8 @@ Feature: Step by step exponent
 
   Scenario: Expression "(1 + 3) ^ {2 * 3}"
     Given the expression "(1 + 3) ^ {2 * 3}"
-    When all steps are solved
+    When the expression is parsed
+    Then the parsed expression should be isometric
     Then step 0 should be "(1 + 3) ^ {2 * 3}"
     Then step 1 should be "4 ^ {6}"
     Then step 2 should be "4096"
