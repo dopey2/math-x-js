@@ -21,6 +21,12 @@ export default class StepByStep {
         this.steps = this.mathNode.solveAll();
     }
 
+    /**
+     * Since there are 2 syntax: the normalized syntax and the non normalized one
+     * We must make sure that both syntax produce the same math node
+     * For example "4 / 2" when parsed is "{4} / {2}"
+     * Then both expression when parsed should have deep equals nodes
+     */
     @then("the parsed expression should be isometric")
     public checkNodeIsometric() {
         assert.deepStrictEqual(
