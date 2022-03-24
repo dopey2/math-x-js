@@ -8,7 +8,7 @@ export default class Parenthesis extends MathNode {
     type = MathNodeType.Parenthesis;
     isAtomic = false;
 
-    private readonly content: MathNode;
+    public readonly content: MathNode;
 
     /**
      * @param {MathNode} content The content of the parenthesis.
@@ -17,11 +17,11 @@ export default class Parenthesis extends MathNode {
         super();
         this.content = content;
     }
-
+    
     /**
      * @inheritDoc
      */
-    next(args: any) {
+    next(args?: any) {
         const isNegative = args?.isNegative ?? false;
 
         if(this.content instanceof Constant) {

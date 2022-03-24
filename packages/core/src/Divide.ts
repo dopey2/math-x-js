@@ -1,5 +1,6 @@
 import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
 import Constant from "./Constant";
+import { Parenthesis } from "./index";
 
 /**
  * Represent the division operation as a math node.
@@ -36,9 +37,28 @@ export default class Divide extends MathNode {
         } else if (this.right.divide) {
             // @ts-ignore
             return this.right.divide(this.left);
-        } else if (!this.left.isAtomic || !this.right.isAtomic) {
+        }
+        
+        if (!this.left.isAtomic || !this.right.isAtomic) {
+            let leftNode = this.left;
+            let rightNode = this.right;
+
+            if(this.left instanceof Parenthesis) {
+                leftNode = this.left.content;
+            }
+
+            if(this.right instanceof Parenthesis) {
+                rightNode = this.right.content;
+            }
+
+            if(leftNode instanceof Constant && rightNode instanceof Constant) {
+                return new Constant(leftNode.value / rightNode.value);
+            }
+
+
             return new Divide(this.left.next(), this.right.next());
         }
+
 
         return this;
     };
