@@ -57,7 +57,7 @@ export default class Negative extends MathNode {
      * @inheritDoc
      */
     toTex() {
-        return `-${this.content.toTex()} `;
+        return `-${this.content.toTex()}`;
     };
 
     /**

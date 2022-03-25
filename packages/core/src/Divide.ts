@@ -1,7 +1,6 @@
 import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 import BaseOperation from "./BaseOperation";
-import { Parenthesis } from "./index";
 
 /**
  * Represent the division operation as a math node.
@@ -22,39 +21,33 @@ export default class Divide extends BaseOperation {
      * @inheritDoc
      */
     next(): MathNode {
-        if (this.left instanceof Constant && this.right instanceof Constant) {
-            return new Constant(this.left.value / this.right.value);
-            // @ts-ignore
-        } else if (this.left.divide) {
-            // @ts-ignore
-            return this.left.divide(this.right);
-            // @ts-ignore
-        } else if (this.right.divide) {
-            // @ts-ignore
-            return this.right.divide(this.left);
+        const mathNode = super.baseNext();
+
+        if(mathNode) {
+            return mathNode; 
         }
         
         if (!this.left.isAtomic || !this.right.isAtomic) {
-            let leftNode = this.left;
-            let rightNode = this.right;
-
-            if(this.left instanceof Parenthesis) {
-                leftNode = this.left.content;
-            }
-
-            if(this.right instanceof Parenthesis) {
-                rightNode = this.right.content;
-            }
+            const [leftNode, rightNode] = super.getConstantsFromParenthesis();
 
             if(leftNode instanceof Constant && rightNode instanceof Constant) {
                 return new Constant(leftNode.value / rightNode.value);
             }
 
-
             return new Divide(this.left.next(), this.right.next());
         }
 
-
         return this;
     };
+
+    /**
+     * Return the division between left and right.
+     *
+     * @param {number} left The left operand.
+     * @param {number} right The right operand.
+     * @returns {number} The division result.
+     */
+    operation(left: number, right: number): number {
+        return left / right;
+    }
 }

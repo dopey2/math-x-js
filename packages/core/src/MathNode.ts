@@ -24,6 +24,8 @@ export default abstract class MathNode {
      */
     public value: number | null = null;
 
+    public override?: (type: MathNodeType) => (((...args: any) => MathNode) | undefined);
+
     /**
      * The type of the node
      * Check MathNodeType for all available nodes.
@@ -42,8 +44,8 @@ export default abstract class MathNode {
      * Calling the next() function will simplify the expression, or return the next step.
      */
     public abstract isAtomic: boolean;
-
-
+    
+    
     /**
      * The next function will return the node of the next step.
      *

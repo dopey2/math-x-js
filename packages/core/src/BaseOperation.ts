@@ -1,4 +1,6 @@
 import MathNode, { MathNodeType, ToStringParam } from "./MathNode";
+import Constant from "./Constant";
+import { Parenthesis } from "./index";
 
 /**
  * The base class for [addition, subtraction, multiplication, division].
@@ -66,7 +68,67 @@ export default abstract class BaseOperation extends MathNode {
     }
 
     /**
-     * @inheritDoc
+     * A shared logic for all base operations.
+     *
+     * @returns {MathNode} The next step.
      */
-    public abstract next(args?: { isNegative?: boolean }): MathNode;
+    protected baseNext(): MathNode | undefined {
+        if (this.left instanceof Constant && this.right instanceof Constant) {
+            return new Constant(this.operation(this.left.value, this.right.value));
+        }
+
+        /**
+         * Check if one of the operands override the operator.
+         */
+        const leftOverride = this.left.override && this.left.override(this.type);
+        const rightOverride = this.right.override && this.right.override(this.type);
+
+        if(typeof leftOverride === "function") {
+            return leftOverride(this.right);
+        }
+
+        if(typeof rightOverride === "function") {
+            return rightOverride(this.left);
+        }
+
+        /**
+         * Return undefined and let the concrete class implement the rest of the logic.
+         */
+        return undefined;
+    }
+
+    /**
+     * Check if the left and right operands are constants.
+     * If the operands are parenthesis containing a constant then it returns the constants from the parenthesis.
+     *
+     * @returns {MathNode[]} An array of operands [leftNode, rightNode].
+     */
+    protected getConstantsFromParenthesis(): MathNode[] {
+        if (!this.left.isAtomic || !this.right.isAtomic) {
+            let leftNode = this.left;
+            let rightNode = this.right;
+
+            if(this.left instanceof Parenthesis) {
+                leftNode = this.left.content;
+            }
+
+            if(this.right instanceof Parenthesis) {
+                rightNode = this.right.content;
+            }
+
+            if(leftNode instanceof Constant && rightNode instanceof Constant) {
+                return [leftNode, rightNode];
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * Each subclass should implement its own operation.
+     *
+     * @param {number} left
+     * @param {number} right
+     */
+    abstract operation(left: number, right: number): number
 }

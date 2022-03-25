@@ -1,12 +1,12 @@
 
 /**
- *
+ * Utils class.
  */
 export default class Utils {
     /**
      * Find the greatest common divisor.
      *
-     * @example gcd(15, 20) = 25.
+     * @example gcd(15, 20) = 5.
      *
      * @param {number} a A number.
      * @param {number} b A number.

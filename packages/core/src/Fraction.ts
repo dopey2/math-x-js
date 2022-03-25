@@ -25,6 +25,19 @@ export default class Fraction extends MathNode implements ToFraction {
     private readonly n: MathNode; // numerator up
     private readonly d: MathNode; // denominator -> down
 
+    /**.
+     * Override an operator.
+     * @param {MathNodeType} type The type of the operation.
+     * @returns {undefined | (type: MathNodeType) => MathNode} A function that override the operator.
+     */
+    override = (type: MathNodeType) => {
+        return {
+            [MathNodeType.Add]: this.add.bind(this),
+            [MathNodeType.Subtract]: this.subtract.bind(this),
+            [MathNodeType.Multiply]: this.multiply.bind(this),
+            [MathNodeType.Divide]: this.divide.bind(this),
+        }[type.toString()];
+    };
     /**
      * @param {MathNode} n The numerator, (the number at the top).
      * @param {MathNode} d The denominator, (the number on the bottom).
@@ -274,6 +287,7 @@ export default class Fraction extends MathNode implements ToFraction {
             new Fraction(argument.d, argument.n)
         );
     }
+    
 
     /**
      * Return the fraction numerator.

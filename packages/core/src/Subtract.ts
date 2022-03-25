@@ -2,7 +2,6 @@ import MathNode, { MathNodeType } from "./MathNode";
 import Constant from "./Constant";
 import Add from "./Add";
 import BaseOperation from "./BaseOperation";
-import { Parenthesis } from "./index";
 
 /**
  * Represent the subtraction operation as a math node.
@@ -20,34 +19,15 @@ export default class Subtract extends BaseOperation {
     /**
      * @inheritDoc
      */
-    next() {
-        if (this.left instanceof Constant && this.right instanceof Constant) {
-            if (this.right.value < 0) {
-                return new Add(this.left, new Constant(Math.abs(this.right.value)));
-            }
-
-            return new Constant(this.left.value - Math.abs(this.right.value)) as MathNode;
-            // @ts-ignore
-        } else if(this.left.subtract) {
-            // @ts-ignore
-            return this.left.subtract(this.right);
-            // @ts-ignore
-        } else if(this.right.subtract) {
-            // @ts-ignore
-            return this.right.subtract(this.left);
+    next(): MathNode {
+        const mathNode = super.baseNext();
+        
+        if(mathNode) {
+            return mathNode;
         }
-
+            
         if (!this.left.isAtomic || !this.right.isAtomic) {
-            let leftNode = this.left;
-            let rightNode = this.right;
-
-            if(this.left instanceof Parenthesis) {
-                leftNode = this.left.content;
-            }
-
-            if(this.right instanceof Parenthesis) {
-                rightNode = this.right.content;
-            }
+            const [leftNode, rightNode] = super.getConstantsFromParenthesis();
 
             if(leftNode instanceof Constant && rightNode instanceof Constant) {
                 if(rightNode.value < 0) {
@@ -57,10 +37,21 @@ export default class Subtract extends BaseOperation {
                 return new Constant(leftNode.value - rightNode.value);
             }
 
-
             return new Subtract(this.left.next(), this.right.next());
         }
 
         return this;
     };
+
+    /**
+     * Return the subtraction of left and right.
+     *
+     * @param {number} left The left operand.
+     * @param {number} right The right operand.
+     * @returns {number} The difference result
+     * .
+     */
+    operation(left: number, right: number): number {
+        return left - right;
+    }
 }
