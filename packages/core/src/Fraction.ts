@@ -25,8 +25,9 @@ export default class Fraction extends MathNode implements ToFraction {
     private readonly n: MathNode; // numerator up
     private readonly d: MathNode; // denominator -> down
 
-    /**.
+    /**
      * Override an operator.
+     *
      * @param {MathNodeType} type The type of the operation.
      * @returns {undefined | (type: MathNodeType) => MathNode} A function that override the operator.
      */
@@ -59,7 +60,7 @@ export default class Fraction extends MathNode implements ToFraction {
     /**
      * Aim to solve a fraction with constants numerator and denominator.
      *
-     * @param {MathNode} n The numerator. 
+     * @param {MathNode} n The numerator.
      * @param {MathNode} d The denominator.
      * @returns {MathNode} The value as a math not.
      */
@@ -141,14 +142,14 @@ export default class Fraction extends MathNode implements ToFraction {
      */
     add(argument: Constant | Fraction) {
         if(!this.n.isAtomic || !this.d.isAtomic) {
-            const left = new Fraction(this.n.next(), this.d.next()); 
+            const left = new Fraction(this.n.next(), this.d.next());
             const right = argument.isAtomic ? argument : argument.next();
             return new Add(
                 left,
                 right
             );
         }
-        
+
         if(argument instanceof Constant) {
             if(this.n instanceof Constant && this.d instanceof Constant) {
                 const next = this.solveForConstant(this.n, this.d);
@@ -243,20 +244,20 @@ export default class Fraction extends MathNode implements ToFraction {
                     return new Multiply(next, argument);
                 }
             }
-           
+
             return new Fraction(
                 new Multiply(this.n, argument),
                 new Multiply(this.d, argument)
             );
         }
-         
+
         if (this.d && argument && argument.d) {
             return new Fraction(
                     new Multiply(this.n, argument.n) as MathNode,
                     new Multiply(this.d, argument.d) as MathNode
             );
         }
-        
+
         return new Multiply(this.next(), argument.next());
     };
 
@@ -281,13 +282,13 @@ export default class Fraction extends MathNode implements ToFraction {
         if(argument instanceof Constant) {
             argument = argument.toFraction();
         }
-        
+
         return new Multiply(
             this,
             new Fraction(argument.d, argument.n)
         );
     }
-    
+
 
     /**
      * Return the fraction numerator.
