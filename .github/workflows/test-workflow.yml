@@ -3,13 +3,25 @@ on:
   workflow_call:
 
 jobs:
-  test:
-    name: Test
+  unit_test:
+    name: Unit test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
       - name: Run test
+        run: yarn test
+
+  integration_test:
+    name: Check specs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/setup
+      - name: Install specs dependencies
+        run: cd ./specs
+      - uses: ./.github/workflows/setup
+      - name: Check specs
         run: yarn test
 
   lint:
