@@ -18,10 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/workflows/setup
-      - name: Install specs dependencies
       - uses: ./.github/workflows/setup_specs
-      - name: check dir
-        run: pwd
       - name: Check specs
         run: cd ./specs && yarn test
 
