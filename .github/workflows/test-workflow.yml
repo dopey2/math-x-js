@@ -21,8 +21,10 @@ jobs:
       - name: Install specs dependencies
         run: cd ./specs
       - uses: ./.github/workflows/setup
+      - name: check dir
+        run: pwd
       - name: Check specs
-        run: yarn test
+        run: cd ./specs && yarn test
 
   lint:
     name: Lint

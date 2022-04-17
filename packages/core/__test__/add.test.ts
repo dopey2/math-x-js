@@ -46,7 +46,7 @@ describe("Adding constant", () => {
         const expression = new Add(new Constant(3), new Constant(-2));
         const solved = expression.next();
 
-        expect(expression.type).toBe(MathNodeType.Subtract);
+        expect(expression.type).toBe(MathNodeType.Add);
         expect(solved).toBeDefined();
         expect(solved.type).toBe(MathNodeType.Constant);
         expect(solved.value).toBe(1);
