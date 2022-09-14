@@ -44,8 +44,8 @@ export default abstract class MathNode {
      * Calling the next() function will simplify the expression, or return the next step.
      */
     public abstract isAtomic: boolean;
-    
-    
+
+
     /**
      * The next function will return the node of the next step.
      *
@@ -106,7 +106,7 @@ export default abstract class MathNode {
      * This function aims to solve the node step by step.
      * It calls the next() function until the node is atomic.
      *
-     * @returns {Object[]} - Each step as a json.
+     * @returns {object[]} - Each step as a json.
      */
     public solveAllToJson(): Object[] {
         return this.solveAll().map((x) => x.toJson());

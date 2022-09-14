@@ -132,7 +132,10 @@ export default class Fraction extends MathNode implements ToFraction {
         ];
     };
 
+
+    /* eslint-disable-next-line */
     add(constant: Constant): MathNode;
+    /* eslint-disable-next-line */
     add(fraction: Fraction): MathNode;
     /**
      * This function override the addition operator for fractions.
@@ -174,7 +177,9 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Add(this.next(), argument.next());
     }
 
+    /* eslint-disable-next-line */
     subtract(constant: Constant): MathNode;
+    /* eslint-disable-next-line */
     subtract(fraction: Fraction): MathNode;
     /**
      * This function override the subtraction operator for fractions.
@@ -218,8 +223,9 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Subtract(this.next(), argument.next());
     };
 
-
+    /* eslint-disable-next-line */
     multiply(constant: Constant): MathNode;
+    /* eslint-disable-next-line */
     multiply(fraction: Fraction): MathNode;
     /**
      * This function override the multiplication for fractions.
@@ -261,7 +267,9 @@ export default class Fraction extends MathNode implements ToFraction {
         return new Multiply(this.next(), argument.next());
     };
 
+    /* eslint-disable-next-line */
     divide(constant: Constant): MathNode;
+    /* eslint-disable-next-line */
     divide(fraction: Fraction): MathNode;
     /**
      * This function override the division for fractions.
