@@ -32,7 +32,7 @@ jobs:
         run: yarn lint
 
   check_types:
-    name: Check types
+    name: Check typess
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
