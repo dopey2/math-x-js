@@ -9,7 +9,7 @@ import {
     Negative,
     Parenthesis,
     Subtract
-} from "@math-x-ts/core/src";
+} from "@math-x-ts/core";
 
 import { normalize } from "./normalisation";
 import {
@@ -37,12 +37,12 @@ const parseParenthesisAndBracket = (symbols: string[]) => {
     if(!symbols.length) {
         return new Constant(NaN);
     }
-    
+
     if(isInParenthesis(symbols)) {
         const content = getParenthesisContent(symbols);
         return new Parenthesis(buildMathNode(content));
     }
-    
+
     if(isInBracket(symbols)) {
         const content = getParenthesisContent(symbols);
         return buildMathNode(content);
