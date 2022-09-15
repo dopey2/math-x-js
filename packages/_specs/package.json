@@ -1,0 +1,22 @@
+{
+  "private": false,
+  "name": "@math-x-ts/_specs",
+  "version": "0.0.9",
+  "description": "Contains the specification for @math-x-ts",
+  "main": "index.js",
+  "scripts": {
+    "check:specs": "cucumber-js",
+    "clean:lib": "echo 'Skip specs'",
+    "build:all": "echo 'Skip specs'",
+    "lint": "echo 'Skip specs'",
+    "lint:fix": "echo 'Skip specs'",
+    "test": "echo 'Skip specs'",
+    "check:types": "echo 'SKip specs'",
+    "check:all": "echo 'Skip specs'",
+    "test:bundle": "echo 'Skip specs'",
+    "npm:publish": "echo 'Skip specs'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
