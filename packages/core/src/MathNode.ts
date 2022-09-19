@@ -6,12 +6,14 @@ export enum MathNodeType {
     Add = "Add",
     Constant = "Constant",
     Divide = "Divide",
+    Equal = "Equal",
     Fraction = "Fraction",
     Exponent = "Exponent",
     Multiply = "Multiply",
     Negative = "Negative",
     Parenthesis = "Parenthesis",
     Subtract = "Subtract",
+    Variable = "Variable",
 }
 
 /**
