@@ -1,7 +1,7 @@
 export const isNumber = (n: string) => !isNaN(Number(n));
 
 export const isOperator = (c: string) => {
-    return ["+", "-", "*", ":", "/", "^"].indexOf(c) !== -1;
+    return ["+", "-", "*", ":", "/", "^", "="].indexOf(c) !== -1;
 };
 
 export const isInParenthesis = (symbols: string[]) => {
@@ -69,6 +69,7 @@ export const splitStringExpressionToSymbols = (expression: string) => {
         const symbolN1 = symbols[symbols.length - 1];
         const char = expression[i];
 
+        // Multiple digits numbers
         if(symbolN1 && isNumber(symbolN1) && isNumber(char)) {
             symbols[symbols.length - 1] = symbolN1 + char;
         } else {

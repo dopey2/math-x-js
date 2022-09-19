@@ -1,14 +1,14 @@
 import {
     Add,
     Constant,
-    Divide,
+    Divide, Equal,
     Exponent,
     Fraction,
     MathNode,
     Multiply,
     Negative,
     Parenthesis,
-    Subtract
+    Subtract, Variable
 } from "@math-x-ts/core";
 
 import { normalize } from "./normalisation";
@@ -22,14 +22,19 @@ import {
 } from "./utils";
 
 
+const alphaRegex = new RegExp(/^[a-zA-Z]+$/);
+
 const getOperatorPriority = (operator: string) => {
-    if(operator === "+" || operator === "-") {
+    if(operator === "=") {
+        return 0;
+    } else if(operator === "+" || operator === "-") {
         return 1;
-    } if(operator === "*" || operator === ":") {
+    } else if(operator === "*" || operator === ":") {
         return 2;
-    } if(operator === "^" || operator === "/") {
+    } else if(operator === "^" || operator === "/") {
         return 3;
     }
+
     return 0;
 };
 
@@ -101,8 +106,14 @@ const findLastLowestPriorityOperator = (symbols: string[]) => {
 
 
 const buildMathNode: (symbols: string[]) => MathNode = (symbols: string[]) => {
-    if(symbols.length === 1 && isNumber(symbols[0])) {
-        return new Constant(parseFloat(symbols[0]));
+    if(symbols.length === 1) {
+        if(isNumber(symbols[0])) {
+            return new Constant(parseFloat(symbols[0]));
+        }
+
+        if(alphaRegex.test(symbols[0])) {
+            return new Variable(symbols[0]);
+        }
     }
 
     // todo try to normalize this case -2 inside (-2) should be a single symbol
@@ -172,6 +183,8 @@ const mathNodeFactory = (operator: string, left: MathNode, right: MathNode) => {
         return new Fraction(left, right);
     } else if(operator === "^") {
         return new Exponent(left, right);
+    } else if(operator === "=") {
+        return new Equal(left, right);
     }
 
     // other edge case
