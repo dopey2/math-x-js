@@ -14,6 +14,7 @@ solution for any mathematical expression.
 - 📄 Get step by step solution
 - ✏ Produce Latex output
 - 🌳 Build AST (restructure the input as a tree)
+- 🌻  Zero Dependencies
   
 ## Basic Examples
 

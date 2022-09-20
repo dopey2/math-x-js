@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
         image: '/img/binary-code.png',
         description: (
             <>
-        Math-x-ts help you parse mathematical expression. It provide its own syntax to build complexe expression.
+        Parse mathematical expression. Provide an enhanced syntax to build complex expressions.
             </>
         ),
     },
@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
         image: '/img/steps.png',
         description: (
             <>
-        Can solve almost any kind of mathematical expression.It can also return a step by step solution as a predefined data structure
+        Solve mathematical expressions and provide a step by step solution as a predefined data structure.
             </>
         ),
     },
@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
         image: '/img/hierarchical-structure.png',
         description: (
             <>
-        Can build abstract syntax tree for your math expression, so you can easily manipulate it
+        Build abstract syntax tree for your math expression, so you can easily manipulate it.
             </>
         ),
     }
