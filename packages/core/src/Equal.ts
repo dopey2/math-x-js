@@ -56,7 +56,7 @@ export default class Equal extends MathNode {
      * @inheritDoc
      */
     toTex() {
-        return `${this.left.toTex()} = ${this.right.toTex()}}`;
+        return `${this.left.toTex()} = ${this.right.toTex()}`;
     };
 
     /**
