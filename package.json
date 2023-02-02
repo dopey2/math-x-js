@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "math-x-ts",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
     "packages/core",
