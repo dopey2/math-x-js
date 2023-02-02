@@ -6,6 +6,13 @@ const getMermaidForType = (jsonNode, nodeName: string) => {
         return `leaf${nodeName}["${jsonNode.value}"]`;
     }
 
+    if(jsonNode.type === MathNodeType.Variable) {
+        return `leaf${nodeName}["${jsonNode.name}"]`;
+    }
+
+    if(jsonNode.type === MathNodeType.Equal) {
+        return `node${nodeName}["Equal"]`;
+    }
     if(jsonNode.type === MathNodeType.Add) {
         return `node${nodeName}["Add"]`;
     }
@@ -39,7 +46,19 @@ const buildMermaidJs = (jsonNode: any, nodeName = "node") => {
         return `leaf${nodeName}["${jsonNode.value}"];`;
     }
 
-    if([MathNodeType.Add, MathNodeType.Subtract, MathNodeType.Multiply, MathNodeType.Divide].includes(jsonNode.type)) {
+    if(jsonNode.type === MathNodeType.Variable) {
+        return `leaf${nodeName}["${jsonNode.name}"];`;
+    }
+
+    const binaryOperations = [
+        MathNodeType.Add,
+        MathNodeType.Subtract,
+        MathNodeType.Multiply,
+        MathNodeType.Divide,
+        MathNodeType.Equal
+    ];
+
+    if(binaryOperations.includes(jsonNode.type)) {
         let node = `
            ${getMermaidForType(jsonNode, nodeName)} --> ${getMermaidForType(jsonNode.left, `${nodeName}-l`)};
            ${getMermaidForType(jsonNode, nodeName)} --> ${getMermaidForType(jsonNode.right, `${nodeName}-r`)};
@@ -122,6 +141,6 @@ export const mathNodeToMermaid = (mathNode: MathNode) => {
             graph TD;
             ${buildMermaidJs(mathNode.toJson(), "node")}
            `;
-    
+
 
 };
