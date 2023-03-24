@@ -19,13 +19,7 @@ export default class Add extends BaseOperation {
     /**
      * @inheritDoc
      */
-    next(): MathNode {
-        const mathNode = super.baseNext();
-
-        if(mathNode) {
-            return mathNode;
-        }
-
+    concreteNext(): MathNode {
         if (!this.left.isAtomic || !this.right.isAtomic) {
             const [leftNode, rightNode] = super.getConstantsFromParenthesis();
 
@@ -44,8 +38,8 @@ export default class Add extends BaseOperation {
     };
 
     /**
-     * Return the addition of left and right. 
-     * 
+     * Return the addition of left and right.
+     *
      * @param {number} left The left operand.
      * @param {number} right The right operand.
      * @returns {number} The addition result.

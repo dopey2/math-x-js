@@ -20,13 +20,7 @@ export default class Divide extends BaseOperation {
     /**
      * @inheritDoc
      */
-    next(): MathNode {
-        const mathNode = super.baseNext();
-
-        if(mathNode) {
-            return mathNode; 
-        }
-        
+    concreteNext(): MathNode {
         if (!this.left.isAtomic || !this.right.isAtomic) {
             const [leftNode, rightNode] = super.getConstantsFromParenthesis();
 

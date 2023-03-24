@@ -72,7 +72,7 @@ export default abstract class BaseOperation extends MathNode {
      *
      * @returns {MathNode} The next step.
      */
-    protected baseNext(): MathNode | undefined {
+    public next(): MathNode {
         if (this.left instanceof Constant && this.right instanceof Constant) {
             return new Constant(this.operation(this.left.value, this.right.value));
         }
@@ -91,10 +91,7 @@ export default abstract class BaseOperation extends MathNode {
             return rightOverride(this.left);
         }
 
-        /**
-         * Return undefined and let the concrete class implement the rest of the logic.
-         */
-        return undefined;
+        return this.concreteNext();
     }
 
     /**
@@ -124,6 +121,13 @@ export default abstract class BaseOperation extends MathNode {
         return [];
     }
 
+    /**
+     * A more concrete implementation of the next method
+     * that should be defined in concrete classes.
+     *
+     * @protected
+     */
+    protected abstract concreteNext(): MathNode
     /**
      * Each subclass should implement its own operation.
      *

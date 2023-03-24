@@ -18,21 +18,20 @@ export default class Multiply extends BaseOperation {
     /**
      * @inheritDoc
      */
-    next(): MathNode {
-        const mathNode = super.baseNext();
-        
-        if(mathNode) {
-            return mathNode;
-        }
-
+    concreteNext(): MathNode {
         if (!this.left.isAtomic || !this.right.isAtomic) {
-            const [leftNode, rightNode] = super.getConstantsFromParenthesis();    
-            
+            const [leftNode, rightNode] = super.getConstantsFromParenthesis();
+
             if(leftNode instanceof Constant && rightNode instanceof Constant) {
                 return new Constant(leftNode.value * rightNode.value);
             }
 
-            return new Multiply(this.left.next(), this.right.next());
+            const nextLeft = this.left.next();
+            const nextRight = this.right.next();
+
+            if(!this.left.isEqual(nextLeft) || !this.right.isEqual(nextRight)) {
+                return new Multiply(nextLeft, nextRight);
+            }
         }
 
         return this;
