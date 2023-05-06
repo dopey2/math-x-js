@@ -1,0 +1,28 @@
+{
+  "private": false,
+  "name": "@math-x-ts/combination",
+  "version": "0.0.10",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "unpkg": "./lib/umd/index.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "clean:lib": "rimraf lib",
+    "build:all": "yarn clean:lib && yarn build:types && yarn build:esm && yarn build:cjs && yarn build:umd",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
+    "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir lib/cjs",
+    "build:umd": "webpack --config webpack.config.js",
+    "check:types": "tsc --noEmit",
+    "lint": "eslint ./src/**/*",
+    "lint:fix": "eslint ./src/**/* --fix",
+    "test": "jest --verbose",
+    "test:bundle": "jest --config ./jest.bundle.config.ts --detectOpenHandles --verbose",
+    "check:all": "yarn check:types && yarn lint && yarn test",
+    "npm:publish": "npm publish --access public"
+  },
+  "license": "MIT"
+}

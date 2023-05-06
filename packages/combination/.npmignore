@@ -1,0 +1,10 @@
+src
+__test__
+__test_bundle_
+.idea
+.swc
+.eslintrc.json
+.jest.bundle.config.ts
+.jest.config.ts
+tsconfig.json
+webpack.config.js
