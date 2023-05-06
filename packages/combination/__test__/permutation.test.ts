@@ -2,13 +2,13 @@ import Permutation from "../src/Permutation";
 
 const SET_A = ['a', 'b', 'c'];
 
-const COMBO_A_SIZE_1 = [
+const PERMUTATION_A_SIZE_1 = [
     ['a'],
     ['b'],
     ['c'],
 ];
 
-const COMBO_A_SIZE_2 = [
+const PERMUTATION_A_SIZE_2 = [
     ['a', 'a'],
     ['a', 'b'],
     ['a', 'c'],
@@ -20,7 +20,7 @@ const COMBO_A_SIZE_2 = [
     ['c', 'c'],
 ];
 
-const COMBO_A_SIZE_3 = [
+const PERMUTATION_A_SIZE_3 = [
     ['a', 'a', 'a'],
     ['a', 'a', 'b'],
     ['a', 'a', 'c'],
@@ -48,82 +48,159 @@ const COMBO_A_SIZE_3 = [
     ['c', 'c', 'a'],
     ['c', 'c', 'b'],
     ['c', 'c', 'c'],
-]
+];
 
+
+const SET_B = ['A', 'B', 'C'];
+
+const PERMUTATION_B_SIZE_1 = [
+    ['A'],
+    ['B'],
+    ['C'],
+];
+
+const PERMUTATION_B_SIZE_2 = [
+    ['A', 'B'],
+    ['A', 'C'],
+    ['B', 'A'],
+    ['B', 'C'],
+    ['C', 'A'],
+    ['C', 'B'],
+];
+
+const PERMUTATION_B_SIZE_3 = [
+    ['A', 'B', 'C'],
+    ['B', 'A', 'C'],
+    ['C', 'A', 'B'],
+    ['A', 'C', 'B'],
+    ['B', 'C', 'A'],
+    ['C', 'B', 'A']
+];
 
 const arrayDeepEqual = (arr1: Array<any>, arr2: Array<any>) => {
     return arr1.length === arr2.length && arr1.every((v, i) => v === arr2[i]);
-}
+};
 
 const check = (arr1: Array<Array<any>>, arr2: Array<Array<any>>) => {
-    if(arr1.length !== arr2.length) {
+    if (arr1.length !== arr2.length) {
         return false;
     }
 
     return arr1.every((comb1) => {
         return arr2.find((comb2) => {
-            return arrayDeepEqual(comb1, comb2)
+            return arrayDeepEqual(comb1, comb2);
         });
     });
-}
+};
 
 
-describe("Permutation", () => {
-    describe("With Repetition", () => {
+describe("Permutation with repetition", () => {
+    it("Pick 1 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 1);
+        const expected = PERMUTATION_A_SIZE_1;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
 
-        it("Pick 1 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 1);
-            const expected = COMBO_A_SIZE_1;
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+    it("Pick 2 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 2);
+        const expected = PERMUTATION_A_SIZE_2;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
 
-        it("Pick 2 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 2);
-            const expected = COMBO_A_SIZE_2
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+    it("Pick 3 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 3);
+        const expected = PERMUTATION_A_SIZE_3;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
 
-        it("Pick 3 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 3);
-            const expected = COMBO_A_SIZE_3
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+    it("Pick between 1 and 2 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 1, 2);
+        const expected = [
+            ...PERMUTATION_A_SIZE_1,
+            ...PERMUTATION_A_SIZE_2
+        ];
 
-        it("Pick between 1 and 2 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 1, 2);
-            const expected = [
-                ...COMBO_A_SIZE_1,
-                ...COMBO_A_SIZE_2
-            ]
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
 
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+    it("Pick between 1 and 3 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 1, 3);
 
-        it("Pick between 1 and 3 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 1, 3);
+        const expected = [
+            ...PERMUTATION_A_SIZE_1,
+            ...PERMUTATION_A_SIZE_2,
+            ...PERMUTATION_A_SIZE_3,
+        ];
 
-            const expected = [
-                ...COMBO_A_SIZE_1,
-                ...COMBO_A_SIZE_2,
-                ...COMBO_A_SIZE_3,
-            ]
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
 
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+    it("Pick between 2 and 3 elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A, 2, 3);
+        const expected = [
+            ...PERMUTATION_A_SIZE_2,
+            ...PERMUTATION_A_SIZE_3
+        ];
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+});
 
-        it("Pick between 2 and 3 elements from the set ['a', 'b', 'c']", () => {
-            const combinations = Permutation.withRepetition(SET_A, 2, 3);
-            const expected = [
-                ...COMBO_A_SIZE_2,
-                ...COMBO_A_SIZE_3
-            ]
-            const assertion = check(combinations, expected);
-            expect(assertion).toBe(true);
-        });
+describe("Permutation without repetition", () => {
+    it("Pick 1 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 1);
+        const expected = PERMUTATION_B_SIZE_1;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
+    it("Pick 2 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 2);
+        const expected = PERMUTATION_B_SIZE_2;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
+    it("Pick 3 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 3);
+        const expected = PERMUTATION_B_SIZE_3;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
+    it("Pick between 1 and 2 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 1, 2);
+        const expected = [
+            ...PERMUTATION_B_SIZE_1,
+            ...PERMUTATION_B_SIZE_2
+        ];
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
+    it("Pick between 1 and 3 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 1, 3);
+        const expected = [
+            ...PERMUTATION_B_SIZE_1,
+            ...PERMUTATION_B_SIZE_2,
+            ...PERMUTATION_B_SIZE_3,
+        ];
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
+    it("Pick between 2 and 3 element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B, 2, 3);
+        const expected = [
+            ...PERMUTATION_B_SIZE_2,
+            ...PERMUTATION_B_SIZE_3,
+        ];
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
     });
 });
