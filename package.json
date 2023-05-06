@@ -4,6 +4,7 @@
   "version": "0.0.10",
   "description": "Math parser, AST builder for math expression & step by step solution",
   "workspaces": [
+    "packages/combination",
     "packages/core",
     "packages/parser",
     "packages/documentation",
