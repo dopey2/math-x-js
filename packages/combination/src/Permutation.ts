@@ -11,10 +11,11 @@ export default class Permutation {
      *
      * @template S - The type of the elements in the input array.
      * @param {Array<S>} elements - The input array containing the elements to generate permutations for.
-     * @param {number} [n=elements.length] - The minimum length of the generated permutations (inclusive).
-     * @param {number} [m=n] - The maximum length of the generated permutations (inclusive).
+     * @param {number} [n=elements.length] - The minimum number of elements in the generated permutations (inclusive).
+     * @param {number} [m=n] - The maximum number of elements in the generated permutations (inclusive).
      * @param {Array<S>} [combo=[]] - An optional array to store the current combination during recursion.
      * Should not be provided when calling the function initially.
+     *
      * @returns {Array<Array<S>>} - An array of arrays, where each inner array is a permutation of the input elements.
      */
     private static generatePermutation <S>(
@@ -59,14 +60,13 @@ export default class Permutation {
     }
 
     /**
-     * Generates all possible permutations with repetition of a given array of elements, with the option to specify
-     * the minimum (n) and maximum (m) lengths of the generated permutations.
+     * Generates all possible permutations with repetition of a given array of elements,
+     * with the option to specify the minimum (n) and maximum (m) lengths of the generated permutations.
      *
      * @template S The type of elements in the input array and resulting permutations.
      * @param {Array<S>} elements A set of elements used during the generation process.
-     * @param {number} n The minimum number of elements in the generated permutations (inclusive).
-     * The default value is the size of "elements".
-     * @param {number} m The maximum number of elements in the generated permutations.
+     * @param {number} [n=elements.length] The minimum number of elements in the generated permutations (inclusive).
+     * @param {number} [m=n] The maximum number of elements in the generated permutations (inclusive).
      *
      * @returns {Array<Array<S>>} An array of arrays containing all the possible permutations.
      *
