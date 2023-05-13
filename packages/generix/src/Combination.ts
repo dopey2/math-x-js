@@ -59,7 +59,7 @@ export default class Combination {
      * @param {number} [m=n] - The maximum length of the generated combination (inclusive).
      * @returns {Array<Array<S>>} - An array of arrays, where each inner array is a combination of the input elements.
      */
-    static withoutRepetition<S>(elements: S[], n: number, m: number = n): S[][] {
+    static withoutRepetition<S>(elements: S[], n: number = elements.length, m: number = n): S[][] {
         const result = Combination.generateWithoutRepetition(elements,0, [], n, m);
         return result.sort((a, b) => a.length - b.length);
     }
