@@ -89,7 +89,7 @@
       "2": "Generate CHANGELOG                        => yarn changelog",
       "3": "Check diff, update changelog etc..        => _________________________________",
       "5": "generate locks files                      => yarn install && npm install",
-      "6": "Commit all files chore(release) 1.0.0     => _________________________________",
+      "6": "Commit all files                          => git commit -m 'chore(release) 1.0.0' ",
       "7": "Create a tag                              => git tag v1.0.0",
       "8": "Push the everything to git to main        => git push --tags",
       "9": "The CI will handle the rest               => _________________________________"
