@@ -25,17 +25,23 @@ jobs:
       - name: Building the libs
         run: yarn build:all
 
-      - name: Upload articact for core/lib
+      - name: Upload artifacts for core/lib
         uses: actions/upload-artifact@v3
         with:
           name: core_lib
           path: ./packages/core/lib
 
-      - name: Upload articact for parser/lib
+      - name: Upload artifacts for parser/lib
         uses: actions/upload-artifact@v3
         with:
           name: parser_lib
           path: ./packages/parser/lib
+
+      - name: Upload artifacts for generix/lib
+        uses: actions/upload-artifact@v3
+        with:
+          name: generix_lib
+          path: ./packages/generix/lib
 
   test_bundle:
     name: Test bundle
@@ -56,6 +62,12 @@ jobs:
         with:
           name: parser_lib
           path: packages/parser/lib
+
+      - name: Download generix/lib artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: generix_lib
+          path: packages/generix/lib
 
       - name: Testing the bundle
         run: yarn test:bundle
