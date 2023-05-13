@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@math-x-ts/generix",
-  "description": "This library tasks is to generate combinations and permutations",
+  "description": "The task of this library is to generate combinations and permutations.",
   "version": "0.0.12",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
