@@ -279,6 +279,13 @@ const check = (arr1: Array<Array<any>>, arr2: Array<Array<any>>) => {
 
 
 describe("Combination without repetition", () => {
+    it("Pick element from the set ['a', 'b', 'c', 'd', 'e']", () => {
+        const combinations = Combination.withoutRepetition(SET_A);
+        const expected = COMBINATION_A_SIZE_5;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
     it("Pick 1 element from the set ['a', 'b', 'c', 'd', 'e']", () => {
         const combinations = Combination.withoutRepetition(SET_A, 1);
         const expected = COMBINATION_A_SIZE_1;
@@ -372,6 +379,13 @@ describe("Combination without repetition", () => {
 
 
 describe("Combination with repetition", () => {
+    it("Pick element from the set ['X', 'Y', 'Z']", () => {
+        const combinations = Combination.withRepetition(SET_C);
+        const expected = COMBINATION_C_SIZE_3;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
     it("Pick 1 element from the set ['A', 'B', 'C', 'D', 'E']", () => {
         const combinations = Combination.withRepetition(SET_B, 1);
         const expected = COMBINATION_B_SIZE_1;
