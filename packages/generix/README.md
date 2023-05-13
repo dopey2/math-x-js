@@ -23,17 +23,10 @@ yarn add @math-x-ts/generix
 - Combination class. Used to generated combination with or without repetitions
 
 
-
-**Named imports**
 ```typescript
 import { Combination, Permutation } from '@math-x-ts/generix';
 ```
 
-**Default imports**
-```typescript
-import Combination from '@math-x-ts/generix/Combination';
-import Permutation from '@math-x-ts/generix/Permutation';
-```
 
 ## Usage
 
