@@ -54,7 +54,7 @@ console.log(result);
 ```
 </details>
 
-
+___
 
 #### Pick without repetition 1 element from the set ['A', 'B', 'C'];
 
@@ -76,6 +76,8 @@ console.log(result);
 ```
 </details>
 
+___
+
 #### Pick without repetition 2 elements from the set ['A', 'B', 'C'];
 
 ```typescript
@@ -94,6 +96,8 @@ console.log(result);
 ]
 ```
 </details>
+
+___
 
 #### Pick without repetition between 2 and 3 elements from the set ['A', 'B', 'C', 'D'];
 
@@ -120,6 +124,8 @@ console.log(result);
 ]
 ```
 </details>
+
+___
 
 
 ### Combination with repetition
@@ -148,7 +154,7 @@ console.log(result);
 ```
 </details>
 
-
+___
 
 #### Pick with repetition 1 element from the set ['A', 'B', 'C'];
 
@@ -168,6 +174,8 @@ console.log(result);
 ]
 ```
 </details>
+
+___
 
 #### Pick with repetition 2 elements from the set ['A', 'B', 'C'];
 
@@ -190,6 +198,8 @@ console.log(result);
 ]
 ```
 </details>
+
+___
 
 #### Pick with repetition between 2 and 4 elements from the set ['A', 'B', 'C'];
 
@@ -239,6 +249,8 @@ console.log(result);
 ```
 </details>
 
+___
+
 ### Permutation without repetition
 
 
@@ -263,6 +275,8 @@ console.log(result);
 ```
 </details>
 
+___
+
 #### Pick without repetition 2 elements from the set ['A', 'B', 'C'];
 
 ```typescript
@@ -285,6 +299,7 @@ console.log(result);
 ```
 </details>
 
+___
 
 #### Pick without repetition between 2 and 3 element from the set ['A', 'B', 'C'];
 
@@ -314,6 +329,7 @@ console.log(result);
 ```
 </details>
 
+___
 
 ### Permutation with repetition
 
@@ -336,7 +352,7 @@ console.log(result);
 ```
 </details>
 
-
+___
 
 #### Pick with repetition 2 elements from the set ['A', 'B', 'C'];
 
@@ -362,6 +378,8 @@ console.log(result);
 ]
 ```
 </details>
+
+___
 
 #### Pick with repetition between 2 and 3 elements from the set ['A', 'B'];
 
