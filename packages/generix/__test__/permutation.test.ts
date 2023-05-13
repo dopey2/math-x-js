@@ -95,6 +95,14 @@ const check = (arr1: Array<Array<any>>, arr2: Array<Array<any>>) => {
 
 
 describe("Permutation with repetition", () => {
+
+    it("Pick elements from the set ['a', 'b', 'c']", () => {
+        const combinations = Permutation.withRepetition(SET_A);
+        const expected = PERMUTATION_A_SIZE_3;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
     it("Pick 1 elements from the set ['a', 'b', 'c']", () => {
         const combinations = Permutation.withRepetition(SET_A, 1);
         const expected = PERMUTATION_A_SIZE_1;
@@ -152,6 +160,14 @@ describe("Permutation with repetition", () => {
 });
 
 describe("Permutation without repetition", () => {
+
+    it("Pick element from the set ['A', 'B', 'C']", () => {
+        const combinations = Permutation.withoutRepetition(SET_B);
+        const expected = PERMUTATION_B_SIZE_3;
+        const assertion = check(combinations, expected);
+        expect(assertion).toBe(true);
+    });
+
     it("Pick 1 element from the set ['A', 'B', 'C']", () => {
         const combinations = Permutation.withoutRepetition(SET_B, 1);
         const expected = PERMUTATION_B_SIZE_1;
