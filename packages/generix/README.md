@@ -2,7 +2,7 @@
 ___
 
 > Derived from the concepts of 'Generation' and 'Generator', the 'Generix' library is dedicated to the task of data generation based on provided inputs.
-> For example you can use this library to generate combinations & permutation.
+> For example you can use this library to generate combinations & permutations.
 
 > **Note**  Generix was primarily designed for educational purposes, and as such, you may encounter certain limitations, such as memory issues. Other languages, like C or C++, might be more suitable for tasks of this nature due to their lower-level system access and more efficient memory management.
 
