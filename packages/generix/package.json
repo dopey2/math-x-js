@@ -1,6 +1,7 @@
 {
   "private": false,
   "name": "@math-x-ts/generix",
+  "description": "This library tasks is to generate combinations and permutations",
   "version": "0.0.11",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -24,5 +25,15 @@
     "check:all": "yarn check:types && yarn lint && yarn test",
     "npm:publish": "npm publish --access public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dopey2/math-x-ts"
+  },
+  "keywords": [
+    "Generation",
+    "Combination",
+    "Permutation"
+  ],
+  "homepage": "https://github.com/dopey2/math-x-ts/blob/main/packages/generix/README.md",
   "license": "MIT"
 }
