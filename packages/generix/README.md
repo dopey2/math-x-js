@@ -103,7 +103,7 @@ ___
 #### Pick without repetition between 2 and 3 elements from the set ['A', 'B', 'C', 'D'];
 
 ```typescript
-const result = Combination.withoutRepetition(['A', 'B', 'C'], 2, 3);
+const result = Combination.withoutRepetition(['A', 'B', 'C', 'D'], 2, 3);
 console.log(result);
 ```
 
