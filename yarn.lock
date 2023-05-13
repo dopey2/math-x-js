@@ -2594,15 +2594,11 @@
   "resolved" "file:packages/_specs"
   "version" "0.0.10"
 
-"@math-x-ts/combination@file:C:\\Users\\Dani\\repos\\math-x-ts\\packages\\combination":
-  "resolved" "file:packages/combination"
-  "version" "0.0.10"
-
 "@math-x-ts/core@0.0.10", "@math-x-ts/core@file:C:\\Users\\Dani\\repos\\math-x-ts\\packages\\core":
   "resolved" "file:packages/core"
   "version" "0.0.10"
   dependencies:
-    "@math-x-ts/parser" "0.0.9"
+    "@math-x-ts/parser" "0.0.10"
 
 "@math-x-ts/documentation@file:C:\\Users\\Dani\\repos\\math-x-ts\\packages\\documentation":
   "resolved" "file:packages/documentation"
@@ -2610,8 +2606,8 @@
   dependencies:
     "@docusaurus/core" "2.0.0-beta.15"
     "@docusaurus/preset-classic" "2.0.0-beta.15"
-    "@math-x-ts/core" "0.0.9"
-    "@math-x-ts/parser" "0.0.9"
+    "@math-x-ts/core" "0.0.10"
+    "@math-x-ts/parser" "0.0.10"
     "@mdx-js/react" "^1.6.21"
     "clsx" "^1.1.1"
     "intro.js" "^5.0.0"
@@ -2621,6 +2617,10 @@
     "prism-react-renderer" "^1.2.1"
     "react" "^17.0.1"
     "react-dom" "^17.0.1"
+
+"@math-x-ts/generix@file:C:\\Users\\Dani\\repos\\math-x-ts\\packages\\generix":
+  "resolved" "file:packages/generix"
+  "version" "0.0.10"
 
 "@math-x-ts/parser@0.0.10", "@math-x-ts/parser@file:C:\\Users\\Dani\\repos\\math-x-ts\\packages\\parser":
   "resolved" "file:packages/parser"
