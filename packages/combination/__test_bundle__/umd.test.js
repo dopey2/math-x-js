@@ -5,9 +5,9 @@ describe("UMD", () => {
 
         let browser = null;
         let title = null;
-        let isMathXCoreDefined = null;
-        let isMathXParserDefined = null;
-        let res = null;
+        let isMathXCombinationDefined = null;
+        let res1 = null;
+        let res2 = null;
 
         try {
             browser = await puppeteer.launch();
@@ -16,9 +16,20 @@ describe("UMD", () => {
             await page.goto(`file://${__dirname}/index.html`);
 
             title = await page.title()
-            isMathXCoreDefined = await page.evaluate("!!MathXCore");
-            isMathXParserDefined = await page.evaluate("!!MathXParser");
-            res = await page.evaluate("MathXParser.evaluate('1 + 2 * 3')");
+            isMathXCombinationDefined = await page.evaluate("!!MathXCombination");
+
+            const code1 = `
+                const { Combination } = MathXCombination;
+                Combination.withoutRepetition(["A", "B", "C"], 2);
+            `
+
+            const code2 = `
+                const { Permutation } = MathXCombination;
+                Permutation.withoutRepetition(["A", "B", "C"], 2);
+            `
+
+            res1 = await page.evaluate(code1);
+            res2 = await page.evaluate(code2);
 
         } catch (err) {
             console.log(err);
@@ -27,10 +38,16 @@ describe("UMD", () => {
                 await browser.close()
             }
 
-            expect(title).toBe("@math-x-ts/parser")
-            expect(isMathXCoreDefined).toBe(true);
-            expect(isMathXParserDefined).toBe(true)
-            expect(res).toBe(7)
+            expect(title).toBe("@math-x-ts/combination")
+            expect(isMathXCombinationDefined).toBe(true);
+
+            expect(res1).toBeDefined();
+            expect(Array.isArray(res1)).toBe(true);
+            expect(res1.length).toBe(3);
+
+            expect(res2).toBeDefined();
+            expect(Array.isArray(res2)).toBe(true);
+            expect(res2.length).toBe(6);
         }
 
     }, 10000);
