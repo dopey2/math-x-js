@@ -1,10 +1,8 @@
 # @math-x-ts/generix
 ___
 
-### Description
-
-As the word "Generix" is derived from "Generation", "Generator", this library
-focus on data generation from given informations. For example to generate combinations & Permutation.
+> As the word "Generix" is derived from "Generation", "Generator", this library
+focus on data generation from given informations. For example you can use this library to generate combinations & permutation.
 
 
 ## Installation
