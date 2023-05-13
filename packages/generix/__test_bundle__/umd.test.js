@@ -5,7 +5,7 @@ describe("UMD", () => {
 
         let browser = null;
         let title = null;
-        let isMathXCombinationDefined = null;
+        let isMathXGenerixDefined = null;
         let res1 = null;
         let res2 = null;
 
@@ -16,15 +16,15 @@ describe("UMD", () => {
             await page.goto(`file://${__dirname}/index.html`);
 
             title = await page.title()
-            isMathXCombinationDefined = await page.evaluate("!!MathXCombination");
+            isMathXGenerixDefined = await page.evaluate("!!MathXGenerix");
 
             const code1 = `
-                const { Combination } = MathXCombination;
+                const { Combination } = MathXGenerix;
                 Combination.withoutRepetition(["A", "B", "C"], 2);
             `
 
             const code2 = `
-                const { Permutation } = MathXCombination;
+                const { Permutation } = MathXGenerix;
                 Permutation.withoutRepetition(["A", "B", "C"], 2);
             `
 
@@ -38,8 +38,8 @@ describe("UMD", () => {
                 await browser.close()
             }
 
-            expect(title).toBe("@math-x-ts/combination")
-            expect(isMathXCombinationDefined).toBe(true);
+            expect(title).toBe("@math-x-ts/generix")
+            expect(isMathXGenerixDefined).toBe(true);
 
             expect(res1).toBeDefined();
             expect(Array.isArray(res1)).toBe(true);

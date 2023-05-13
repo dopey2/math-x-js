@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "@math-x-ts/combination",
+  "name": "@math-x-ts/generix",
   "version": "0.0.10",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
