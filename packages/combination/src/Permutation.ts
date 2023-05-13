@@ -1,5 +1,5 @@
 /**
- * Use to generate permutation.
+ * Class to generate permutations with & without repetition.
  */
 export default class Permutation {
 
@@ -18,13 +18,13 @@ export default class Permutation {
      *
      * @returns {Array<Array<S>>} - An array of arrays, where each inner array is a permutation of the input elements.
      */
-    private static generatePermutation <S>(
+    private static generateWithoutRepetition <S>(
         elements: Array<S>,
         n: number = elements.length,
         m: number = n,
         combo: Array<S> = []
     ) {
-        const results: Array<Array<S>> = [];
+        const result: Array<Array<S>> = [];
 
         for(let i = 0; i < elements.length; i++) {
             const element = elements[i];
@@ -32,16 +32,16 @@ export default class Permutation {
             combo.push(element);
 
             if(combo.length >= n && combo.length <= m) {
-                results.push([...combo]);
+                result.push([...combo]);
             }
             if(combo.length <= m) {
-                results.push(...Permutation.generatePermutation(rest, n, m, combo));
+                result.push(...Permutation.generateWithoutRepetition(rest, n, m, combo));
             }
 
             combo.pop();
         }
 
-        return results;
+        return result;
     }
 
     /**
@@ -55,7 +55,7 @@ export default class Permutation {
      * @returns {Array<Array<S>>} - An array of arrays, where each inner array is a permutation of the input elements.
      */
     static withoutRepetition <S>(elements: Array<S>, n: number = elements.length, m: number = n) {
-        const result = Permutation.generatePermutation(elements, n, m, []);
+        const result = Permutation.generateWithoutRepetition(elements, n, m, []);
         return result.sort((a, b) => a.length - b.length);
     }
 
@@ -77,12 +77,12 @@ export default class Permutation {
      */
     static withRepetition <S>(elements: Array<S>, n: number = elements.length, m: number = n): Array<Array<S>> {
         const combinations: Array<Array<S>> = [];
-        const validCombinations: Array<Array<S>> = [];
+        const result: Array<Array<S>> = [];
 
         for(const s of elements) {
             combinations.push([s]);
             if(n <= 1) {
-                validCombinations.push([s]);
+                result.push([s]);
             }
         }
 
@@ -98,7 +98,7 @@ export default class Permutation {
                 for(let k = 0; k < elements.length; k++) {
                     newCombos.push([...c, elements[k]]);
                     if(c.length + 1 >= n && c.length - 1 <= m) {
-                        validCombinations.push([...c, elements[k]]);
+                        result.push([...c, elements[k]]);
                     }
                 }
 
@@ -109,6 +109,6 @@ export default class Permutation {
             endIndex = combinations.length;
         }
 
-        return validCombinations;
+        return result;
     };
 }
