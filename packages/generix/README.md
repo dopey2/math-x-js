@@ -1,6 +1,13 @@
 # @math-x-ts/generix
 ___
 
+<p>
+  <a href="https://www.npmjs.com/package/@math-x-ts/generix"><img src="https://img.shields.io/npm/v/@math-x-ts/generix.svg?&color=default" alt="npm version"></a>
+  <a href="CONTRIBUTING.md#pull-requests"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+</p>    
+
+
 > Derived from the concepts of 'Generation' and 'Generator', the 'Generix' library is dedicated to the task of data generation based on provided inputs.
 > For example you can use this library to generate combinations & permutations.
 
