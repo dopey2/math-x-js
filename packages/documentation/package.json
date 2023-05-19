@@ -23,8 +23,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.15",
-    "@docusaurus/preset-classic": "2.0.0-beta.15",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
     "@math-x-ts/core": "0.0.12",
     "@math-x-ts/parser": "0.0.12",
     "@mdx-js/react": "^1.6.21",
@@ -32,7 +32,8 @@
     "intro.js": "^5.0.0",
     "katex": "^0.15.2",
     "mdx-mermaid": "^1.2.1",
-    "mermaid": "^8.14.0",
+    "mermaid": "^10.1.0",
+    "netlify-cli": "15.1.1",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
