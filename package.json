@@ -20,6 +20,7 @@
     "test:bundle": "yarn workspaces run test:bundle",
     "check:types": "yarn workspaces run check:types",
     "check:specs": "yarn workspace @math-x-ts/_specs run check:specs",
+    "coverage": "c8 yarn check:specs",
     "check:all": "yarn workspaces run check:all",
     "npm:publish": "npm run npm:publish --workspaces",
     "apply:version": "ts-node ./scripts/version.ts --applyVersion",
