@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "all-contributors-cli": "^6.20.4",
+    "c8": "^7.13.0",
     "commitizen": "^4.2.5",
     "cucumber-tsflow": "^4.0.0-preview.7",
     "eslint": "^8.23.1",
