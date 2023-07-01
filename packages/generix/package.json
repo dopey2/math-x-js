@@ -12,6 +12,8 @@
   ],
   "scripts": {
     "clean:lib": "rimraf lib",
+    "clean:cpp": "node-gyp clean",
+    "build:cpp": "node-gyp rebuild",
     "build:all": "yarn clean:lib && yarn build:types && yarn build:esm && yarn build:cjs && yarn build:umd",
     "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
     "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
@@ -35,5 +37,9 @@
     "Permutation"
   ],
   "homepage": "https://github.com/dopey2/math-x-ts/blob/main/packages/generix/README.md",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "node-addon-api": "^7.0.0",
+    "node-gyp": "^9.4.0"
+  }
 }
