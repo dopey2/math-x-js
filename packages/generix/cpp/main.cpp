@@ -3,6 +3,7 @@
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
     exports.Set("c_withoutRepetition", Napi::Function::New(env, combination::withoutRepetition));
+    exports.Set("c_withRepetition", Napi::Function::New(env, combination::withRepetition));
     return exports;
 }
 
