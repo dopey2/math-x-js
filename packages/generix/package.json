@@ -13,7 +13,7 @@
   "scripts": {
     "clean:lib": "rimraf lib",
     "clean:cpp": "node-gyp clean",
-    "build:cpp": "node-gyp rebuild",
+    "build:cpp": "node-gyp rebuild && node -p \"const fs = require('fs'); fs.renameSync('build', 'node_addons');\"",
     "build:all": "yarn clean:lib && yarn build:types && yarn build:esm && yarn build:cjs && yarn build:umd",
     "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
     "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
