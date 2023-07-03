@@ -11,9 +11,11 @@
     "lib/**/*"
   ],
   "scripts": {
-    "clean:lib": "rimraf lib",
+    "postbuild:cpp": "node -p \"const fs = require('fs'); fs.rmdirSync('node_addons', { recursive: true }); fs.renameSync('build', 'node_addons');\"",
+    "postbuild:all": "node -p \"const fs = require('fs'); fs.cpSync('node_addons', 'lib/node_addons', {recursive: true});",
     "clean:cpp": "node-gyp clean",
-    "build:cpp": "node-gyp rebuild && node -p \"const fs = require('fs'); fs.rmdirSync('node_addons', { recursive: true }); fs.renameSync('build', 'node_addons');\"",
+    "build:cpp": "node-gyp rebuild",
+    "clean:lib": "rimraf lib",
     "build:all": "yarn clean:lib && yarn build:types && yarn build:esm && yarn build:cjs && yarn build:umd",
     "build:types": "tsc --emitDeclarationOnly --declaration true --outDir lib/types",
     "build:esm": "tsc --module es2015 --target es5 --outDir lib/esm",
