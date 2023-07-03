@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..">
+      <UniqueIdentifier>{739DB09A-CC57-A953-A6CF-F64FA08E4FA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\cpp">
+      <UniqueIdentifier>{9938E6E5-8F6B-7587-726E-6CE774E44BEE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{739DB09A-CC57-A953-A6CF-F64FA08E4FA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\cpp">
+      <UniqueIdentifier>{9938E6E5-8F6B-7587-726E-6CE774E44BEE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\cpp\combination">
+      <UniqueIdentifier>{889F7815-FAD4-89A4-E72C-C59F75FFCD44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:">
+      <UniqueIdentifier>{7B735499-E5DD-1C2B-6C26-70023832A1CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users">
+      <UniqueIdentifier>{E9F714C1-DA89-54E2-60CF-39FEB20BF756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani">
+      <UniqueIdentifier>{3E5282EA-0627-7462-7B67-477277BD3543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani\repos">
+      <UniqueIdentifier>{C1ED997B-7FA2-95B4-22AE-BDD10C9FF205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani\repos\math-x-ts">
+      <UniqueIdentifier>{853454D4-6538-735C-679A-D2EC4287A180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani\repos\math-x-ts\node_modules">
+      <UniqueIdentifier>{56DF7A98-063D-FB9D-485C-089023B4C16A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani\repos\math-x-ts\node_modules\node-gyp">
+      <UniqueIdentifier>{77348C0E-2034-7791-74D5-63C077DF5A3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\Dani\repos\math-x-ts\node_modules\node-gyp\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{739DB09A-CC57-A953-A6CF-F64FA08E4FA7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cpp\main.cpp">
+      <Filter>..\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\combination\combination.cpp">
+      <Filter>..\cpp\combination</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Dani\repos\math-x-ts\node_modules\node-gyp\src\win_delay_load_hook.cc">
+      <Filter>C:\Users\Dani\repos\math-x-ts\node_modules\node-gyp\src</Filter>
+    </ClCompile>
+    <None Include="..\binding.gyp">
+      <Filter>..</Filter>
+    </None>
+  </ItemGroup>
+</Project>
