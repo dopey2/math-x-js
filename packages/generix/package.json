@@ -41,7 +41,7 @@
   "homepage": "https://github.com/dopey2/math-x-ts/blob/main/packages/generix/README.md",
   "license": "MIT",
   "devDependencies": {
-    "node-addon-api": "^7.0.0",
-    "node-gyp": "^9.4.0"
+    "node-addon-api": "7.1.0",
+    "node-gyp": "10.0.1"
   }
 }
